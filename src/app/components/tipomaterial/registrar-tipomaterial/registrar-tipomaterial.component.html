@@ -1,0 +1,38 @@
+<div class="container">
+  <div class="title-container"><h1 class="title">Registrar Tipo de Material</h1></div>
+    <form [formGroup]="form" (submit)="aceptar()">
+      <mat-form-field *ngIf="edicion">
+        <mat-label>Codigo</mat-label>
+        <input matInput formControlName="codigo" readonly/>
+      </mat-form-field>
+      <br />
+        <mat-form-field>
+          <mat-label>Tema</mat-label>
+          <input matInput formControlName="tema" />
+          <mat-error *ngIf="form.get('tema')?.hasError('required')"
+          >El tema es obligatorio.</mat-error>
+        </mat-form-field>
+        <br />
+        <mat-form-field>
+            <mat-label>Tipo de material</mat-label>
+            <mat-select formControlName="tipodematerial">
+              <mat-option *ngFor="let g of listatipos" [value]="g.value">
+                {{ g.viewValue }}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="form.get('tipodematerial')?.hasError('required')"
+              >El tipo de material del tratamiento es obligatorio.</mat-error
+            >
+          </mat-form-field>
+        <br />
+        <mat-form-field>
+            <mat-label>Link</mat-label>
+            <input matInput formControlName="link" />
+            <mat-error *ngIf="form.get('link')?.hasError('required')"
+            >El link es obligatorio.</mat-error>
+          </mat-form-field>
+        <br />
+        <div class="title-container"><button mat-raised-button color="primary">Registrar</button></div>
+      </form>
+</div>
+  

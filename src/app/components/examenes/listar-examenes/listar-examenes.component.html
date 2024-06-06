@@ -1,0 +1,49 @@
+<div class="container">
+    <div class="title-container"><h1 class="title">Lista de Examenes</h1></div>
+      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+          <ng-container matColumnDef="idexamenes">
+            <th mat-header-cell *matHeaderCellDef > Id </th>
+            <td mat-cell *matCellDef="let element"> {{element.idExamenes}} </td>
+          </ng-container>
+        
+          <ng-container matColumnDef="nombreexamenes">
+            <th mat-header-cell *matHeaderCellDef> Nombre </th>
+            <td mat-cell *matCellDef="let element"> {{element.nombreExamenes}} </td>
+          </ng-container>
+        
+          <ng-container matColumnDef="fechaexamenes">
+            <th mat-header-cell *matHeaderCellDef> Fecha de Examen </th>
+            <td mat-cell *matCellDef="let element"> {{element.fechaExamenes}} </td>
+          </ng-container>
+        
+          <ng-container matColumnDef="resultadosexamenes">
+            <th mat-header-cell *matHeaderCellDef> Resultados </th>
+            <td mat-cell *matCellDef="let element"> {{element.resultadosExamenes}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="observacionesexamenes">
+            <th mat-header-cell *matHeaderCellDef> Observaciones </th>
+            <td mat-cell *matCellDef="let element"> {{element.observacionesExamenes}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="editar">
+            <th mat-header-cell *matHeaderCellDef> Edicion </th>
+            <td mat-cell *matCellDef="let element" ><button mat-raised-button color="primary"[routerLink]="['ediciones',element.idExamenes]">Actualizar</button></td>
+          </ng-container>
+
+          <ng-container matColumnDef="eliminar">
+            <th mat-header-cell *matHeaderCellDef> Edicion 2 </th>
+            <td mat-cell *matCellDef="let element" ><button mat-raised-button color="primary" (click)="deletes(element.idExamenes)">Eliminar</button></td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+        <br>
+        <mat-paginator [length]="50"
+        [pageSize]="7"
+        [pageSizeOptions]="[7, 10, 15]"
+        aria-label="Select page" color="primary">
+        </mat-paginator>
+  </div>

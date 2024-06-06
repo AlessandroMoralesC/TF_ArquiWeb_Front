@@ -1,0 +1,46 @@
+<div class="container">
+  <div class="title-container"><h1>Registrar Examenes</h1></div>
+      <form [formGroup]="form" (submit)="aceptar()">
+          <mat-form-field *ngIf="edicion">
+            <mat-label>Codigo</mat-label>
+            <input matInput formControlName="codigo" readonly/>
+          </mat-form-field>
+          <br />
+          <mat-form-field>
+            <mat-label>Nombre</mat-label>
+            <input matInput formControlName="nombre" />
+            <mat-error *ngIf="form.get('nombre')?.hasError('required')"
+            >El nombre es obligatorio.</mat-error
+          >
+          </mat-form-field>
+          <br />
+          <mat-form-field>
+            <mat-label>Selecciona la fecha</mat-label>
+            <input matInput [matDatepicker]="picker" formControlName="fechaexamen">
+            <mat-hint>MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+            <mat-error *ngIf="form.get('fechaexamen')?.hasError('required')"
+            >La fecha es obligatorio.</mat-error
+          >
+          </mat-form-field>
+          <br />
+          <mat-form-field>
+              <mat-label>Resultado</mat-label>
+              <input matInput formControlName="resultado" />
+              <mat-error *ngIf="form.get('resultado')?.hasError('required')"
+              >El resultado es obligatorio.</mat-error
+            >
+            </mat-form-field>
+            <br />
+            <mat-form-field>
+              <mat-label>Onservaciones</mat-label>
+              <input matInput formControlName="observaciones" />
+              <mat-error *ngIf="form.get('observaciones')?.hasError('required')"
+              >Las observaciones son obligatorias.</mat-error
+            >
+            </mat-form-field>      
+          <br />
+          <div class="title-container"><button mat-raised-button color="primary">Registrar</button></div>
+      </form> 
+</div>

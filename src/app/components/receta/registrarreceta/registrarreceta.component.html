@@ -1,0 +1,36 @@
+<div class="container">
+    <div class="title-container"><h1 class="title">Registrar Recetas</h1></div>
+    <form [formGroup]="form" (ngSubmit)="registrarReceta()">
+      
+      <mat-form-field *ngIf="edicion">
+        <mat-label>Codigo</mat-label>
+        <input matInput formControlName="codigo" readonly/>
+      </mat-form-field>
+      <br />
+      <mat-form-field>
+        <mat-label>Nombre de la Receta</mat-label>
+        <input matInput formControlName="nombre">
+        <mat-error *ngIf="form.get('nombre')?.hasError('required') && form.get('nombre')?.touched">
+          El nombre es obligatorio.
+        </mat-error>
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <mat-label>Cantidad</mat-label>
+        <input matInput type="number" formControlName="cantidad">
+        <mat-error *ngIf="form.get('cantidad')?.hasError('required') && form.get('cantidad')?.touched">
+          La cantidad es obligatoria.
+        </mat-error>
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <mat-label>Observaciones</mat-label>
+        <input matInput formControlName="observaciones">
+        <mat-error *ngIf="form.get('observaciones')?.hasError('required') && form.get('observaciones')?.touched">
+          Las observaciones son obligatorias.
+        </mat-error>
+      </mat-form-field>
+      <br>
+      <button mat-raised-button color="primary" type="submit">Registrar Campaña</button>
+    </form>
+  </div>

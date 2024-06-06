@@ -1,0 +1,7 @@
+.toolbar-container {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  mat-toolbar {
+    flex: 1;
+  }
