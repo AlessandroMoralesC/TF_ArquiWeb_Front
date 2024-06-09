@@ -9,6 +9,10 @@ import { RegistrarrecetaComponent } from './components/receta/registrarreceta/re
 import { TipomaterialComponent } from './components/tipomaterial/tipomaterial.component';
 import { RegistrarTipomaterialComponent } from './components/tipomaterial/registrar-tipomaterial/registrar-tipomaterial.component';
 import { ExamenesComponent } from './components/examenes/examenes.component';
+import { UsuarioComponent } from './components/usuario/usuario.component';
+import { RegistrarusuarioComponent } from './components/usuario/registrarusuario/registrarusuario.component';
+import { MensajesComponent } from './components/mensajes/mensajes.component';
+import { RegistrarmensajesComponent } from './components/mensajes/registrarmensajes/registrarmensajes.component';
 
 export const routes: Routes = [
     
@@ -19,6 +23,16 @@ export const routes: Routes = [
                 path:'nuevo',component:RegistrarTratamientoComponent
             },{
                 path:'ediciones/:id',component:RegistrarTratamientoComponent
+            }
+        ]
+    },
+    {
+        path:"mensajes",component:MensajesComponent,
+        children:[
+            {
+                path:'nuevo',component:RegistrarmensajesComponent
+            },{
+                path:'ediciones/:id',component:RegistrarmensajesComponent
             }
         ]
     },
@@ -57,6 +71,15 @@ export const routes: Routes = [
             {
                 path:'ediciones/:id',component:RegistrarExamenesComponent
             }  
+        ]
+    },
+    {
+        path:'usuarios',component:UsuarioComponent,
+        children: [
+            { path: 'nuevo', component: RegistrarusuarioComponent
+             },
+            { path: 'ediciones/:id', component: RegistrarusuarioComponent },
+
         ]
     }
 

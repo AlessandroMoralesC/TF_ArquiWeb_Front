@@ -79,7 +79,7 @@ export class RegistrarExamenesComponent implements OnInit{
             });
           });
         }
-      this.router.navigate(['/Examenes/nuevo']);
+      this.router.navigate(['/examenes/nuevo']);
     }
   }
   init()

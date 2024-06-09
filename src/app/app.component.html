@@ -10,6 +10,16 @@
     <button mat-menu-item routerLink="/roles/nuevo">Registrar Rol</button>
   </mat-menu>
 
+  <!-- Barra de herramientas para Usuarios -->
+  <mat-toolbar color="primary">
+    <mat-icon>account_circle</mat-icon>
+    <button mat-button [matMenuTriggerFor]="menuUsuarios">Usuarios</button>
+  </mat-toolbar>
+  <mat-menu #menuUsuarios="matMenu">
+    <button mat-menu-item routerLink="/usuarios">Listar Usuarios</button>
+    <button mat-menu-item routerLink="/usuarios/nuevo">Registrar Usuario</button>
+  </mat-menu>
+
   <!-- Barra de herramientas para Tratamientos -->
   <mat-toolbar color="primary">
     <mat-icon>healing</mat-icon>
@@ -48,6 +58,16 @@
   <mat-menu #menuExamenes="matMenu">
     <button mat-menu-item routerLink="/examenes">Listar Examenes</button>
     <button mat-menu-item routerLink="/examenes/nuevo">Registrar Examen</button>
+  </mat-menu>
+
+    <!-- Barra de herramientas para Mensajes -->
+  <mat-toolbar color="primary">
+    <mat-icon>message</mat-icon>
+    <button mat-button [matMenuTriggerFor]="menuMensajes">Mensajes</button>
+  </mat-toolbar>
+  <mat-menu #menuMensajes="matMenu">
+    <button mat-menu-item routerLink="/mensajes">Listar Mensajes</button>
+    <button mat-menu-item routerLink="/mensajes/nuevo">Registrar Mensaje</button>
   </mat-menu>
 </div>
 

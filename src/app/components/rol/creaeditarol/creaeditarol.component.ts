@@ -51,7 +51,7 @@ export class CreaeditarolComponent implements OnInit {
   aceptar(): void {
     if (this.form.valid) {
       this.rol.idRol=this.form.value.codigo;
-      this.rol.rol = this.form.value.rol;
+      this.rol.nombreRol = this.form.value.rol;
       if(this.edicion)
         {
             this.rS.update(this.rol).subscribe((data) => {
@@ -77,7 +77,7 @@ export class CreaeditarolComponent implements OnInit {
         {
           this.form = new FormGroup({
             codigo:new FormControl(data.idRol),
-            rol:new FormControl(data.rol) 
+            rol:new FormControl(data.nombreRol) 
           })
         })
       }
