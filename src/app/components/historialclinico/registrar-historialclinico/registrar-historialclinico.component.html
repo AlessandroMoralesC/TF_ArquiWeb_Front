@@ -1,0 +1,34 @@
+<div class="container">
+  <div class="title-container"><h1 class="title">Registrar Historial Clínico</h1></div>
+  <form [formGroup]="form" (ngSubmit)="aceptar()">
+
+    <!-- Fecha de Apertura -->
+    <mat-form-field>
+      <mat-label>Fecha de Apertura</mat-label>
+      <input matInput [matDatepicker]="picker" formControlName="fechaperturaHClinico" />
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+      <mat-error *ngIf="form.get('fechaperturaHClinico')?.hasError('required')">
+        La fecha de apertura es obligatoria.
+      </mat-error>
+    </mat-form-field>
+    <br />
+
+    <!-- Usuario -->
+    <mat-form-field>
+      <mat-label>Usuarios</mat-label>
+      <mat-select formControlName="usuarios">
+        <mat-option *ngFor="let u of listaUsuarios" [value]="u.idUsers">
+          {{ u.nombreUsers }}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="form.get('usuarios')?.hasError('required')">
+        El usuario es obligatorio.
+      </mat-error>
+    </mat-form-field>
+    <br />
+
+    <!-- Botón para Registrar -->
+    <div class="title-container"><button mat-raised-button color="primary">Registrar Historial Clínico</button></div>
+  </form>
+</div>

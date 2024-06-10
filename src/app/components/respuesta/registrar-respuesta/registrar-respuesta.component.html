@@ -1,0 +1,41 @@
+<div class="container">
+  <div class="title-container"><h1 class="title">Registrar Respuesta</h1></div>
+  <form [formGroup]="form" (ngSubmit)="aceptar()">
+    <!-- Pregunta -->
+    <mat-form-field>
+      <mat-label>Pregunta</mat-label>
+      <input matInput formControlName="pregunta" />
+      <mat-error *ngIf="form.get('pregunta')?.hasError('required')">
+        La pregunta es obligatoria.
+      </mat-error>
+    </mat-form-field>
+    <br />
+
+    <!-- Respuesta -->
+    <mat-form-field>
+      <mat-label>Respuesta</mat-label>
+      <textarea matInput formControlName="respuestas" rows="4"></textarea>
+      <mat-error *ngIf="form.get('respuestas')?.hasError('required')">
+        La respuesta es obligatoria.
+      </mat-error>
+    </mat-form-field>
+    <br />
+
+    <!-- Usuario -->
+    <mat-form-field>
+      <mat-label>Usuarios</mat-label>
+      <mat-select formControlName="usuarios">
+        <mat-option *ngFor="let u of listaUsuarios" [value]="u.idUsers">
+          {{ u.nombreUsers }}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="form.get('usuarios')?.hasError('required')">
+        El usuario es obligatorio.
+      </mat-error>
+    </mat-form-field>
+    <br />
+
+    <!-- Botón para Registrar -->
+    <div class="title-container"><button mat-raised-button color="primary">Registrar Respuesta</button></div>
+  </form>
+</div>

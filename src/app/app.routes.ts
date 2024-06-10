@@ -14,73 +14,88 @@ import { RegistrarusuarioComponent } from './components/usuario/registrarusuario
 import { MensajesComponent } from './components/mensajes/mensajes.component';
 import { RegistrarmensajesComponent } from './components/mensajes/registrarmensajes/registrarmensajes.component';
 
-export const routes: Routes = [
-    
-    {
-        path:"tratamientos",component:TratamientosComponent,
-        children:[
-            {
-                path:'nuevo',component:RegistrarTratamientoComponent
-            },{
-                path:'ediciones/:id',component:RegistrarTratamientoComponent
-            }
-        ]
-    },
-    {
-        path:"mensajes",component:MensajesComponent,
-        children:[
-            {
-                path:'nuevo',component:RegistrarmensajesComponent
-            },{
-                path:'ediciones/:id',component:RegistrarmensajesComponent
-            }
-        ]
-    },
-    {
-        path:'roles',component:RolComponent,
-        children:[
-            {
-                path:'nuevo',component:CreaeditarolComponent
-            },{
-                path:'ediciones/:id',component:CreaeditarolComponent
-            }
-        ]
-    },
-    {
-        path:'recetas',component:RecetaComponent,
-        children:[
-            {path:'nuevo',component:RegistrarrecetaComponent} ,
-            {
-                path:'ediciones/:id',component:RegistrarrecetaComponent
-            }   
-        ]
-    },
-    {
-        path:'tipodematerial',component:TipomaterialComponent,
-        children:[
-            {path:'nuevo',component:RegistrarTipomaterialComponent},
-            {
-                path:'ediciones/:id',component:RegistrarTipomaterialComponent
-            }  
-        ]
-    },
-    {
-        path:'examenes',component:ExamenesComponent,
-        children:[
-            {path:'nuevo',component:RegistrarExamenesComponent},
-            {
-                path:'ediciones/:id',component:RegistrarExamenesComponent
-            }  
-        ]
-    },
-    {
-        path:'usuarios',component:UsuarioComponent,
-        children: [
-            { path: 'nuevo', component: RegistrarusuarioComponent
-             },
-            { path: 'ediciones/:id', component: RegistrarusuarioComponent },
+import { RespuestaComponent } from './components/respuesta/respuesta.component';
+import { RegistrarRespuestaComponent } from './components/respuesta/registrar-respuesta/registrar-respuesta.component';
+import { HistorialclinicoComponent } from './components/historialclinico/historialclinico.component';
+import { RegistrarHistorialclinicoComponent } from './components/historialclinico/registrar-historialclinico/registrar-historialclinico.component';
 
+export const routes: Routes = [
+    {
+        path: "tratamientos", component: TratamientosComponent,
+        children: [
+            {
+                path: 'nuevo', component: RegistrarTratamientoComponent
+            }, {
+                path: 'ediciones/:id', component: RegistrarTratamientoComponent
+            }
+        ]
+    },
+    {
+        path: "mensajes", component: MensajesComponent,
+        children: [
+            {
+                path: 'nuevo', component: RegistrarmensajesComponent
+            }, {
+                path: 'ediciones/:id', component: RegistrarmensajesComponent
+            }
+        ]
+    },
+    {
+        path: 'roles', component: RolComponent,
+        children: [
+            {
+                path: 'nuevo', component: CreaeditarolComponent
+            }, {
+                path: 'ediciones/:id', component: CreaeditarolComponent
+            }
+        ]
+    },
+    {
+        path: 'recetas', component: RecetaComponent,
+        children: [
+            { path: 'nuevo', component: RegistrarrecetaComponent },
+            {
+                path: 'ediciones/:id', component: RegistrarrecetaComponent
+            }
+        ]
+    },
+    {
+        path: 'tipodematerial', component: TipomaterialComponent,
+        children: [
+            { path: 'nuevo', component: RegistrarTipomaterialComponent },
+            {
+                path: 'ediciones/:id', component: RegistrarTipomaterialComponent
+            }
+        ]
+    },
+    {
+        path: 'examenes', component: ExamenesComponent,
+        children: [
+            { path: 'nuevo', component: RegistrarExamenesComponent },
+            {
+                path: 'ediciones/:id', component: RegistrarExamenesComponent
+            }
+        ]
+    },
+    {
+        path: 'usuarios', component: UsuarioComponent,
+        children: [
+            { path: 'nuevo', component: RegistrarusuarioComponent },
+            { path: 'ediciones/:id', component: RegistrarusuarioComponent }
+        ]
+    },
+    {
+        path: 'respuestas', component: RespuestaComponent,
+        children: [
+            { path: 'nuevo', component: RegistrarRespuestaComponent },
+            { path: 'ediciones/:id', component: RegistrarRespuestaComponent }
+        ]
+    },
+    {
+        path: 'historialclinico', component: HistorialclinicoComponent,
+        children: [
+            { path: 'nuevo', component: RegistrarHistorialclinicoComponent },
+            { path: 'ediciones/:id', component: RegistrarHistorialclinicoComponent }
         ]
     }
-
 ];

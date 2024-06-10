@@ -1,5 +1,5 @@
 <div class="toolbar-container">
-  
+
   <!-- Barra de herramientas para Roles -->
   <mat-toolbar color="primary">
     <mat-icon>account_circle</mat-icon>
@@ -60,7 +60,7 @@
     <button mat-menu-item routerLink="/examenes/nuevo">Registrar Examen</button>
   </mat-menu>
 
-    <!-- Barra de herramientas para Mensajes -->
+  <!-- Barra de herramientas para Mensajes -->
   <mat-toolbar color="primary">
     <mat-icon>message</mat-icon>
     <button mat-button [matMenuTriggerFor]="menuMensajes">Mensajes</button>
@@ -69,6 +69,27 @@
     <button mat-menu-item routerLink="/mensajes">Listar Mensajes</button>
     <button mat-menu-item routerLink="/mensajes/nuevo">Registrar Mensaje</button>
   </mat-menu>
+
+  <!-- Barra de herramientas para Respuestas -->
+  <mat-toolbar color="primary">
+    <mat-icon>question_answer</mat-icon>
+    <button mat-button [matMenuTriggerFor]="menuRespuestas">Respuestas</button>
+  </mat-toolbar>
+  <mat-menu #menuRespuestas="matMenu">
+    <button mat-menu-item routerLink="/respuestas">Listar Respuestas</button>
+    <button mat-menu-item routerLink="/respuestas/nuevo">Registrar Respuesta</button>
+  </mat-menu>
+
+  <!-- Barra de herramientas para Historial Clínico -->
+  <mat-toolbar color="primary">
+    <mat-icon>history</mat-icon>
+    <button mat-button [matMenuTriggerFor]="menuHistorialclinico">Historial Clínico</button>
+  </mat-toolbar>
+  <mat-menu #menuHistorialclinico="matMenu">
+    <button mat-menu-item routerLink="/historialclinico">Listar Historial Clínico</button>
+    <button mat-menu-item routerLink="/historialclinico/nuevo">Registrar Historial Clínico</button>
+  </mat-menu>
+
 </div>
 
 <router-outlet></router-outlet>
