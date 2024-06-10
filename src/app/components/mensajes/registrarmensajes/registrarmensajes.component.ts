@@ -4,7 +4,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
-import { Router, RouterLink } from '@angular/router';
+import { Params,ActivatedRoute, Router, RouterLink } from '@angular/router';
 import {provideNativeDateAdapter} from '@angular/material/core';
 import {
   FormBuilder,
@@ -39,15 +39,23 @@ export class RegistrarmensajesComponent implements OnInit {
   form: FormGroup = new FormGroup({}); 
   mensaje: Mensajes=new Mensajes();
   listaUsuarios: Usuario[] = [];
+  id: number = 0;
+  edicion: boolean = false;
 
   constructor(
     private uS: UsuarioService,
     private router: Router,
     private formBuilder: FormBuilder,
-    private mS: MensajesService
+    private mS: MensajesService,
+    private route:ActivatedRoute
   ) {}
 
   ngOnInit(): void {
+    this.route.params.subscribe((data: Params) => {
+      this.id = data['id'];
+      this.edicion = this.id != null;
+      this.init();
+    });
     this.form = this.formBuilder.group({
       idMensaje: [''],
       mensaje: ['', Validators.required],
@@ -59,6 +67,7 @@ export class RegistrarmensajesComponent implements OnInit {
   }
   aceptar(): void {
     if (this.form.valid) {
+      this.mensaje.idMensaje=this.form.value.idMensaje;
       this.mensaje.mensaje=this.form.value.mensaje;
   
       // Obtén el ID del rol seleccionado del formulario
@@ -73,17 +82,36 @@ export class RegistrarmensajesComponent implements OnInit {
         this.mensaje.usuario = selectedUsuario;
   
         // Luego, guarda el usuario y maneja el resultado
-        this.mS.insert(this.mensaje).subscribe((data) => {
-          this.mS.list().subscribe((data) => {
-            this.mS.setList(data);
+        if (this.edicion) {
+          this.mS.update(this.mensaje).subscribe(() => {
+            this.mS.list().subscribe((data) => {
+              this.mS.setList(data);
+            });
           });
-        });
+        } else {
+          this.mS.insert(this.mensaje).subscribe(() => {
+            this.mS.list().subscribe((data) => {
+              this.mS.setList(data);
+            });
+          });
+        }
   
         this.router.navigate(['mensajes/nuevo']);
       } else {
         // Manejar el caso donde no se encontró el rol seleccionado
         console.error('No se encontró el rol seleccionado.');
       }
+    }
+  }
+  init() {
+    if (this.edicion) {
+      this.mS.listId(this.id).subscribe((data) => {
+        this.form = this.formBuilder.group({
+          idMensaje: [data.idMensaje],
+          mensaje: [data.mensaje, Validators.required],
+          usuarios: [data.usuario.idUsers, Validators.required]
+        });
+      });
     }
   }
 }

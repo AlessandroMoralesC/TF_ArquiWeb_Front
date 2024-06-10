@@ -2,15 +2,15 @@
     <div class="title-container"><h1 class="title">Registrar Usuario</h1></div>
     <form [formGroup]="form" (ngSubmit)="aceptar()">
         
-          <!-- ID -->
-          <mat-form-field>
-            <mat-label>ID</mat-label>
-            <input matInput formControlName="id" />
-            <mat-error *ngIf="form.get('id')?.hasError('required')">
-                El ID es obligatorio.
-            </mat-error>
-        </mat-form-field>
-        <br />
+      <!-- ID -->
+      <mat-form-field *ngIf="edicion">
+        <mat-label>ID</mat-label>
+        <input matInput formControlName="id" />
+        <mat-error *ngIf="form.get('id')?.hasError('required')">
+            El ID es obligatorio.
+        </mat-error>
+      </mat-form-field>
+      <br />
 
       <!-- Nombre -->
       <mat-form-field>
