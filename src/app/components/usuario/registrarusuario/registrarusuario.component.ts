@@ -1,19 +1,13 @@
-import { Component,OnInit } from '@angular/core';
-import {MatDatepickerModule} from '@angular/material/datepicker';
+import { Component, OnInit } from '@angular/core';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
-import { Params,ActivatedRoute, Router, RouterLink } from '@angular/router';
-import {provideNativeDateAdapter} from '@angular/material/core';
-import {
-  FormControl,
-  FormBuilder,
-  FormGroup,
-  ReactiveFormsModule,
-  Validators,
-} from '@angular/forms';
-import { CommonModule,NgIf } from '@angular/common';
+import { Params, ActivatedRoute, Router, RouterLink } from '@angular/router';
+import { provideNativeDateAdapter } from '@angular/material/core';
+import { FormControl, FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { CommonModule, NgIf } from '@angular/common';
 import { Usuario } from '../../../models/usuario';
 import { Rol } from '../../../models/rol';
 import { RolService } from '../../../services/rol.service';
@@ -34,14 +28,14 @@ import { MatNativeDateModule } from '@angular/material/core';
     NgIf,
     MatNativeDateModule,
     MatFormFieldModule,
-    RouterLink  
+    RouterLink
   ],
   templateUrl: './registrarusuario.component.html',
-  styleUrl: './registrarusuario.component.css'
+  styleUrls: ['./registrarusuario.component.css']
 })
 export class RegistrarusuarioComponent implements OnInit {
-  form: FormGroup = new FormGroup({}); 
-  usuario: Usuario=new Usuario();
+  form: FormGroup = new FormGroup({});
+  usuario: Usuario = new Usuario();
   listaRoles: Rol[] = [];
   id: number = 0;
   edicion: boolean = false;
@@ -52,7 +46,7 @@ export class RegistrarusuarioComponent implements OnInit {
     private formBuilder: FormBuilder,
     private uS: UsuarioService,
     private route: ActivatedRoute
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.route.params.subscribe((data: Params) => {
@@ -61,13 +55,13 @@ export class RegistrarusuarioComponent implements OnInit {
       this.init();
     });
     this.form = this.formBuilder.group({
-      id:[''],
+      id: [''],
       nombre: ['', Validators.required],
       apellido: ['', Validators.required],
       fechanaciemiento: ['', Validators.required],
       telefono: ['', [Validators.required, Validators.pattern('^[0-9]{9,11}$')]],
       correo: ['', [Validators.required, Validators.email]],
-      especialidad: [''],
+      especialidad: ['', Validators.required],
       user: ['', Validators.required],
       pass: ['', Validators.required],
       activo: [true, Validators.required],
@@ -77,6 +71,7 @@ export class RegistrarusuarioComponent implements OnInit {
       this.listaRoles = data;
     });
   }
+
   aceptar(): void {
     if (this.form.valid) {
       this.usuario.idUsers = this.form.value.id;
@@ -89,14 +84,13 @@ export class RegistrarusuarioComponent implements OnInit {
       this.usuario.username = this.form.value.user;
       this.usuario.password = this.form.value.pass;
       this.usuario.enabled = this.form.value.activo;
-  
-      
+
       const roleId = this.form.value.roles;
       const selectedRole = this.listaRoles.find(rol => rol.idRol === roleId);
-      
+
       if (selectedRole) {
         this.usuario.role = selectedRole;
-  
+
         if (this.edicion) {
           this.uS.update(this.usuario).subscribe(() => {
             this.uS.list().subscribe((data) => {
@@ -110,7 +104,7 @@ export class RegistrarusuarioComponent implements OnInit {
             });
           });
         }
-  
+
         this.router.navigate(['usuarios/nuevo']);
       } else {
         console.error('No se encontró el rol seleccionado.');
@@ -128,7 +122,7 @@ export class RegistrarusuarioComponent implements OnInit {
           fechanaciemiento: [data.fechanaciemientoUsers, Validators.required],
           telefono: [data.telefonoUsers, [Validators.required, Validators.pattern('^[0-9]{9,11}$')]],
           correo: [data.correoUsers, [Validators.required, Validators.email]],
-          especialidad: [data.especialidadUsers],
+          especialidad: [data.especialidadUsers, Validators.required],
           user: [data.username, Validators.required],
           pass: [data.password, Validators.required],
           activo: [data.enabled, Validators.required],

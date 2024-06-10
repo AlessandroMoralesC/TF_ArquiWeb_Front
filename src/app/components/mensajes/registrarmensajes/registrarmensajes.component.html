@@ -3,7 +3,7 @@
     <form [formGroup]="form" (ngSubmit)="aceptar()">
         
       <!-- ID del Mensaje -->
-      <mat-form-field>
+      <mat-form-field *ngIf="edicion">
         <mat-label>ID del Mensaje</mat-label>
         <input matInput formControlName="idMensaje" />
         <mat-error *ngIf="form.get('idMensaje')?.hasError('required')">
