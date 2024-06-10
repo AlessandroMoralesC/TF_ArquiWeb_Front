@@ -4,6 +4,8 @@ import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { UsuarioService } from '../../../services/usuario.service';
 import { Usuario } from '../../../models/usuario';
+import { RouterLink } from '@angular/router';
+import { MatButtonModule } from '@angular/material/button';
 @Component({
   selector: 'app-listarusuario',
   standalone: true,
@@ -11,6 +13,8 @@ import { Usuario } from '../../../models/usuario';
     MatTableModule,
     MatFormFieldModule,
     MatPaginatorModule,
+    RouterLink,
+    MatButtonModule
   ],
   templateUrl: './listarusuario.component.html',
   styleUrl: './listarusuario.component.css'
@@ -28,9 +32,14 @@ export class ListarusuarioComponent implements OnInit{
     'username',
     'password',
     'enabled',
-    'roles'
+    'roles',
+    'editar',
+    'eliminar'
   ];
   @ViewChild(MatPaginator) paginator!: MatPaginator;
+  ngAfterViewInit(){
+    this.dataSource.paginator=this.paginator;
+  }
 
   constructor(private uS: UsuarioService) {}
   ngOnInit(): void {
@@ -41,6 +50,16 @@ export class ListarusuarioComponent implements OnInit{
     this.uS.getList().subscribe((data) => {
       this.dataSource = new MatTableDataSource(data);
       this.dataSource.paginator = this.paginator;
+    });
+  }
+  deletes(id:number)
+  {
+    this.uS.delete(id).subscribe((data)=>
+    {
+      this.uS.list().subscribe((data)=>
+      {
+        this.uS.setList(data)
+      })
     });
   }
 }

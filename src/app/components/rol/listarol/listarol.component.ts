@@ -22,6 +22,7 @@ export class ListarolComponent implements OnInit{
     'eliminar'];
 
   dataSource:MatTableDataSource<Rol>=new MatTableDataSource()
+  
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   ngAfterViewInit(){
     this.dataSource.paginator=this.paginator;
