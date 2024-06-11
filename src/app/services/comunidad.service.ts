@@ -10,7 +10,6 @@ const base_url=environment.base
   providedIn: 'root'
 })
 export class ComunidadService {
-
   private url=`${base_url}/comunidad`
   private listaCambio = new Subject<Comunidad[]>();
   constructor(private http:HttpClient) { }
