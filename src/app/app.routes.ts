@@ -24,6 +24,8 @@ import { ComunidadComponent } from './components/comunidad/comunidad.component';
 import { RegistrarcomunidadComponent } from './components/comunidad/registrarcomunidad/registrarcomunidad.component';
 import { CitaComponent } from './components/cita/cita.component';
 import { RegistrarCitaComponent } from './components/cita/registrar-cita/registrar-cita.component';
+import { HorarioComponent } from './components/horario/horario.component';
+import { RegistrarHorarioComponent } from './components/horario/registrar-horario/registrar-horario.component';
 
 export const routes: Routes = [
     {
@@ -131,6 +133,16 @@ export const routes: Routes = [
                 path: 'nuevo', component: RegistrarCitaComponent
             }, {
                 path: 'ediciones/:id', component: RegistrarCitaComponent
+            }
+        ]
+    },
+    {
+        path: "horariomedico", component: HorarioComponent,
+        children: [
+            {
+                path: 'nuevo', component: RegistrarHorarioComponent
+            }, {
+                path: 'ediciones/:id', component: RegistrarHorarioComponent
             }
         ]
     }

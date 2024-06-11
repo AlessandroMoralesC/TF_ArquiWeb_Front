@@ -110,7 +110,7 @@
         <button mat-menu-item routerLink="/comunidad/nuevo">Registrar Comunidad</button>
       </mat-menu>
 
-      <!-- Barra de herramientas para comunidades -->
+      <!-- Barra de herramientas para citas -->
       <mat-toolbar color="primary">
         <mat-icon>history</mat-icon>
         <button mat-button [matMenuTriggerFor]="menuCitas">Citas</button>
@@ -118,6 +118,16 @@
       <mat-menu #menuCitas="matMenu">
         <button mat-menu-item routerLink="/citas">Listar Citas</button>
         <button mat-menu-item routerLink="/citas/nuevo">Registrar Citas</button>
+      </mat-menu>
+
+      <!-- Barra de herramientas para horarios -->
+      <mat-toolbar color="primary">
+        <mat-icon>history</mat-icon>
+        <button mat-button [matMenuTriggerFor]="menuHorario">Horarios Citas</button>
+      </mat-toolbar>
+      <mat-menu #menuHorario="matMenu">
+        <button mat-menu-item routerLink="/horariomedico">Listar Horarios</button>
+        <button mat-menu-item routerLink="/horariomedico/nuevo">Registrar Horarios</button>
       </mat-menu>
 </div>
 

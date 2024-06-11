@@ -50,16 +50,16 @@ export class RegistrarHorarioComponent implements OnInit {
 
   aceptar(): void {
     if (this.form.valid) {
-      this.horario.idHorario = this.form.value.codigo;
-      this.horario.fechaHorario = this.form.value.fecha;
-      this.horario.estadoHorario = this.form.value.estado;
-      this.horario.idCita = this.form.value.codigocita;
+      this.horario.idHMedico = this.form.value.codigo;
+      this.horario.fechaHMedico = this.form.value.fecha;
+      this.horario.estadoHMedico = this.form.value.estado;
+      this.horario.cita = this.form.value.codigocita;
 
       const citsID = this.form.value.codigocita;
       const selectCita = this.listaCitas.find(cit => cit.idCita === citsID);
 
       if (selectCita) {
-        this.horario.idCita = selectCita;
+        this.horario.cita = selectCita;
 
         this.hS.insert(this.horario).subscribe((data) => {
           this.hS.list().subscribe((data) => {

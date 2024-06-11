@@ -1,8 +1,8 @@
 import { Cita } from "./cita";
 
 export class HorarioMedico {
-    idHorario: number = 0
-    fechaHorario: Date = new Date();
-    estadoHorario: string = ""
-    idCita: Cita = new Cita()
+    idHMedico: number = 0
+    fechaHMedico: Date = new Date();
+    estadoHMedico: string = ""
+    cita: Cita = new Cita()
 }
