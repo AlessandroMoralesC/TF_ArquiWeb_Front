@@ -3,7 +3,7 @@
   <form [formGroup]="form" (ngSubmit)="aceptar()">
 
     <!-- Fecha de Apertura -->
-    <mat-form-field>
+    <mat-form-field *ngIf="edicion">
       <mat-label>Fecha de Apertura</mat-label>
       <input matInput [matDatepicker]="picker" formControlName="fechaperturaHClinico" />
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>

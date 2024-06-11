@@ -64,7 +64,7 @@ export class RegistrarcomunidadComponent implements OnInit{
       this.init();
     });
     this.form = this.formBuilder.group({
-      IdComunidad: [''],
+      idComunidad: [''],
       experienciasComunidad:['', Validators.required],
       aprobacionesComunidad: ['', Validators.required],
       recomendacionesComunidad: ['', Validators.required],
@@ -76,7 +76,7 @@ export class RegistrarcomunidadComponent implements OnInit{
   }
   aceptar(): void {
     if (this.form.valid) {
-      this.comunidad.IdComunidad=this.form.value.IdComunidad;
+      this.comunidad.IdComunidad=this.form.value.idComunidad;
       this.comunidad.experienciasComunidad=this.form.value.experienciasComunidad;
       this.comunidad.aprobacionesComunidad=this.form.value.aprobacionesComunidad;
       this.comunidad.recomendacionesComunidad=this.form.value.recomendacionesComunidad;
@@ -118,7 +118,7 @@ export class RegistrarcomunidadComponent implements OnInit{
     if (this.edicion) {
       this.mS.listId(this.id).subscribe((data) => {
         this.form = this.formBuilder.group({
-          IdComunidad: [data.IdComunidad],
+          idComunidad: [data.IdComunidad],
           experienciasComunidad:[data.experienciasComunidad, Validators.required],
           aprobacionesComunidad: [data.aprobacionesComunidad, Validators.required],
           recomendacionesComunidad: [data.recomendacionesComunidad, Validators.required],

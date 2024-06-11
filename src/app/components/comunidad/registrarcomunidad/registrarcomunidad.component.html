@@ -5,8 +5,8 @@
       <!-- ID del Mensaje -->
       <mat-form-field *ngIf="edicion">
         <mat-label>ID Comunidad</mat-label>
-        <input matInput formControlName="IdComunidad" />
-        <mat-error *ngIf="form.get('IdComunidad')?.hasError('required')">
+        <input matInput formControlName="idComunidad" />
+        <mat-error *ngIf="form.get('idComunidad')?.hasError('required')">
             El ID de la comunidad es obligatorio.
         </mat-error>
       </mat-form-field>
