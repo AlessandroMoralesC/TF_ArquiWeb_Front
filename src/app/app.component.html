@@ -1,5 +1,18 @@
 <div class="toolbar-container">
 
+  <mat-toolbar color="primary" *ngIf="verificar()">
+    <button mat-button [routerLink]="['/homes']">
+      <mat-icon>home</mat-icon>Home
+    </button>
+    <button mat-button [matMenuTriggerFor]="menuTratamientos" *ngIf="isPSICOLOGO()">
+      <mat-icon>movie</mat-icon>Tra
+    </button>
+    <button mat-button [matMenuTriggerFor]="menuMetas" *ngIf="isPACIENTE()">
+      <mat-icon> person_pin</mat-icon>Metas
+    </button>
+    <button mat-button [matMenuTriggerFor]="menuSalir">Usuario</button>
+  </mat-toolbar>
+
   <!-- Barra de herramientas para Roles -->
   <mat-toolbar color="primary">
     <mat-icon>account_circle</mat-icon>
@@ -129,6 +142,17 @@
         <button mat-menu-item routerLink="/horariomedico">Listar Horarios</button>
         <button mat-menu-item routerLink="/horariomedico/nuevo">Registrar Horarios</button>
       </mat-menu>
+
+    <mat-menu #menuSalir="matMenu">
+      <button mat-menu-item routerLink="/login" (click)="cerrar()">
+        <mat-icon>logout</mat-icon>
+        <span>Cerrar sesión</span>
+      </button>
+      <button mat-menu-item>
+        Rol:
+        <span>{{ role }}</span>
+      </button>
+    </mat-menu>
 </div>
 
 <router-outlet></router-outlet>

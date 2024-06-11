@@ -26,8 +26,20 @@ import { CitaComponent } from './components/cita/cita.component';
 import { RegistrarCitaComponent } from './components/cita/registrar-cita/registrar-cita.component';
 import { HorarioComponent } from './components/horario/horario.component';
 import { RegistrarHorarioComponent } from './components/horario/registrar-horario/registrar-horario.component';
+import { LoginComponent } from './components/login/login.component';
+import { segGuard } from './guard/seguridad.guard';
+import { HomeComponent } from './components/home/home.component';
 
 export const routes: Routes = [
+    {
+        path: '',
+        redirectTo: 'login',
+        pathMatch: 'full',
+      },
+      {
+        path: 'login',
+        component: LoginComponent,
+      },
     {
         path: "tratamientos", component: TratamientosComponent,
         children: [
@@ -36,7 +48,9 @@ export const routes: Routes = [
             }, {
                 path: 'ediciones/:id', component: RegistrarTratamientoComponent
             }
-        ]
+        ],
+        canActivate: [segGuard], // solo construcciones, se debe agregar a cada uno
+
     },
     {
         path: "mensajes", component: MensajesComponent,
@@ -145,5 +159,10 @@ export const routes: Routes = [
                 path: 'ediciones/:id', component: RegistrarHorarioComponent
             }
         ]
-    }
+    },
+    {
+        path: 'homes',
+        component: HomeComponent,
+        canActivate: [segGuard], // solo construcciones, se debe agregar a cada uno
+      },
 ];
