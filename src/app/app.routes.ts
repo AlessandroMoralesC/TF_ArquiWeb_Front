@@ -20,6 +20,8 @@ import { HistorialclinicoComponent } from './components/historialclinico/histori
 import { RegistrarHistorialclinicoComponent } from './components/historialclinico/registrar-historialclinico/registrar-historialclinico.component';
 import { MetasComponent } from './components/metas/metas.component';
 import { RegistrarmetasComponent } from './components/metas/registrarmetas/registrarmetas.component';
+import { ComunidadComponent } from './components/comunidad/comunidad.component';
+import { RegistrarcomunidadComponent } from './components/comunidad/registrarcomunidad/registrarcomunidad.component';
 
 export const routes: Routes = [
     {
@@ -109,5 +111,15 @@ export const routes: Routes = [
                 path: 'ediciones/:id', component: RegistrarmetasComponent
             }
         ]
-    }
+    },
+    {
+        path: "comunidad", component: ComunidadComponent,
+        children: [
+            {
+                path: 'nuevo', component: RegistrarcomunidadComponent
+            }, {
+                path: 'ediciones/:id', component: RegistrarcomunidadComponent
+            }
+        ]
+    },
 ];

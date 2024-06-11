@@ -99,6 +99,16 @@
     <button mat-menu-item routerLink="/metas">Listar Metas</button>
     <button mat-menu-item routerLink="/metas/nuevo">Registrar Metas</button>
   </mat-menu>
+
+      <!-- Barra de herramientas para comunidades -->
+      <mat-toolbar color="primary">
+        <mat-icon>history</mat-icon>
+        <button mat-button [matMenuTriggerFor]="menuComunidad">Comunidad</button>
+      </mat-toolbar>
+      <mat-menu #menuComunidad="matMenu">
+        <button mat-menu-item routerLink="/comunidad">Listar Comunidad</button>
+        <button mat-menu-item routerLink="/comunidad/nuevo">Registrar Comunidad</button>
+      </mat-menu>
 </div>
 
 <router-outlet></router-outlet>
