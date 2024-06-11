@@ -1,0 +1,50 @@
+<div class="container">
+    <div class="title-container">
+        <h1 class="title">Registrar Recetas</h1>
+    </div>
+    <form [formGroup]="form" (ngSubmit)="aceptar()">
+
+        <mat-form-field>
+            <mat-label>ID</mat-label>
+            <input matInput formControlName="codigo" />
+            <mat-error *ngIf="form.get('codigo')?.hasError('required')">
+                El ID es obligatorio.
+            </mat-error>
+        </mat-form-field>
+        <br />
+
+        <mat-form-field>
+            <mat-label>Estado</mat-label>
+            <input matInput formControlName="estado">
+            <mat-error *ngIf="form.get('estado')?.hasError('required') && form.get('estado')?.touched">
+                El nombre es obligatorio.
+            </mat-error>
+        </mat-form-field>
+        <br>
+
+        <mat-form-field>
+            <mat-label>Fecha Horario</mat-label>
+            <input matInput [matDatepicker]="picker" formControlName="fecha">
+            <mat-hint>MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+            <mat-error *ngIf="form.get('fecha')?.hasError('required')">La fecha es obligatorio.</mat-error>
+        </mat-form-field>
+
+        <br>
+        <mat-form-field>
+            <mat-label>Citas</mat-label>
+            <mat-select formControlName="codigocita">
+              <mat-option *ngFor="let c of listaCitas" [value]="c.idCita">
+                {{ c.motivoCita }}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="form.get('codigocita')?.hasError('required')">
+              El motivo es obligatorio.
+            </mat-error>
+        </mat-form-field>
+        <br>
+
+        <button mat-raised-button color="primary" type="submit">Registrar Horario</button>
+    </form>
+</div>
