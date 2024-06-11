@@ -18,10 +18,10 @@ import { RespuestaComponent } from './components/respuesta/respuesta.component';
 import { RegistrarRespuestaComponent } from './components/respuesta/registrar-respuesta/registrar-respuesta.component';
 import { HistorialclinicoComponent } from './components/historialclinico/historialclinico.component';
 import { RegistrarHistorialclinicoComponent } from './components/historialclinico/registrar-historialclinico/registrar-historialclinico.component';
-import { CitaComponent } from './components/cita/cita.component';
-import { RegistrarCitaComponent } from './components/cita/registrar-cita/registrar-cita.component';
-import { HorarioComponent } from './components/horario/horario.component';
-import { RegistrarHorarioComponent } from './components/horario/registrar-horario/registrar-horario.component';
+import { MetasComponent } from './components/metas/metas.component';
+import { RegistrarmetasComponent } from './components/metas/registrarmetas/registrarmetas.component';
+import { ComunidadComponent } from './components/comunidad/comunidad.component';
+import { RegistrarcomunidadComponent } from './components/comunidad/registrarcomunidad/registrarcomunidad.component';
 
 export const routes: Routes = [
     {
@@ -102,22 +102,24 @@ export const routes: Routes = [
             { path: 'ediciones/:id', component: RegistrarHistorialclinicoComponent }
         ]
     },
-      {
-        path:'citas', component:CitaComponent,
-        children:[
-            {path:'nuevo', component:RegistrarCitaComponent},
+    {
+        path: "metas", component: MetasComponent,
+        children: [
             {
-                path:'ediciones/:id', component:RegistrarCitaComponent
-            }  
+                path: 'nuevo', component: RegistrarmetasComponent
+            }, {
+                path: 'ediciones/:id', component: RegistrarmetasComponent
+            }
         ]
     },
-        {
-        path:'horariomedico', component:HorarioComponent,
-        children:[
-            {path:'nuevo', component:RegistrarHorarioComponent},
+    {
+        path: "comunidad", component: ComunidadComponent,
+        children: [
             {
-                path:'ediciones/:id', component:RegistrarHorarioComponent
-            }  
+                path: 'nuevo', component: RegistrarcomunidadComponent
+            }, {
+                path: 'ediciones/:id', component: RegistrarcomunidadComponent
+            }
         ]
-    }
+    },
 ];

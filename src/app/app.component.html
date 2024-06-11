@@ -90,26 +90,25 @@
     <button mat-menu-item routerLink="/historialclinico/nuevo">Registrar Historial Clínico</button>
   </mat-menu>
 
-  <!-- Barra de herramientas para Citas -->
+    <!-- Barra de herramientas para Metas -->
   <mat-toolbar color="primary">
-    <mat-icon>assignment</mat-icon>
-    <button mat-button [matMenuTriggerFor]="menuCitas">Citas</button>
+    <mat-icon>history</mat-icon>
+    <button mat-button [matMenuTriggerFor]="menuMetas">Metas</button>
   </mat-toolbar>
-  <mat-menu #menuCitas="matMenu">
-    <button mat-menu-item routerLink="/citas">Listar Citas</button>
-    <button mat-menu-item routerLink="/citas/nuevo">Registrar Citas</button>
+  <mat-menu #menuMetas="matMenu">
+    <button mat-menu-item routerLink="/metas">Listar Metas</button>
+    <button mat-menu-item routerLink="/metas/nuevo">Registrar Metas</button>
   </mat-menu>
 
-  <!-- Barra de herramientas para Horarios -->
-  <mat-toolbar color="primary">
-    <mat-icon>assignment</mat-icon>
-    <button mat-button [matMenuTriggerFor]="menuHorarios">Horarios</button>
-  </mat-toolbar>
-  <mat-menu #menuHorarios="matMenu">
-    <button mat-menu-item routerLink="/horariomedico">Listar Horarios</button>
-    <button mat-menu-item routerLink="/horariomedico/nuevo">Registrar Horarios</button>
-  </mat-menu>
-
+      <!-- Barra de herramientas para comunidades -->
+      <mat-toolbar color="primary">
+        <mat-icon>history</mat-icon>
+        <button mat-button [matMenuTriggerFor]="menuComunidad">Comunidad</button>
+      </mat-toolbar>
+      <mat-menu #menuComunidad="matMenu">
+        <button mat-menu-item routerLink="/comunidad">Listar Comunidad</button>
+        <button mat-menu-item routerLink="/comunidad/nuevo">Registrar Comunidad</button>
+      </mat-menu>
 </div>
 
 <router-outlet></router-outlet>
