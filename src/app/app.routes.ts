@@ -18,6 +18,10 @@ import { RespuestaComponent } from './components/respuesta/respuesta.component';
 import { RegistrarRespuestaComponent } from './components/respuesta/registrar-respuesta/registrar-respuesta.component';
 import { HistorialclinicoComponent } from './components/historialclinico/historialclinico.component';
 import { RegistrarHistorialclinicoComponent } from './components/historialclinico/registrar-historialclinico/registrar-historialclinico.component';
+import { CitaComponent } from './components/cita/cita.component';
+import { RegistrarCitaComponent } from './components/cita/registrar-cita/registrar-cita.component';
+import { HorarioComponent } from './components/horario/horario.component';
+import { RegistrarHorarioComponent } from './components/horario/registrar-horario/registrar-horario.component';
 
 export const routes: Routes = [
     {
