@@ -90,6 +90,15 @@
     <button mat-menu-item routerLink="/historialclinico/nuevo">Registrar Historial Clínico</button>
   </mat-menu>
 
+    <!-- Barra de herramientas para Metas -->
+  <mat-toolbar color="primary">
+    <mat-icon>history</mat-icon>
+    <button mat-button [matMenuTriggerFor]="menuMetas">Metas</button>
+  </mat-toolbar>
+  <mat-menu #menuMetas="matMenu">
+    <button mat-menu-item routerLink="/metas">Listar Metas</button>
+    <button mat-menu-item routerLink="/metas/nuevo">Registrar Metas</button>
+  </mat-menu>
 </div>
 
 <router-outlet></router-outlet>

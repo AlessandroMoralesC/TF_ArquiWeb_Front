@@ -18,6 +18,8 @@ import { RespuestaComponent } from './components/respuesta/respuesta.component';
 import { RegistrarRespuestaComponent } from './components/respuesta/registrar-respuesta/registrar-respuesta.component';
 import { HistorialclinicoComponent } from './components/historialclinico/historialclinico.component';
 import { RegistrarHistorialclinicoComponent } from './components/historialclinico/registrar-historialclinico/registrar-historialclinico.component';
+import { MetasComponent } from './components/metas/metas.component';
+import { RegistrarmetasComponent } from './components/metas/registrarmetas/registrarmetas.component';
 
 export const routes: Routes = [
     {
@@ -96,6 +98,16 @@ export const routes: Routes = [
         children: [
             { path: 'nuevo', component: RegistrarHistorialclinicoComponent },
             { path: 'ediciones/:id', component: RegistrarHistorialclinicoComponent }
+        ]
+    },
+    {
+        path: "metas", component: MetasComponent,
+        children: [
+            {
+                path: 'nuevo', component: RegistrarmetasComponent
+            }, {
+                path: 'ediciones/:id', component: RegistrarmetasComponent
+            }
         ]
     }
 ];
