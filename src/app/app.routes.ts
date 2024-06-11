@@ -97,5 +97,23 @@ export const routes: Routes = [
             { path: 'nuevo', component: RegistrarHistorialclinicoComponent },
             { path: 'ediciones/:id', component: RegistrarHistorialclinicoComponent }
         ]
+    },
+      {
+        path:'citas',component:CitaComponent,
+        children:[
+            {path:'nuevo',component:RegistrarCitaComponent},
+            {
+                path:'ediciones/:id',component:RegistrarCitaComponent
+            }  
+        ]
+    },
+        {
+        path:'horariomedico',component:HorarioComponent,
+        children:[
+            {path:'nuevo',component:RegistrarHorarioComponent},
+            {
+                path:'ediciones/:id',component:RegistrarHorarioComponent
+            }  
+        ]
     }
 ];
