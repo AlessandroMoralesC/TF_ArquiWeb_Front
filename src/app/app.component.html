@@ -109,6 +109,16 @@
         <button mat-menu-item routerLink="/comunidad">Listar Comunidad</button>
         <button mat-menu-item routerLink="/comunidad/nuevo">Registrar Comunidad</button>
       </mat-menu>
+
+      <!-- Barra de herramientas para comunidades -->
+      <mat-toolbar color="primary">
+        <mat-icon>history</mat-icon>
+        <button mat-button [matMenuTriggerFor]="menuCitas">Citas</button>
+      </mat-toolbar>
+      <mat-menu #menuCitas="matMenu">
+        <button mat-menu-item routerLink="/citas">Listar Citas</button>
+        <button mat-menu-item routerLink="/citas/nuevo">Registrar Citas</button>
+      </mat-menu>
 </div>
 
 <router-outlet></router-outlet>

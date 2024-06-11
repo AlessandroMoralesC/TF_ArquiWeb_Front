@@ -22,6 +22,8 @@ import { MetasComponent } from './components/metas/metas.component';
 import { RegistrarmetasComponent } from './components/metas/registrarmetas/registrarmetas.component';
 import { ComunidadComponent } from './components/comunidad/comunidad.component';
 import { RegistrarcomunidadComponent } from './components/comunidad/registrarcomunidad/registrarcomunidad.component';
+import { CitaComponent } from './components/cita/cita.component';
+import { RegistrarCitaComponent } from './components/cita/registrar-cita/registrar-cita.component';
 
 export const routes: Routes = [
     {
@@ -122,4 +124,14 @@ export const routes: Routes = [
             }
         ]
     },
+    {
+        path: "citas", component: CitaComponent,
+        children: [
+            {
+                path: 'nuevo', component: RegistrarCitaComponent
+            }, {
+                path: 'ediciones/:id', component: RegistrarCitaComponent
+            }
+        ]
+    }
 ];
