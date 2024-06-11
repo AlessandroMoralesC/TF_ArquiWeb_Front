@@ -20,7 +20,6 @@ export class ListarCitaComponent implements OnInit {
     'motivocita',
     'horacita',
     'usuarioid',
-    'estadocita',
   ];
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 

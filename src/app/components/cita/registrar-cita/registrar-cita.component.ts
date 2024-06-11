@@ -6,11 +6,11 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
-import { Cita } from '../../../models/cita';
-import { CitaService } from '../../../services/cita.service';
-import { ActivatedRoute, Params, RouterLink, Router } from '@angular/router';
+import { ActivatedRoute, Params, Router, RouterLink } from '@angular/router';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatTableModule } from '@angular/material/table';
+import { Cita } from '../../../models/cita';
+import { CitaService } from '../../../services/cita.service';
 import { Usuario } from '../../../models/usuario';
 import { UsuarioService } from '../../../services/usuario.service';
 
@@ -28,22 +28,29 @@ export class RegistrarCitaComponent implements OnInit {
   form: FormGroup = new FormGroup({});
   cita: Cita = new Cita();
   listaUsuarios: Usuario[] = [];
+  id: number = 0;
+  edicion: boolean = false;
 
   constructor(
-    private formBuilber: FormBuilder,
+    private formBuilder: FormBuilder,
     private cS: CitaService,
     private router: Router,
-    private uS: UsuarioService
-  ) { }
+    private uS: UsuarioService,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
-    this.form = this.formBuilber.group({
+    this.route.params.subscribe((data: Params) => {
+      this.id = data['id'];
+      this.edicion = this.id != null;
+      this.init();
+    });
+    this.form = this.formBuilder.group({
       codigo: [''],
       fecha: ['', Validators.required],
       motivo: ['', Validators.required],
-      hora: ['', [Validators.required, Validators.min(1), Validators.max(24), Validators.pattern('^[0-9]{1,2}$')]],
-      usuario: ['', Validators.required],
-      estado: ['', Validators.required]
+      hora: ['', [Validators.required, Validators.min(1), Validators.max(24)]],
+      usuario: ['', Validators.required]
     });
     this.uS.list().subscribe((data) => {
       this.listaUsuarios = data;
@@ -56,27 +63,46 @@ export class RegistrarCitaComponent implements OnInit {
       this.cita.fechaCita = this.form.value.fecha;
       this.cita.motivoCita = this.form.value.motivo;
       this.cita.horaCita = this.form.value.hora;
-      this.cita.idUsuario = this.form.value.usuario;
-      this.cita.estadoCita = this.form.value.estado;
 
-      const userID = this.form.value.usuario;
-      const selectUser = this.listaUsuarios.find(user => user.idUsers === userID);
+      // Asigna el objeto Usuario completo al campo usuario de la cita
+      const usuarioId = this.form.value.usuario;
+      const selectedUsuario = this.listaUsuarios.find(u => u.idUsers === usuarioId);
 
-      if (selectUser) {
-        this.cita.idUsuario = selectUser;
+      if (selectedUsuario) {
+        this.cita.usuario = selectedUsuario;
 
-        this.cS.insert(this.cita).subscribe((data) => {
-          this.cS.list().subscribe((data) => {
-            this.cS.setList(data);
+        if (this.edicion) {
+          this.cS.update(this.cita).subscribe(() => {
+            this.cS.list().subscribe((data) => {
+              this.cS.setList(data);
+            });
           });
-        });
+        } else {
+          this.cS.insert(this.cita).subscribe(() => {
+            this.cS.list().subscribe((data) => {
+              this.cS.setList(data);
+            });
+          });
+        }
 
         this.router.navigate(['citas/nuevo']);
       } else {
-        console.error('No se encontró el usuario seleccionado.');
+        console.error('Usuario no encontrado.');
       }
     }
   }
 
+  init() {
+    if (this.edicion) {
+      this.cS.listId(this.id).subscribe((data) => {
+        this.form = this.formBuilder.group({
+          codigo: [data.idCita],
+          fecha: [data.fechaCita, Validators.required],
+          motivo: [data.motivoCita, Validators.required],
+          hora: [data.horaCita, [Validators.required, Validators.min(1), Validators.max(24)]],
+          usuario: [data.usuario.idUsers, Validators.required]
+        });
+      });
+    }
+  }
 }
-//
