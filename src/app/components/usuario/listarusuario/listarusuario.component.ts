@@ -35,7 +35,6 @@ export class ListarusuarioComponent implements OnInit {
     'username',
     'password',
     'enabled',
-    'roles',
     'editar',
     'eliminar'
   ];

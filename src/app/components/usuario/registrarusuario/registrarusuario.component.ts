@@ -36,12 +36,10 @@ import { MatNativeDateModule } from '@angular/material/core';
 export class RegistrarusuarioComponent implements OnInit {
   form: FormGroup = new FormGroup({});
   usuario: Usuario = new Usuario();
-  listaRoles: Rol[] = [];
   id: number = 0;
   edicion: boolean = false;
 
   constructor(
-    private rS: RolService,
     private router: Router,
     private formBuilder: FormBuilder,
     private uS: UsuarioService,
@@ -56,59 +54,46 @@ export class RegistrarusuarioComponent implements OnInit {
     });
     this.form = this.formBuilder.group({
       id: [''],
-      nombre: ['', Validators.required],
-      apellido: ['', Validators.required],
-      fechanaciemiento: ['', Validators.required],
-      telefono: ['', [Validators.required, Validators.pattern('^[0-9]{9,11}$')]],
-      correo: ['', [Validators.required, Validators.email]],
-      especialidad: ['', Validators.required],
-      user: ['', Validators.required],
-      pass: ['', Validators.required],
-      activo: [true, Validators.required],
-      roles: ['', Validators.required]
-    });
-    this.rS.list().subscribe((data) => {
-      this.listaRoles = data;
+      nombreUsers: ['', Validators.required],
+      apellidoUsers: ['', Validators.required],
+      fechanaciemientoUsers: ['', Validators.required],
+      telefonoUsers: ['', [Validators.required, Validators.pattern('^[0-9]{9,11}$')]],
+      correoUsers: ['', [Validators.required, Validators.email]],
+      especialidadUsers: ['', Validators.required],
+      username: ['', Validators.required],
+      password: ['', Validators.required],
+      enabled: [true, Validators.required]
     });
   }
 
   aceptar(): void {
     if (this.form.valid) {
       this.usuario.idUsers = this.form.value.id;
-      this.usuario.nombreUsers = this.form.value.nombre;
-      this.usuario.apellidoUsers = this.form.value.apellido;
-      this.usuario.fechanaciemientoUsers = this.form.value.fechanaciemiento;
-      this.usuario.telefonoUsers = this.form.value.telefono;
-      this.usuario.correoUsers = this.form.value.correo;
-      this.usuario.especialidadUsers = this.form.value.especialidad;
-      this.usuario.username = this.form.value.user;
-      this.usuario.password = this.form.value.pass;
-      this.usuario.enabled = this.form.value.activo;
+      this.usuario.nombreUsers = this.form.value.nombreUsers;
+      this.usuario.apellidoUsers = this.form.value.apellidoUsers;
+      this.usuario.fechanaciemientoUsers = this.form.value.fechanaciemientoUsers;
+      this.usuario.telefonoUsers = this.form.value.telefonoUsers;
+      this.usuario.correoUsers = this.form.value.correoUsers;
+      this.usuario.especialidadUsers = this.form.value.especialidadUsers;
+      this.usuario.username = this.form.value.username;
+      this.usuario.password = this.form.value.password;
+      this.usuario.enabled = this.form.value.enabled;
 
-      const roleId = this.form.value.roles;
-      const selectedRole = this.listaRoles.find(rol => rol.idRol === roleId);
-
-      if (selectedRole) {
-        this.usuario.role = selectedRole;
-
-        if (this.edicion) {
-          this.uS.update(this.usuario).subscribe(() => {
-            this.uS.list().subscribe((data) => {
-              this.uS.setList(data);
-            });
+      if (this.edicion) {
+        this.uS.update(this.usuario).subscribe(() => {
+          this.uS.list().subscribe((data) => {
+            this.uS.setList(data);
           });
-        } else {
-          this.uS.insert(this.usuario).subscribe(() => {
-            this.uS.list().subscribe((data) => {
-              this.uS.setList(data);
-            });
-          });
-        }
-
-        this.router.navigate(['usuarios/nuevo']);
+        });
       } else {
-        console.error('No se encontró el rol seleccionado.');
+        this.uS.insert(this.usuario).subscribe(() => {
+          this.uS.list().subscribe((data) => {
+            this.uS.setList(data);
+          });
+        });
       }
+
+      this.router.navigate(['usuarios/nuevo']);
     }
   }
 
@@ -117,16 +102,15 @@ export class RegistrarusuarioComponent implements OnInit {
       this.uS.listId(this.id).subscribe((data) => {
         this.form = this.formBuilder.group({
           id: [data.idUsers],
-          nombre: [data.nombreUsers, Validators.required],
-          apellido: [data.apellidoUsers, Validators.required],
-          fechanaciemiento: [data.fechanaciemientoUsers, Validators.required],
-          telefono: [data.telefonoUsers, [Validators.required, Validators.pattern('^[0-9]{9,11}$')]],
-          correo: [data.correoUsers, [Validators.required, Validators.email]],
-          especialidad: [data.especialidadUsers, Validators.required],
-          user: [data.username, Validators.required],
-          pass: [data.password, Validators.required],
-          activo: [data.enabled, Validators.required],
-          roles: [data.role.idRol, Validators.required]
+          nombreUsers: [data.nombreUsers, Validators.required],
+          apellidoUsers: [data.apellidoUsers, Validators.required],
+          fechanaciemientoUsers: [data.fechanaciemientoUsers, Validators.required],
+          telefonoUsers: [data.telefonoUsers, [Validators.required, Validators.pattern('^[0-9]{9,11}$')]],
+          correoUsers: [data.correoUsers, [Validators.required, Validators.email]],
+          especialidadUsers: [data.especialidadUsers, Validators.required],
+          username: [data.username, Validators.required],
+          password: [data.password, Validators.required],
+          enabled: [data.enabled, Validators.required]
         });
       });
     }
