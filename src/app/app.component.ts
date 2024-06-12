@@ -35,4 +35,7 @@ export class AppComponent {
   isPACIENTE() {
     return this.role === 'PACIENTE';
   }
+  isADMINISTRADOR() {
+    return this.role === 'ADMINISTRADOR';
+  }
 }
