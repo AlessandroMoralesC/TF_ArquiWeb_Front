@@ -24,9 +24,9 @@ export class CreaeditarolComponent implements OnInit {
   edicion:boolean=false;
 
   listaroles: { value: string; viewValue: string }[] = [
-    { value: 'Paciente', viewValue: 'Paciente' },
-    { value: 'Psicologo', viewValue: 'Psicologo' },
-    { value: 'Administrador', viewValue: 'Administrador' }
+    { value: 'PACIENTE ', viewValue: 'PACIENTE ' },
+    { value: 'PSICOLOGO ', viewValue: 'PSICOLOGO ' },
+    { value: 'ADMINISTRADOR', viewValue: 'ADMINISTRADOR' }
   ];
   constructor(
     private formbuilder: FormBuilder,
