@@ -20,8 +20,6 @@ import { HistorialclinicoComponent } from './components/historialclinico/histori
 import { RegistrarHistorialclinicoComponent } from './components/historialclinico/registrar-historialclinico/registrar-historialclinico.component';
 import { MetasComponent } from './components/metas/metas.component';
 import { RegistrarmetasComponent } from './components/metas/registrarmetas/registrarmetas.component';
-import { ComunidadComponent } from './components/comunidad/comunidad.component';
-import { RegistrarcomunidadComponent } from './components/comunidad/registrarcomunidad/registrarcomunidad.component';
 import { CitaComponent } from './components/cita/cita.component';
 import { RegistrarCitaComponent } from './components/cita/registrar-cita/registrar-cita.component';
 import { HorarioComponent } from './components/horario/horario.component';
@@ -60,7 +58,9 @@ export const routes: Routes = [
             }, {
                 path: 'ediciones/:id', component: RegistrarmensajesComponent
             }
-        ]
+        ],
+        canActivate: [segGuard], // solo construcciones, se debe agregar a cada uno
+
     },
     {
         path: 'roles', component: RolComponent,
@@ -70,7 +70,8 @@ export const routes: Routes = [
             }, {
                 path: 'ediciones/:id', component: CreaeditarolComponent
             }
-        ]
+        ],
+        canActivate: [segGuard], // solo construcciones, se debe agregar a cada uno
     },
     {
         path: 'recetas', component: RecetaComponent,
@@ -79,7 +80,8 @@ export const routes: Routes = [
             {
                 path: 'ediciones/:id', component: RegistrarrecetaComponent
             }
-        ]
+        ],
+        canActivate: [segGuard], // solo construcciones, se debe agregar a cada uno
     },
     {
         path: 'tipodematerial', component: TipomaterialComponent,
@@ -127,16 +129,6 @@ export const routes: Routes = [
                 path: 'nuevo', component: RegistrarmetasComponent
             }, {
                 path: 'ediciones/:id', component: RegistrarmetasComponent
-            }
-        ]
-    },
-    {
-        path: "comunidad", component: ComunidadComponent,
-        children: [
-            {
-                path: 'nuevo', component: RegistrarcomunidadComponent
-            }, {
-                path: 'ediciones/:id', component: RegistrarcomunidadComponent
             }
         ]
     },
