@@ -41,7 +41,7 @@ export class ListarTratamientoComponent implements OnInit{
   }
   deletes(id:number)
   {
-    this.mS.delete(id).subscribe((data)=>
+    this.mS.eliminar(id).subscribe((data)=>
     {
       this.mS.list().subscribe((data)=>
       {
