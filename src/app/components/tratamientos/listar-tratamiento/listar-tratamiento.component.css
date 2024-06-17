@@ -5,16 +5,19 @@
   justify-content: center;
   margin: 0 auto;
   padding: 20px;
+
 }
 
 .title-container {
   margin-bottom: 20px;
-  text-align: center;
+  text-align: Blue;
+
 } 
 
 .title {
   font-size: 2em;
-  color: #010101; 
+  color: Blue; 
+
 }
 .mat-paginator{
   display: flex;
@@ -24,3 +27,4 @@
   margin: 0 auto;
   padding: 20px;
 }
+

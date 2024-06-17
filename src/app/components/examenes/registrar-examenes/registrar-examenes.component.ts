@@ -91,7 +91,7 @@ export class RegistrarExamenesComponent implements OnInit{
           this.form = new FormGroup({
             codigo:new FormControl(data.idExamenes),
             nombre:new FormControl(data.nombreExamenes),
-            cantidad:new FormControl(data.fechaExamenes),
+            fechaexamen:new FormControl(data.fechaExamenes),
             resultado:new FormControl(data.resultadosExamenes),
             observaciones:new FormControl(data.observacionesExamenes)
           })

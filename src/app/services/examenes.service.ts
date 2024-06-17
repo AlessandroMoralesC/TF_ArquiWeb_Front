@@ -27,13 +27,13 @@ export class ExamenesService {
     return this.listaCambio.asObservable();
   }
   listId(id:number){
-    return this.http.get<Examenes>(`${this.url}/${id}`)
+    return this.http.get<Examenes>(`${this.url}/${id}`);
   }
   update(e:Examenes){
-    return this.http.put(this.url,e)
+    return this.http.put(this.url,e);
   }
   delete(id:number)
   {
-    return this.http.delete(`${this.url}/${id}`)
+    return this.http.delete(`${this.url}/${id}`);
   }
 }

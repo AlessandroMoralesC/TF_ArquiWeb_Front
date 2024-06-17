@@ -8,11 +8,11 @@ import { Params, ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { provideNativeDateAdapter } from '@angular/material/core';
 import { FormControl, FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule, NgIf } from '@angular/common';
-import { Usuario } from '../../../models/usuario';
 import { Rol } from '../../../models/rol';
 import { RolService } from '../../../services/rol.service';
 import { UsuarioService } from '../../../services/usuario.service';
 import { MatNativeDateModule } from '@angular/material/core';
+import { Usuario } from '../../../models/usuario';
 
 @Component({
   selector: 'app-registrarusuario',
@@ -86,7 +86,7 @@ export class RegistrarusuarioComponent implements OnInit {
       this.usuario.enabled = this.form.value.activo;
 
       const roleId = this.form.value.roles;
-      const selectedRole = this.listaRoles.find(rol => rol.idRol === roleId);
+      const selectedRole = this.listaRoles.find(rol => rol.id === roleId);
 
       if (selectedRole) {
         this.usuario.role = selectedRole;
@@ -126,7 +126,7 @@ export class RegistrarusuarioComponent implements OnInit {
           user: [data.username, Validators.required],
           pass: [data.password, Validators.required],
           activo: [data.enabled, Validators.required],
-          roles: [data.role.idRol, Validators.required]
+          roles: [data.role.id, Validators.required]
         });
       });
     }

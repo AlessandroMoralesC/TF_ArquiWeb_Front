@@ -3,7 +3,7 @@ import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { UsuarioService } from '../../../services/usuario.service';
-import { Usuario } from '../../../models/usuario';
+import { Usuario} from '../../../models/usuario';
 import { RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
@@ -55,7 +55,7 @@ export class ListarusuarioComponent implements OnInit {
   }
 
   deletes(id: number) {
-    this.uS.delete(id).subscribe({
+    this.uS.eliminar(id).subscribe({
       next: () => {
         this.uS.list().subscribe((data) => {
           this.uS.setList(data);
