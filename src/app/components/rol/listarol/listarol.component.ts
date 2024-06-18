@@ -5,6 +5,7 @@ import { RolService } from '../../../services/rol.service';
 import {MatPaginator, MatPaginatorModule} from '@angular/material/paginator';
 import { RouterLink } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -15,34 +16,30 @@ import { MatButtonModule } from '@angular/material/button';
   styleUrl: './listarol.component.css'
 })
 export class ListarolComponent implements OnInit{
-  displayedColumns: string[] = [
-    'codigo', 
-    'rol',
-    'editar',
-    'eliminar'];
-
-  dataSource:MatTableDataSource<Rol>=new MatTableDataSource()
+  displayedColumns: string[] = ['codigo', 'rol', 'editar', 'eliminar', 'seleccionarUsuario'];
+  dataSource: MatTableDataSource<Rol> = new MatTableDataSource<Rol>();
   @ViewChild(MatPaginator) paginator!: MatPaginator;
-  ngAfterViewInit(){
-    this.dataSource.paginator=this.paginator;
-  }
-  constructor(private rS:RolService) {}
+
+  constructor(private rS: RolService, private router: Router) {}
+
   ngOnInit(): void {
-    this.rS.list().subscribe((data)=>{
-      this.dataSource=new MatTableDataSource(data)
-    })
-    this.rS.getList().subscribe((data)=>{
-      this.dataSource=new MatTableDataSource(data);
+    this.rS.list().subscribe((data) => {
+      this.dataSource = new MatTableDataSource<Rol>(data);
+      this.dataSource.paginator = this.paginator;
     });
   }
-  deletes(id:number)
-  {
-    this.rS.delete(id).subscribe((data)=>
-    {
-      this.rS.list().subscribe((data)=>
-      {
-        this.rS.setList(data)
-      })
+
+  deletes(id: number): void {
+    this.rS.delete(id).subscribe(() => {
+      this.rS.list().subscribe((data) => {
+        this.dataSource = new MatTableDataSource<Rol>(data);
+        this.dataSource.paginator = this.paginator;
+      });
     });
+  }
+
+  seleccionarUsuario(idRol: number): void {
+    // Redirigir al componente de selección de usuario, pasando el idRol como parámetro
+    this.router.navigate(['/seleccionar-usuario', idRol]);
   }
 }

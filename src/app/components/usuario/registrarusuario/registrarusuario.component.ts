@@ -34,19 +34,17 @@ import { Usuario } from '../../../models/usuario';
   styleUrls: ['./registrarusuario.component.css']
 })
 export class RegistrarusuarioComponent implements OnInit {
-  form: FormGroup = new FormGroup({});
+  form: FormGroup=new FormGroup({});
   usuario: Usuario = new Usuario();
-  listaRoles: Rol[] = [];
   id: number = 0;
   edicion: boolean = false;
 
   constructor(
-    private rS: RolService,
     private router: Router,
     private formBuilder: FormBuilder,
     private uS: UsuarioService,
     private route: ActivatedRoute
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     this.route.params.subscribe((data: Params) => {
@@ -54,6 +52,7 @@ export class RegistrarusuarioComponent implements OnInit {
       this.edicion = this.id != null;
       this.init();
     });
+
     this.form = this.formBuilder.group({
       id: [''],
       nombre: ['', Validators.required],
@@ -64,11 +63,7 @@ export class RegistrarusuarioComponent implements OnInit {
       especialidad: ['', Validators.required],
       user: ['', Validators.required],
       pass: ['', Validators.required],
-      activo: [true, Validators.required],
-      roles: ['', Validators.required]
-    });
-    this.rS.list().subscribe((data) => {
-      this.listaRoles = data;
+      activo: [true, Validators.required]
     });
   }
 
@@ -85,30 +80,21 @@ export class RegistrarusuarioComponent implements OnInit {
       this.usuario.password = this.form.value.pass;
       this.usuario.enabled = this.form.value.activo;
 
-      const roleId = this.form.value.roles;
-      const selectedRole = this.listaRoles.find(rol => rol.id === roleId);
-
-      if (selectedRole) {
-        this.usuario.role = selectedRole;
-
-        if (this.edicion) {
-          this.uS.update(this.usuario).subscribe(() => {
-            this.uS.list().subscribe((data) => {
-              this.uS.setList(data);
-            });
+      if (this.edicion) {
+        this.uS.update(this.usuario).subscribe(() => {
+          this.uS.list().subscribe((data) => {
+            this.uS.setList(data);
           });
-        } else {
-          this.uS.insert(this.usuario).subscribe(() => {
-            this.uS.list().subscribe((data) => {
-              this.uS.setList(data);
-            });
-          });
-        }
-
-        this.router.navigate(['usuarios/nuevo']);
+        });
       } else {
-        console.error('No se encontró el rol seleccionado.');
+        this.uS.insert(this.usuario).subscribe(() => {
+          this.uS.list().subscribe((data) => {
+            this.uS.setList(data);
+          });
+        });
       }
+
+      this.router.navigate(['usuarios/nuevo']);
     }
   }
 
@@ -125,8 +111,7 @@ export class RegistrarusuarioComponent implements OnInit {
           especialidad: [data.especialidadUsers, Validators.required],
           user: [data.username, Validators.required],
           pass: [data.password, Validators.required],
-          activo: [data.enabled, Validators.required],
-          roles: [data.role.id, Validators.required]
+          activo: [data.enabled, Validators.required]
         });
       });
     }

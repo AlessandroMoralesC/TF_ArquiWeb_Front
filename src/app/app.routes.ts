@@ -27,6 +27,10 @@ import { RegistrarHorarioComponent } from './components/horario/registrar-horari
 import { LoginComponent } from './components/login/login.component';
 import { segGuard } from './guard/seguridad.guard';
 import { HomeComponent } from './components/home/home.component';
+import { MaterialesComponent } from './components/materiales/materiales.component';
+import { RegistrarmaterialesComponent } from './components/materiales/registrarmateriales/registrarmateriales.component';
+import { DetallehclinicoComponent } from './components/detallehclinico/detallehclinico.component';
+import { RegistrardetallehclinicoComponent } from './components/detallehclinico/registrardetallehclinico/registrardetallehclinico.component';
 
 export const routes: Routes = [
     {
@@ -139,6 +143,26 @@ export const routes: Routes = [
                 path: 'nuevo', component: RegistrarCitaComponent
             }, {
                 path: 'ediciones/:id', component: RegistrarCitaComponent
+            }
+        ]
+    },
+    {
+        path: "materiales", component: MaterialesComponent,
+        children: [
+            {
+                path: 'nuevo', component: RegistrarmaterialesComponent
+            }, {
+                path: 'ediciones/:id', component: RegistrarmaterialesComponent
+            }
+        ]
+    },
+    {
+        path: "detalleclinico", component: DetallehclinicoComponent,
+        children: [
+            {
+                path: 'nuevo', component: RegistrardetallehclinicoComponent
+            }, {
+                path: 'ediciones/:id', component: RegistrardetallehclinicoComponent
             }
         ]
     },

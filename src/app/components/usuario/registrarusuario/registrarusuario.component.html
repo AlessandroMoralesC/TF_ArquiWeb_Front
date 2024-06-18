@@ -113,19 +113,6 @@
     </mat-form-field>
     <br />
 
-    <!-- Role -->
-    <mat-form-field>
-      <mat-label>Roles</mat-label>
-      <mat-select formControlName="roles">
-        <mat-option *ngFor="let r of listaRoles" [value]="r.id">
-          {{ r.rol }}
-        </mat-option>
-      </mat-select>
-      <mat-error *ngIf="form.get('roles')?.hasError('required') && form.get('roles')?.touched">
-        El rol es obligatorio.
-      </mat-error>
-    </mat-form-field>
-    <br />
 
     <div class="title-container"><button mat-raised-button color="primary">Registrar</button></div>
   </form>

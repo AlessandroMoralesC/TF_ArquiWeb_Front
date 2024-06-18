@@ -8,6 +8,8 @@ import { ActivatedRoute,Params,Router } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
+import { UsuarioService } from '../../../services/usuario.service';
+import { Usuario } from '../../../models/usuario';
 
 
 @Component({
@@ -18,68 +20,73 @@ import { MatInputModule } from '@angular/material/input';
   styleUrl: './creaeditarol.component.css'
 })
 export class CreaeditarolComponent implements OnInit {
-  form: FormGroup = new FormGroup({})
+  form: FormGroup;
   rol: Rol = new Rol();
-  id:number=0;
-  edicion:boolean=false;
+  id: number = 0;
+  edicion: boolean = false;
+  listaUsuarios: Usuario[] = []; // Arreglo para almacenar la lista de usuarios
 
-  listaroles: { value: string; viewValue: string }[] = [
-    { value: 'PACIENTE ', viewValue: 'PACIENTE ' },
-    { value: 'PSICOLOGO ', viewValue: 'PSICOLOGO ' },
-    { value: 'ADMINISTRADOR', viewValue: 'ADMINISTRADOR' }
-  ];
   constructor(
-    private formbuilder: FormBuilder,
-    private rS: RolService,
+    private formBuilder: FormBuilder,
+    private usuarioService: UsuarioService, // Servicio de usuario para obtener la lista de usuarios
+    private rolService: RolService, // Servicio de rol para realizar operaciones CRUD
     private router: Router,
-    private route:ActivatedRoute
-  ) { }
+    private route: ActivatedRoute
+  ) {
+    this.form = this.formBuilder.group({
+      id: [''],
+      rol: ['', Validators.required],
+      usuarioId: ['', Validators.required] // FormControl para el ID del usuario asociado al rol
+    });
+  }
 
   ngOnInit(): void {
-    this.route.params.subscribe((data:Params)=>{
-      this.id=data['id'];
-      this.edicion=data['id']!=null;
-      this.init()
-    })
+    this.route.params.subscribe((params: Params) => {
+      this.id = params['id'];
+      this.edicion = this.id != null;
+      this.initForm();
+    });
 
-    this.form = this.formbuilder.group({
-      codigo: [''],
-      rol: ['', Validators.required]
-    })
+    this.usuarioService.list().subscribe((data) => {
+      this.listaUsuarios = data; // Obtener la lista de usuarios al inicializar el componente
+    });
   }
 
   aceptar(): void {
     if (this.form.valid) {
-      this.rol.id=this.form.value.codigo;
+      this.rol.id = this.form.value.id;
       this.rol.rol = this.form.value.rol;
-      if(this.edicion)
-        {
-            this.rS.update(this.rol).subscribe((data) => {
-              this.rS.list().subscribe((data) => {
-                this.rS.setList(data);
-              });
-            });
-        }else{
-          this.rS.insert(this.rol).subscribe((data) => {
-            this.rS.list().subscribe((data) => {
-              this.rS.setList(data)
-            })
-          })
-        }
-      this.router.navigate(['/roles/nuevo'])
+      this.rol.user.idUsers = this.form.value.user;
+
+      if (this.edicion) {
+        this.rolService.update(this.rol).subscribe(() => {
+          this.actualizarListaRoles();
+        });
+      } else {
+        this.rolService.insert(this.rol).subscribe(() => {
+          this.actualizarListaRoles();
+        });
+      }
+
+      this.router.navigate(['/roles/nuevo']);
     }
   }
-  init()
-  {
-    if(this.edicion)
-      {
-        this.rS.listId(this.id).subscribe((data)=>
-        {
-          this.form = new FormGroup({
-            codigo:new FormControl(data.id),
-            rol:new FormControl(data.rol) 
-          })
-        })
-      }
+
+  private initForm(): void {
+    if (this.edicion) {
+      this.rolService.listId(this.id).subscribe((data) => {
+        this.form.patchValue({
+          id: data.id,
+          rol: data.rol,
+          usuarioId: data.user.idUsers // Asignar el ID del usuario asociado al rol en modo edición
+        });
+      });
+    }
+  }
+
+  private actualizarListaRoles(): void {
+    this.rolService.list().subscribe((data) => {
+      this.rolService.setList(data);
+    });
   }
 }

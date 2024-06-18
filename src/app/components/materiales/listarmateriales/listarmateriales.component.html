@@ -1,0 +1,69 @@
+<div class="container">
+    <br />
+    <h2 style="text-align: center">Lista de Materiales</h2>
+    <div style="text-align: right">
+        <button mat-raised-button color="primary" routerLink="/materiales/nuevo">
+            Nuevo
+        </button>
+    </div>
+  
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+        <!-- ID Column -->
+        <ng-container matColumnDef="idMateriales">
+            <th mat-header-cell *matHeaderCellDef>No.</th>
+            <td mat-cell *matCellDef="let element">{{ element.idMateriales }}</td>
+        </ng-container>
+  
+        <!-- Name Column -->
+        <ng-container matColumnDef="nombreMateriales">
+            <th mat-header-cell *matHeaderCellDef>Nombre del Material</th>
+            <td mat-cell *matCellDef="let element">{{ element.nombreMateriales }}</td>
+        </ng-container>
+  
+        <!-- Usuario Column -->
+        <ng-container matColumnDef="usuario">
+            <th mat-header-cell *matHeaderCellDef>Usuario</th>
+            <td mat-cell *matCellDef="let element">{{ element.usuario.nombre }}</td>
+        </ng-container>
+  
+        <!-- TipoMaterial Column -->
+        <ng-container matColumnDef="tipomaterial">
+            <th mat-header-cell *matHeaderCellDef>Tipo de Material</th>
+            <td mat-cell *matCellDef="let element">{{ element.tipomaterial.nombre }}</td>
+        </ng-container>
+  
+        <!-- Acciones Column -->
+        <ng-container matColumnDef="accion01">
+            <th mat-header-cell *matHeaderCellDef>Acciones</th>
+            <td mat-cell *matCellDef="let element">
+                <button
+                    mat-raised-button
+                    color="warn"
+                    [routerLink]="['ediciones', element.idMateriales]"
+                >
+                    <mat-icon>border_color</mat-icon>
+                </button>
+            </td>
+        </ng-container>
+        
+        <ng-container matColumnDef="accion02">
+            <th mat-header-cell *matHeaderCellDef>Acciones</th>
+            <td mat-cell *matCellDef="let element">
+                <button
+                    mat-raised-button
+                    color="accent"
+                    (click)="eliminar(element.idMateriales)"
+                >
+                    <mat-icon>delete</mat-icon>
+                </button>
+            </td>
+        </ng-container>
+        
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+    <mat-paginator
+        [pageSizeOptions]="[5, 10, 25, 100]"
+        showFirstLastButtons
+    ></mat-paginator>
+</div>
