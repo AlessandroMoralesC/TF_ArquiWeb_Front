@@ -56,7 +56,7 @@ export class CreaeditarolComponent implements OnInit {
     if (this.form.valid) {
       this.rol.id = this.form.value.id;
       this.rol.rol = this.form.value.rol;
-      this.rol.user.idUsers = this.form.value.user;
+      this.rol.user.id = this.form.value.user;
 
       if (this.edicion) {
         this.rolService.update(this.rol).subscribe(() => {
@@ -78,7 +78,7 @@ export class CreaeditarolComponent implements OnInit {
         this.form.patchValue({
           id: data.id,
           rol: data.rol,
-          usuarioId: data.user.idUsers // Asignar el ID del usuario asociado al rol en modo edición
+          usuarioId: data.user.id // Asignar el ID del usuario asociado al rol en modo edición
         });
       });
     }

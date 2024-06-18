@@ -84,7 +84,7 @@ export class RegistrarmaterialesComponent implements OnInit {
     if (this.form.valid) {
       this.materiales.idMateriales = this.form.value.idMateriales;
       this.materiales.nombreMateriales = this.form.value.nombreMateriales;
-      this.materiales.usuario.idUsers = this.form.value.usuario;
+      this.materiales.usuario.id = this.form.value.usuario;
       this.materiales.tipomaterial.idTMaterial = this.form.value.tipomaterial;
       
       if (this.edicion) {
@@ -110,7 +110,7 @@ export class RegistrarmaterialesComponent implements OnInit {
         this.form = new FormGroup({
           idMateriales: new FormControl(data.idMateriales),
           nombreMateriales: new FormControl(data.nombreMateriales),
-          usuario: new FormControl(data.usuario.idUsers),
+          usuario: new FormControl(data.usuario.id),
           tipomaterial: new FormControl(data.tipomaterial.idTMaterial),
         });
       });

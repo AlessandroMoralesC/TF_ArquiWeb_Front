@@ -34,7 +34,7 @@
       <mat-form-field class="example-full-width">
         <mat-label>Tipo de Material</mat-label>
         <mat-select formControlName="tipomaterial">
-          <mat-option *ngFor="let tm of tiposMaterial" [value]="tm.idTipoMaterial">
+          <mat-option *ngFor="let tm of tiposMaterial" [value]="tm.idTMaterial">
             {{tm.tipoTMaterial}}
           </mat-option>
         </mat-select>

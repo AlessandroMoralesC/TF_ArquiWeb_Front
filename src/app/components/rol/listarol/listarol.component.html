@@ -34,10 +34,8 @@
     
     <!-- Columna para seleccionar usuario -->
     <ng-container matColumnDef="seleccionarUsuario">
-      <th mat-header-cell *matHeaderCellDef> Seleccionar Usuario </th>
-      <td mat-cell *matCellDef="let element">
-        <button mat-raised-button color="accent" [routerLink]="['/seleccionar-usuario', element.idRol]">Seleccionar Usuario</button>
-      </td>
+      <th mat-header-cell *matHeaderCellDef> Usuario </th>
+      <td mat-cell *matCellDef="let element">{{element.usuario.nombreUsers}}</td>
     </ng-container>
 
     <!-- Definición de las filas y columnas -->

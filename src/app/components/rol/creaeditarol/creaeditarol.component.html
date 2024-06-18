@@ -21,7 +21,7 @@
     <mat-form-field>
       <mat-label>Seleccione un Usuario</mat-label>
       <mat-select formControlName="usuarioId" placeholder="Seleccione un usuario">
-        <mat-option *ngFor="let usuario of listaUsuarios" [value]="usuario.idUsers">{{ usuario.nombreUsers }} {{ usuario.apellidoUsers }}</mat-option>
+        <mat-option *ngFor="let usuario of listaUsuarios" [value]="usuario.id">{{ usuario.nombreUsers }} {{ usuario.apellidoUsers }}</mat-option>
       </mat-select>
       <mat-error *ngIf="form.get('usuarioId')?.hasError('required')">Debe seleccionar un usuario.</mat-error>
     </mat-form-field>

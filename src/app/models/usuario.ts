@@ -1,7 +1,7 @@
 import { Rol } from "./rol"
 
 export class Usuario{
-    idUsers:number=0
+    id:number=0
     nombreUsers:string=""
     apellidoUsers:string=""
     fechanaciemientoUsers:Date=new Date()

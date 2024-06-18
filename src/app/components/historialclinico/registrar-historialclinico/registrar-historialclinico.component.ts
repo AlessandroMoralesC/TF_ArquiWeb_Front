@@ -31,10 +31,10 @@ import { HistorialclinicoService } from '../../../services/historialclinico';
     CommonModule,
     MatInputModule,
     MatButtonModule,
-    MatDatepickerModule
+    MatDatepickerModule,
   ],
   templateUrl: './registrar-historialclinico.component.html',
-  styleUrls: ['./registrar-historialclinico.component.css']
+  styleUrls: ['./registrar-historialclinico.component.css'],
 })
 export class RegistrarHistorialclinicoComponent implements OnInit {
   form: FormGroup = new FormGroup({});
@@ -60,7 +60,7 @@ export class RegistrarHistorialclinicoComponent implements OnInit {
     this.form = this.formBuilder.group({
       idHClinico: [''],
       fechaperturaHClinico: ['', Validators.required],
-      usuarios: ['', Validators.required]
+      usuarios: ['', Validators.required],
     });
     this.uS.list().subscribe((data) => {
       this.listaUsuarios = data;
@@ -73,7 +73,7 @@ export class RegistrarHistorialclinicoComponent implements OnInit {
       this.historialclinico.fechaperturaHClinico = this.form.value.fechaperturaHClinico;
 
       const usuarioId = this.form.value.usuarios;
-      const selectedUsuario = this.listaUsuarios.find(usuario => usuario.idUsers === usuarioId);
+      const selectedUsuario = this.listaUsuarios.find(usuario => usuario.id === usuarioId);
 
       if (selectedUsuario) {
         this.historialclinico.usuario = selectedUsuario;
@@ -92,20 +92,20 @@ export class RegistrarHistorialclinicoComponent implements OnInit {
           });
         }
 
-        this.router.navigate(['historialclinico']);
+        this.router.navigate(['/historialclinico']);
       } else {
         console.error('No se encontró el usuario seleccionado.');
       }
     }
   }
 
-  init() {
+  init(): void {
     if (this.edicion) {
       this.hS.listId(this.id).subscribe((data) => {
-        this.form = new FormGroup({
-          idHClinico: new FormControl(data.idHClinico),
-          fechaperturaHClinico: new FormControl(data.fechaperturaHClinico),
-          usuarios: new FormControl(data.usuario.idUsers),
+        this.form.setValue({
+          idHClinico: data.idHClinico,
+          fechaperturaHClinico: data.fechaperturaHClinico,
+          usuarios: data.usuario.id,
         });
       });
     }

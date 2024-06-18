@@ -34,7 +34,7 @@
       <mat-form-field>
         <mat-label>Usuarios</mat-label>
         <mat-select formControlName="usuario">
-          <mat-option *ngFor="let u of listaUsuarios" [value]="u.idUsers">
+          <mat-option *ngFor="let u of listaUsuarios" [value]="u.id">
             {{ u.nombreUsers }}
           </mat-option>
         </mat-select>

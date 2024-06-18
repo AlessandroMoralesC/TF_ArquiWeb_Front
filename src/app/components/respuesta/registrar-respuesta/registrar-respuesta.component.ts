@@ -73,7 +73,7 @@ export class RegistrarRespuestaComponent implements OnInit {
       this.respuesta.respuestas = this.form.value.respuestas;
 
       const usuarioId = this.form.value.usuarios;
-      const selectedUsuario = this.listaUsuarios.find(usuario => usuario.idUsers === usuarioId);
+      const selectedUsuario = this.listaUsuarios.find(usuario => usuario.id === usuarioId);
 
       if (selectedUsuario) {
         this.respuesta.usuario = selectedUsuario;
@@ -107,7 +107,7 @@ export class RegistrarRespuestaComponent implements OnInit {
           idRespuesta: [{ value: data.idRespuesta, disabled: true }],
           pregunta: [data.pregunta, Validators.required],
           respuestas: [data.respuestas, Validators.required],
-          usuarios: [data.usuario.idUsers, Validators.required],
+          usuarios: [data.usuario.id, Validators.required],
         });
       });
     }

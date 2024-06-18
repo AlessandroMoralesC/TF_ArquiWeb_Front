@@ -69,7 +69,7 @@ export class RegistrarusuarioComponent implements OnInit {
 
   aceptar(): void {
     if (this.form.valid) {
-      this.usuario.idUsers = this.form.value.id;
+      this.usuario.id = this.form.value.id;
       this.usuario.nombreUsers = this.form.value.nombre;
       this.usuario.apellidoUsers = this.form.value.apellido;
       this.usuario.fechanaciemientoUsers = this.form.value.fechanaciemiento;
@@ -102,7 +102,7 @@ export class RegistrarusuarioComponent implements OnInit {
     if (this.edicion) {
       this.uS.listId(this.id).subscribe((data) => {
         this.form = this.formBuilder.group({
-          id: [data.idUsers],
+          id: [data.id],
           nombre: [data.nombreUsers, Validators.required],
           apellido: [data.apellidoUsers, Validators.required],
           fechanaciemiento: [data.fechanaciemientoUsers, Validators.required],

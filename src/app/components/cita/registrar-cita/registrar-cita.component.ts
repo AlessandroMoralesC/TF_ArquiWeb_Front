@@ -66,7 +66,7 @@ export class RegistrarCitaComponent implements OnInit {
 
       // Asigna el objeto Usuario completo al campo usuario de la cita
       const usuarioId = this.form.value.usuario;
-      const selectedUsuario = this.listaUsuarios.find(u => u.idUsers === usuarioId);
+      const selectedUsuario = this.listaUsuarios.find(u => u.id === usuarioId);
 
       if (selectedUsuario) {
         this.cita.usuario = selectedUsuario;
@@ -100,7 +100,7 @@ export class RegistrarCitaComponent implements OnInit {
           fecha: [data.fechaCita, Validators.required],
           motivo: [data.motivoCita, Validators.required],
           hora: [data.horaCita, [Validators.required, Validators.min(1), Validators.max(24)]],
-          usuario: [data.usuario.idUsers, Validators.required]
+          usuario: [data.usuario.id, Validators.required]
         });
       });
     }

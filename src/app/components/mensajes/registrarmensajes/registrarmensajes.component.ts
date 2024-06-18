@@ -74,7 +74,7 @@ export class RegistrarmensajesComponent implements OnInit {
       const usuarioId = this.form.value.usuarios;
       
       // Busca el rol correspondiente en la lista de roles
-      const selectedUsuario = this.listaUsuarios.find(usuario => usuario.idUsers === usuarioId);
+      const selectedUsuario = this.listaUsuarios.find(usuario => usuario.id === usuarioId);
       
       // Verifica si se encontró un rol seleccionado
       if (selectedUsuario) {
@@ -109,7 +109,7 @@ export class RegistrarmensajesComponent implements OnInit {
         this.form = this.formBuilder.group({
           idMensaje: [data.idMensaje],
           mensaje: [data.mensaje, Validators.required],
-          usuarios: [data.usuario.idUsers, Validators.required]
+          usuarios: [data.usuario.id, Validators.required]
         });
       });
     }
