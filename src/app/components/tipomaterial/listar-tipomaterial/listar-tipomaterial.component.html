@@ -23,14 +23,27 @@
           </ng-container>
 
           <ng-container matColumnDef="editar">
-            <th mat-header-cell *matHeaderCellDef> Edicion </th>
-            <td mat-cell *matCellDef="let element" ><button mat-raised-button color="primary"[routerLink]="['ediciones',element.idTMaterial]">Actualizar</button></td>
+            <th mat-header-cell *matHeaderCellDef> Actualizar </th>
+            <td mat-cell *matCellDef="let element" >   <button
+              mat-raised-button
+              color="primary"
+              [routerLink]="['ediciones', element.idTratamientos]"
+            >
+            <mat-icon> border_color</mat-icon>        </button></td>
           </ng-container>
 
           <ng-container matColumnDef="eliminar">
-            <th mat-header-cell *matHeaderCellDef> Edicion 2 </th>
-            <td mat-cell *matCellDef="let element" ><button mat-raised-button color="primary" (click)="deletes(element.idTMaterial)">Eliminar</button></td>
-          </ng-container>
+            <th mat-header-cell *matHeaderCellDef>Actualizar</th>
+            <td mat-cell *matCellDef="let element">
+              <button
+                mat-raised-button
+                color="warn"
+                (click)="deletes(element.idTratamientos)"
+              >
+              <mat-icon>delete</mat-icon>
+            </button>
+            </td></ng-container
+          >
         
           <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
           <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>

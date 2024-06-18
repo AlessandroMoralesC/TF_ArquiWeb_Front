@@ -5,11 +5,13 @@ import { RecetaService } from '../../../services/receta.service';
 import {MatPaginator, MatPaginatorModule} from '@angular/material/paginator';
 import { RouterLink } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+
 
 @Component({
   selector: 'app-listarreceta',
   standalone: true,
-  imports: [MatTableModule,MatPaginatorModule,RouterLink,MatButtonModule],
+  imports: [MatTableModule,MatPaginatorModule,RouterLink,MatButtonModule,MatIconModule],
   templateUrl: './listarreceta.component.html',
   styleUrl: './listarreceta.component.css'
 })

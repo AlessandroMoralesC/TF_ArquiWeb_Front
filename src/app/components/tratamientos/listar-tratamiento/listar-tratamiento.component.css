@@ -10,14 +10,12 @@
 
 .title-container {
   margin-bottom: 20px;
-  text-align: Blue;
-
+  color: #010101; 
 } 
 
 .title {
   font-size: 2em;
-  color: Blue; 
-
+  color: #010101; 
 }
 .mat-paginator{
   display: flex;
