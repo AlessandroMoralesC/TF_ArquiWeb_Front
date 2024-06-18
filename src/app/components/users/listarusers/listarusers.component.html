@@ -1,0 +1,63 @@
+<div class="container">
+    <div class="title-container"><h1 class="title">Lista de Roles</h1></div>
+      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+          <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef > Id </th>
+            <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+          </ng-container>
+        
+          <ng-container matColumnDef="nombre">
+            <th mat-header-cell *matHeaderCellDef> Nombre </th>
+            <td mat-cell *matCellDef="let element"> {{element.nombreUsers}} </td>
+          </ng-container>
+        
+          <ng-container matColumnDef="username">
+            <th mat-header-cell *matHeaderCellDef> Username </th>
+            <td mat-cell *matCellDef="let element"> {{element.username}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="password">
+            <th mat-header-cell *matHeaderCellDef> Password </th>
+            <td mat-cell *matCellDef="let element"> {{element.password}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="enabled">
+            <th mat-header-cell *matHeaderCellDef> Enabled </th>
+            <td mat-cell *matCellDef="let element"> {{element.enabled}} </td>
+          </ng-container>
+
+
+          <ng-container matColumnDef="editar">
+            <th mat-header-cell *matHeaderCellDef> Actualizar </th>
+            <td mat-cell *matCellDef="let element" >   <button
+              mat-raised-button
+              color="primary"
+              [routerLink]="['ediciones', element.id]"
+            >
+            <mat-icon> border_color</mat-icon>        </button></td>
+          </ng-container>
+
+          <ng-container matColumnDef="eliminar">
+            <th mat-header-cell *matHeaderCellDef>Actualizar</th>
+            <td mat-cell *matCellDef="let element">
+              <button
+                mat-raised-button
+                color="warn"
+                (click)="deletes(element.id)"
+              >
+              <mat-icon>delete</mat-icon>
+            </button>
+            </td></ng-container
+          >
+        
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+        <br>
+        <mat-paginator [length]="50"
+        [pageSize]="7"
+        [pageSizeOptions]="[7, 10, 15]"
+        aria-label="Select page" color="primary">
+        </mat-paginator>
+  </div>

@@ -10,6 +10,8 @@ import { ExamenesComponent } from './components/examenes/examenes.component';
 import { LoginComponent } from './components/login/login.component';
 import { segGuard } from './guard/seguridad.guard';
 import { HomeComponent } from './components/home/home.component';
+import { RolesComponent } from './components/roles/roles.component';
+import { UsersComponent } from './components/users/users.component';
 
 export const routes: Routes = [
     {
@@ -20,6 +22,16 @@ export const routes: Routes = [
       {
         path: 'login',
         component: LoginComponent,
+      },
+      {
+        path:"roles",component: RolesComponent,
+        canActivate: [segGuard], // solo construcciones, se debe agregar a cada uno
+
+      },
+      {
+        path:"usuarios",component:UsersComponent,
+        canActivate: [segGuard], // solo construcciones, se debe agregar a cada uno
+
       },
     {
         path: "tratamientos", component: TratamientosComponent,
