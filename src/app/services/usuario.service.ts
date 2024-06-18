@@ -10,12 +10,12 @@ const base_url = environment.base;
 export class UsuarioService {
   private url = `${base_url}/usuarios`;
   private listaCambio = new Subject<Usuario[]>();
-  constructor(private httpClient: HttpClient) { }
-  list(){
+  constructor(private httpClient: HttpClient) {}
+  list() {
     return this.httpClient.get<Usuario[]>(this.url);
   }
-  insert(m: Usuario) {
-    return this.httpClient.post(this.url, m);
+  insert(p: Usuario) {
+    return this.httpClient.post(this.url, p);
   }
   setList(listaNueva: Usuario[]) {
     this.listaCambio.next(listaNueva);
@@ -23,14 +23,13 @@ export class UsuarioService {
   getList() {
     return this.listaCambio.asObservable();
   }
-  listId(id:number){
-    return this.httpClient.get<Usuario>(`${this.url}/${id}`)
+  listId(id: number) {
+    return this.httpClient.get<Usuario>(`${this.url}/${id}`);
   }
-  update(e:Usuario){
-    return this.httpClient.put(this.url,e)
+  update(c: Usuario) {
+    return this.httpClient.put(this.url, c);
   }
-  delete(id:number)
-  {
-    return this.httpClient.delete(`${this.url}/${id}`)
+  eliminar(id: number) {
+    return this.httpClient.delete(`${this.url}/${id}`);
   }
 }
