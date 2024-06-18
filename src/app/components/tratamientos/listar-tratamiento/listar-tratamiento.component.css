@@ -5,11 +5,12 @@
   justify-content: center;
   margin: 0 auto;
   padding: 20px;
+
 }
 
 .title-container {
   margin-bottom: 20px;
-  text-align: center;
+  color: #010101; 
 } 
 
 .title {
@@ -24,3 +25,4 @@
   margin: 0 auto;
   padding: 20px;
 }
+

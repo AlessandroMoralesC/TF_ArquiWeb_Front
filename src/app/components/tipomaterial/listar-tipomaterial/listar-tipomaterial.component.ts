@@ -5,11 +5,12 @@ import { TipoMaterial } from '../../../models/tipomaterial';
 import { TipomaterialService } from '../../../services/tipomaterial.service';
 import { RouterLink } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-listar-tipomaterial',
   standalone: true,
-  imports: [MatTableModule,MatPaginatorModule,RouterLink,MatButtonModule],
+  imports: [MatTableModule,MatPaginatorModule,RouterLink,MatButtonModule,MatIconModule],
   templateUrl: './listar-tipomaterial.component.html',
   styleUrl: './listar-tipomaterial.component.css'
 })

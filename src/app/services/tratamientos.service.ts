@@ -8,15 +8,14 @@ const base_url=environment.base
   providedIn: 'root'
 })
 export class TratamientosService {
-  private url=`${base_url}/tratamientos`
+  private url = `${base_url}/tratamientos`;
   private listaCambio = new Subject<Tratamientos[]>();
-
-  constructor(private http:HttpClient) { }
-  list(){
-    return this.http.get<Tratamientos[]>(this.url);
+  constructor(private httpClient: HttpClient) {}
+  list() {
+    return this.httpClient.get<Tratamientos[]>(this.url);
   }
-  insert(m: Tratamientos) {
-    return this.http.post(this.url, m);
+  insert(p: Tratamientos) {
+    return this.httpClient.post(this.url, p);
   }
   setList(listaNueva: Tratamientos[]) {
     this.listaCambio.next(listaNueva);
@@ -24,14 +23,13 @@ export class TratamientosService {
   getList() {
     return this.listaCambio.asObservable();
   }
-  listId(id:number){
-    return this.http.get<Tratamientos>(`${this.url}/${id}`)
+  listId(id: number) {
+    return this.httpClient.get<Tratamientos>(`${this.url}/${id}`);
   }
-  update(t:Tratamientos){
-    return this.http.put(this.url,t)
+  update(c: Tratamientos) {
+    return this.httpClient.put(this.url, c);
   }
-  delete(id:number)
-  {
-    return this.http.delete(`${this.url}/${id}`)
+  eliminar(id: number) {
+    return this.httpClient.delete(`${this.url}/${id}`);
   }
 }

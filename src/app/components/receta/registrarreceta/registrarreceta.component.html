@@ -25,8 +25,8 @@
       <br>
       <mat-form-field>
         <mat-label>Observaciones</mat-label>
-        <input matInput formControlName="observaciones">
-        <mat-error *ngIf="form.get('observaciones')?.hasError('required') && form.get('observaciones')?.touched">
+        <textarea matInput formControlName="observaciones" rows="3"></textarea>
+          <mat-error *ngIf="form.get('observaciones')?.hasError('required') && form.get('observaciones')?.touched">
           Las observaciones son obligatorias.
         </mat-error>
       </mat-form-field>

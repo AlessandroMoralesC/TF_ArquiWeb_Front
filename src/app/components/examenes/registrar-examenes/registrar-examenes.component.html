@@ -15,7 +15,7 @@
           </mat-form-field>
           <br />
           <mat-form-field>
-            <mat-label>Selecciona la fecha</mat-label>
+            <mat-label>Selecciona la Fecha de Examen</mat-label>
             <input matInput [matDatepicker]="picker" formControlName="fechaexamen">
             <mat-hint>MM/DD/YYYY</mat-hint>
             <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
@@ -27,15 +27,17 @@
           <br />
           <mat-form-field>
               <mat-label>Resultado</mat-label>
-              <input matInput formControlName="resultado" />
+              <textarea matInput formControlName="resultado" rows="3"></textarea>
+
               <mat-error *ngIf="form.get('resultado')?.hasError('required')"
               >El resultado es obligatorio.</mat-error
             >
             </mat-form-field>
             <br />
             <mat-form-field>
-              <mat-label>Onservaciones</mat-label>
-              <input matInput formControlName="observaciones" />
+              <mat-label>Observaciones</mat-label>
+              <textarea matInput formControlName="observaciones" rows="3"></textarea>
+
               <mat-error *ngIf="form.get('observaciones')?.hasError('required')"
               >Las observaciones son obligatorias.</mat-error
             >
