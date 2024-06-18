@@ -50,7 +50,9 @@ export const routes: Routes = [
             {
                 path: 'ediciones/:id', component: RegistrarTipomaterialComponent
             }
-        ]
+        ],
+        canActivate: [segGuard], // solo construcciones, se debe agregar a cada uno
+
     },
     {
         path: 'examenes', component: ExamenesComponent,
@@ -59,7 +61,9 @@ export const routes: Routes = [
             {
                 path: 'ediciones/:id', component: RegistrarExamenesComponent
             }
-        ]
+        ],
+        canActivate: [segGuard], // solo construcciones, se debe agregar a cada uno
+
     },
     {
         path: 'homes',
