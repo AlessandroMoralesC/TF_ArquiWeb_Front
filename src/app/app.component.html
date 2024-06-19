@@ -3,10 +3,10 @@
 <mat-toolbar color="primary" *ngIf="verificar()">
   <button mat-button [routerLink]="['/homes']">
     <mat-icon>home</mat-icon>Home
-
-      <!-- Barra de herramientas para PSICOLOGO -->
-
   </button>
+
+        <!-- Barra de herramientas para PSICOLOGO -->
+
   <button mat-button [matMenuTriggerFor]="menuTratamientos" *ngIf="isPSICOLOGO()">
     <mat-icon>healing</mat-icon>Tratamientos
   </button>
@@ -21,20 +21,42 @@
       <button mat-menu-item [matMenuTriggerFor]="TipoMaterial"><mat-icon>dashboard</mat-icon>Tipo Material</button>
     </mat-menu>
   </button>
+  <button mat-button [matMenuTriggerFor]="menuUsuarios" *ngIf="isPSICOLOGO()"> <mat-icon>group</mat-icon>Usuarios
+    <mat-menu #menuUsuarios="matMenu">
+      <button mat-menu-item [matMenuTriggerFor]="Roles"><mat-icon>work</mat-icon>Roles</button>
+      <button mat-menu-item [matMenuTriggerFor]="Usuarios"><mat-icon>account_circle</mat-icon>Usuarios</button>
+    </mat-menu>
+  </button>
     <!-- Barra de herramientas para PACIENTE -->
 
-  <button mat-button [matMenuTriggerFor]="menuPacientes" *ngIf="isPACIENTE()">
-    <mat-icon> person_pin</mat-icon>Menu
-  </button>
+
     <!-- Barra de herramientas para ADMINISTRADOR -->
+    <button mat-button [matMenuTriggerFor]="menuTratamientos" *ngIf="isADMINISTRADOR()">
+      <mat-icon>healing</mat-icon>Tratamientos
+    </button>
+    <button mat-button [matMenuTriggerFor]="menuRecetas" *ngIf="isADMINISTRADOR()">
+      <mat-icon>healing</mat-icon>Recetas
+    </button>
+    <button mat-button [matMenuTriggerFor]="menuExamenes" *ngIf="isADMINISTRADOR()">
+      <mat-icon>healing</mat-icon>Examenes
+    </button>
+    <button mat-button [matMenuTriggerFor]="menuMaterial" *ngIf="isADMINISTRADOR()"> <mat-icon>dashboard</mat-icon>Material
+      <mat-menu #menuMaterial="matMenu">
+        <button mat-menu-item [matMenuTriggerFor]="TipoMaterial"><mat-icon>dashboard</mat-icon>Tipo Material</button>
+      </mat-menu>
+    </button>
+    <button mat-button [matMenuTriggerFor]="menuUsuarios" *ngIf="isADMINISTRADOR()"> <mat-icon>group</mat-icon>Usuarios
+      <mat-menu #menuUsuarios="matMenu">
+        <button mat-menu-item [matMenuTriggerFor]="Roles"><mat-icon>work</mat-icon>Roles</button>
+        <button mat-menu-item [matMenuTriggerFor]="Usuarios"><mat-icon>account_circle</mat-icon>Usuarios</button>
+      </mat-menu>
+    </button>
 
-  <button mat-button [matMenuTriggerFor]="menuAdministrador" *ngIf="isADMINISTRADOR()">
-    <mat-icon> person_pin</mat-icon>Menu
-  </button>
-  <button mat-button [matMenuTriggerFor]="menuSalir"><mat-icon> face</mat-icon>Usuario</button>
+
+      <!-- Menu Perfil -->
+
+  <button mat-button [matMenuTriggerFor]="menuSalir"><mat-icon> face</mat-icon>Perfil</button>
 </mat-toolbar>
-
-
 
   <!-- Barra de herramientas -->
   <mat-menu #menuTratamientos="matMenu">
@@ -52,30 +74,16 @@
   <mat-menu #TipoMaterial="matMenu">
     <button mat-menu-item routerLink="/tipodematerial"><mat-icon>chrome_reader_mode</mat-icon>Listar Tipo de Material</button>
     <button mat-menu-item routerLink="/tipodematerial/nuevo"><mat-icon>chrome_reader_mode</mat-icon>Registrar Tipo de Material</button>
-    <button mat-menu-item routerLink="/roles"><mat-icon>chrome_reader_mode</mat-icon>Listar Roles</button>
+  </mat-menu>
+  <mat-menu #Usuarios="matMenu">
     <button mat-menu-item routerLink="/usuarios"><mat-icon>chrome_reader_mode</mat-icon>Listar Usuarios</button>
-
-
+    <button mat-menu-item routerLink="/usuarios/nuevo"><mat-icon>chrome_reader_mode</mat-icon>Registrar Usuarios</button>
   </mat-menu>
-  <!-- Barra de herramientas para ADMINISTRADOR -->
-  <mat-menu #menuAdministrador="matMenu">
-
-    <button mat-menu-item routerLink="/tratamientos">Listar Tratamientos</button>
-    <button mat-menu-item routerLink="/tratamientos/nuevo">Registrar Tratamiento</button>
-    <button mat-menu-item routerLink="/recetas">Listar Recetas</button>
-    <button mat-menu-item routerLink="/recetas/nuevo">Registrar Receta</button>
-    <button mat-menu-item routerLink="/tipodematerial">Listar Tipo de Material</button>
-    <button mat-menu-item routerLink="/tipodematerial/nuevo">Registrar Tipo de Material</button>
-    <button mat-menu-item routerLink="/examenes">Listar Examenes</button>
-    <button mat-menu-item routerLink="/examenes/nuevo">Registrar Examen</button>
-
+  <mat-menu #Roles="matMenu">
+    <button mat-menu-item routerLink="/roles"><mat-icon>chrome_reader_mode</mat-icon>Listar Roles</button>
   </mat-menu>
 
 
-  <!-- Barra de herramientas para PACIENTE -->
-  <mat-menu #menuPacientes="matMenu">
-
-  </mat-menu>
 
     <mat-menu #menuSalir="matMenu">
       <button mat-menu-item routerLink="/login" (click)="cerrar()">

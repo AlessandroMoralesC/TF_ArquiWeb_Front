@@ -1,4 +1,3 @@
-import { Role } from "./roles";
 
 export class Users{
     id:number=0
@@ -11,5 +10,5 @@ export class Users{
     username:string=""
     password:string=""
     enabled:boolean=false
-    roles:Role=new Role();
+
 }

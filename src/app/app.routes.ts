@@ -12,6 +12,7 @@ import { segGuard } from './guard/seguridad.guard';
 import { HomeComponent } from './components/home/home.component';
 import { RolesComponent } from './components/roles/roles.component';
 import { UsersComponent } from './components/users/users.component';
+import { RegistrarusersComponent } from './components/users/registrarusers/registrarusers.component';
 
 export const routes: Routes = [
     {
@@ -25,11 +26,19 @@ export const routes: Routes = [
       },
       {
         path:"roles",component: RolesComponent,
+        
         canActivate: [segGuard], // solo construcciones, se debe agregar a cada uno
 
       },
       {
         path:"usuarios",component:UsersComponent,
+        children: [
+            {
+                path: 'nuevo', component: RegistrarusersComponent
+            }, {
+                path: 'ediciones/:id', component: RegistrarusersComponent
+            }
+        ],
         canActivate: [segGuard], // solo construcciones, se debe agregar a cada uno
 
       },

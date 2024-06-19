@@ -19,10 +19,11 @@ import { UsersService } from '../../../services/users.service';
 export class ListarusersComponent implements OnInit{
   displayedColumns: string[] = [
     'id',
-    'nombre',
     'username',
-    'password',
+    'correo',
+    'especialidad',
     'enabled',
+    'mensajes',
     'editar',
     'eliminar'
   ];

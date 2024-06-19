@@ -1,5 +1,5 @@
 <div class="container">
-    <div class="title-container"><h1 class="title">Lista de Roles</h1></div>
+    <div class="title-container"><h1 class="title">Lista de Usuarios</h1></div>
       <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
           <ng-container matColumnDef="id">
@@ -7,19 +7,19 @@
             <td mat-cell *matCellDef="let element"> {{element.id}} </td>
           </ng-container>
         
-          <ng-container matColumnDef="nombre">
-            <th mat-header-cell *matHeaderCellDef> Nombre </th>
-            <td mat-cell *matCellDef="let element"> {{element.nombreUsers}} </td>
-          </ng-container>
-        
           <ng-container matColumnDef="username">
             <th mat-header-cell *matHeaderCellDef> Username </th>
             <td mat-cell *matCellDef="let element"> {{element.username}} </td>
           </ng-container>
+        
+          <ng-container matColumnDef="correo">
+            <th mat-header-cell *matHeaderCellDef> Correo </th>
+            <td mat-cell *matCellDef="let element"> {{element.correoUsers}} </td>
+          </ng-container>
 
-          <ng-container matColumnDef="password">
-            <th mat-header-cell *matHeaderCellDef> Password </th>
-            <td mat-cell *matCellDef="let element"> {{element.password}} </td>
+          <ng-container matColumnDef="especialidad">
+            <th mat-header-cell *matHeaderCellDef> Especialidad </th>
+            <td mat-cell *matCellDef="let element"> {{element.especialidadUsers}} </td>
           </ng-container>
 
           <ng-container matColumnDef="enabled">
@@ -27,6 +27,15 @@
             <td mat-cell *matCellDef="let element"> {{element.enabled}} </td>
           </ng-container>
 
+          <ng-container matColumnDef="mensajes">
+            <th mat-header-cell *matHeaderCellDef> Mensajes </th>
+            <td mat-cell *matCellDef="let element" >   <button
+              mat-raised-button
+              color="warn"
+              [routerLink]="['ediciones', element.id]"
+            >
+            <mat-icon> mail</mat-icon>        </button></td>
+          </ng-container>
 
           <ng-container matColumnDef="editar">
             <th mat-header-cell *matHeaderCellDef> Actualizar </th>
@@ -39,7 +48,7 @@
           </ng-container>
 
           <ng-container matColumnDef="eliminar">
-            <th mat-header-cell *matHeaderCellDef>Actualizar</th>
+            <th mat-header-cell *matHeaderCellDef>Eliminar</th>
             <td mat-cell *matCellDef="let element">
               <button
                 mat-raised-button
