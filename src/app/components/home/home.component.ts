@@ -50,9 +50,9 @@ export class HomeComponent implements OnInit {
       );
     } else if (this.roles.includes('PACIENTE')) {
       this.visibleComponents = this.components.filter(comp =>
-        comp.route === '/citas' ||
+        comp.route === '/respuestas' ||
         comp.route === '/mensajes' ||
-        comp.route === '/historialclinico'
+        comp.route === '/metas'
       );
     }
   }
