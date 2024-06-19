@@ -27,8 +27,8 @@ body {
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
-  margin-top: auto; /* Añadir margen superior para bajar el contenido */
-  margin-bottom: auto; /* Añadir margen inferior para centrar el contenido */
+  margin-top: auto;
+  margin-bottom: auto; 
 }
 
 .login-image {
