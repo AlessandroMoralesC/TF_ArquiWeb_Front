@@ -17,7 +17,7 @@ export class HomeComponent implements OnInit {
     { name: 'Mensajes', img: 'assets/mensajes.png', route: '/mensajes' },
     { name: 'Roles', img: 'assets/roles.png', route: '/roles' },
     { name: 'Recetas', img: 'assets/recetas.png', route: '/recetas' },
-    { name: 'Tipo de Material', img: 'assets/tipodematerial.png', route: '/tipodematerial' },
+    { name: 'Tipo de Material', img: 'assets/tipomaterial.png', route: '/tipodematerial' },
     { name: 'Exámenes', img: 'assets/examenes.png', route: '/examenes' },
     { name: 'Usuarios', img: 'assets/usuarios.png', route: '/usuarios' },
     { name: 'Respuestas', img: 'assets/respuestas.png', route: '/respuestas' },
