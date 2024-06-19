@@ -78,7 +78,7 @@ export class RegistrarrolesComponent implements OnInit{
     if (this.form.valid) {
       this.rol.id = this.form.value.codigo;
       this.rol.rol = this.form.value.rols;
-      this.rol.users.id = this.form.value.usuario;
+      this.rol.user.id = this.form.value.usuario;
 
       if(this.edicion)
         {
@@ -103,7 +103,7 @@ export class RegistrarrolesComponent implements OnInit{
         this.form = new FormGroup({
           codigo: new FormControl(data.id),
           rols: new FormControl(data.rol),
-          usuario: new FormControl(data.users),
+          usuario: new FormControl(data.user),
 
         });
       });
