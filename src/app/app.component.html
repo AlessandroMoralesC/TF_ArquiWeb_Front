@@ -53,7 +53,7 @@
     </button>
 
 
-      <!-- Menu Perfil -->
+      <!-- Perfil -->
 
   <button mat-button [matMenuTriggerFor]="menuSalir"><mat-icon> face</mat-icon>Perfil</button>
 </mat-toolbar>
@@ -81,6 +81,8 @@
   </mat-menu>
   <mat-menu #Roles="matMenu">
     <button mat-menu-item routerLink="/roles"><mat-icon>chrome_reader_mode</mat-icon>Listar Roles</button>
+    <button mat-menu-item routerLink="/roles/nuevo"><mat-icon>chrome_reader_mode</mat-icon>Registrar Roles</button>
+
   </mat-menu>
 
 

@@ -13,6 +13,7 @@ import { HomeComponent } from './components/home/home.component';
 import { RolesComponent } from './components/roles/roles.component';
 import { UsersComponent } from './components/users/users.component';
 import { RegistrarusersComponent } from './components/users/registrarusers/registrarusers.component';
+import { RegistrarrolesComponent } from './components/roles/registrarroles/registrarroles.component';
 
 export const routes: Routes = [
     {
@@ -26,7 +27,13 @@ export const routes: Routes = [
       },
       {
         path:"roles",component: RolesComponent,
-        
+        children: [
+            {
+                path: 'nuevo', component: RegistrarrolesComponent
+            }, {
+                path: 'ediciones/:id', component: RegistrarrolesComponent
+            }
+        ],
         canActivate: [segGuard], // solo construcciones, se debe agregar a cada uno
 
       },
