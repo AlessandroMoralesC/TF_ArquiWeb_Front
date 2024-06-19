@@ -25,12 +25,16 @@
       <br>
       <mat-form-field>
         <mat-label>Observaciones</mat-label>
-        <input matInput formControlName="observaciones">
-        <mat-error *ngIf="form.get('observaciones')?.hasError('required') && form.get('observaciones')?.touched">
+        <textarea matInput formControlName="observaciones" rows="3"></textarea>
+          <mat-error *ngIf="form.get('observaciones')?.hasError('required') && form.get('observaciones')?.touched">
           Las observaciones son obligatorias.
         </mat-error>
       </mat-form-field>
       <br>
-      <button mat-raised-button color="primary" type="submit">Registrar Campaña</button>
+      <div class="title-container"><button mat-raised-button color="primary">Registrar</button>
+        <button mat-raised-button color="warn" routerLink="/recetas">
+          Cancelar
+        </button>
+      </div>
     </form>
   </div>

@@ -14,7 +14,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
-import { ActivatedRoute,Params,Router } from '@angular/router';
+import { ActivatedRoute,Params,Router,RouterLink } from '@angular/router';
 import { TratamientosService } from '../../../services/tratamientos.service';
 
 @Component({
@@ -27,7 +27,7 @@ import { TratamientosService } from '../../../services/tratamientos.service';
     CommonModule,
     MatInputModule,
     MatButtonModule,
-    MatDatepickerModule],
+    MatDatepickerModule,RouterLink],
   templateUrl: './registrar-tratamiento.component.html',
   styleUrl: './registrar-tratamiento.component.css'
 })

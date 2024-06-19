@@ -1,34 +1,38 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import {MatPaginator, MatPaginatorModule} from '@angular/material/paginator';
-import { TipoMaterial } from '../../../models/tipomaterial';
-import { TipomaterialService } from '../../../services/tipomaterial.service';
 import { RouterLink } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { Users } from '../../../models/users';
+import { UsersService } from '../../../services/users.service';
+
+
 
 @Component({
-  selector: 'app-listar-tipomaterial',
+  selector: 'app-listarusers',
   standalone: true,
   imports: [MatTableModule,MatPaginatorModule,RouterLink,MatButtonModule,MatIconModule],
-  templateUrl: './listar-tipomaterial.component.html',
-  styleUrl: './listar-tipomaterial.component.css'
+  templateUrl: './listarusers.component.html',
+  styleUrl: './listarusers.component.css'
 })
-export class ListarTipomaterialComponent implements OnInit{
+export class ListarusersComponent implements OnInit{
   displayedColumns: string[] = [
-    'idtipomaterial',
-    'tematipomaterial',
-    'tipotipomaterial',
-    'linktipomaterial',
+    'id',
+    'username',
+    'correo',
+    'especialidad',
+    'enabled',
+    'mensajes',
     'editar',
     'eliminar'
   ];
-  dataSource:MatTableDataSource<TipoMaterial> = new MatTableDataSource();
+  dataSource:MatTableDataSource<Users> = new MatTableDataSource();
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   ngAfterViewInit(){
     this.dataSource.paginator=this.paginator;
   }
-  constructor(private ts:TipomaterialService) {}
+  constructor(private ts:UsersService) {}
   ngOnInit(): void {
     this.ts.list().subscribe((data)=>{
       this.dataSource=new MatTableDataSource(data)
