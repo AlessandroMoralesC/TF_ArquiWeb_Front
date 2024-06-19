@@ -42,6 +42,7 @@ export class RegistrarrolesComponent implements OnInit{
   id:number=0;
   edicion:boolean=false;
 
+
   listaroles: { value: string; viewValue: string }[] = [
     { value: 'ADMINISTRADOR', viewValue: 'ADMINISTRADOR' },
     { value: 'PSICOLOGO', viewValue: 'PSICOLOGO' },
@@ -103,7 +104,7 @@ export class RegistrarrolesComponent implements OnInit{
         this.form = new FormGroup({
           codigo: new FormControl(data.id),
           rols: new FormControl(data.rol),
-          usuario: new FormControl(data.user),
+          usuario: new FormControl(data.user.id),
 
         });
       });

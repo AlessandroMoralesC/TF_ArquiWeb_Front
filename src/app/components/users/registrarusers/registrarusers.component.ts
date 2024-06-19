@@ -14,7 +14,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
-import { ActivatedRoute,Params,Router } from '@angular/router';
+import { ActivatedRoute,Params,Router,RouterLink } from '@angular/router';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import { UsersService } from '../../../services/users.service';
 import {MatCheckboxModule} from '@angular/material/checkbox';
@@ -29,7 +29,7 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     CommonModule,
     MatInputModule,
     MatButtonModule,
-    MatDatepickerModule,MatSlideToggleModule,MatCheckboxModule],
+    MatDatepickerModule,MatSlideToggleModule,MatCheckboxModule,RouterLink,],
   templateUrl: './registrarusers.component.html',
   styleUrl: './registrarusers.component.css'
 })

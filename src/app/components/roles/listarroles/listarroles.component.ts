@@ -21,7 +21,7 @@ export class ListarrolesComponent implements OnInit{
     'nombre',
     'apellido',
     'username',
-    'editar'
+    'editar',
   ];
   dataSource:MatTableDataSource<Role> = new MatTableDataSource();
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -37,5 +37,14 @@ export class ListarrolesComponent implements OnInit{
       this.dataSource = new MatTableDataSource(data);      
     });
   }
-
+  deletes(id:number)
+  {
+    this.ts.delete(id).subscribe((data)=>
+    {
+      this.ts.list().subscribe((data)=>
+      {
+        this.ts.setList(data)
+      })
+    });
+  }
 }

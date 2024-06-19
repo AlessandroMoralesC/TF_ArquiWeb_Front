@@ -61,12 +61,18 @@
         <mat-error *ngIf="form.get('contrasena')?.hasError('required')">La contraseña del tratamiento es obligatoria.</mat-error>
       </mat-form-field>
       <br />
+ 
       <mat-label class="custom-label">Habilitación</mat-label>
       <br />
       <mat-slide-toggle class="custom-slide-toggle" formControlName="enabled">Habilitado!</mat-slide-toggle>
       <br />
       <mat-error *ngIf="form.get('enabled')?.hasError('required')">El estado de habilitación es obligatorio.</mat-error>
-      
-      <div class="title-container"><button mat-raised-button color="primary">Registrar</button></div>
+   
+      <div class="title-container"><button mat-raised-button color="primary">Registrar</button>
+        <button mat-raised-button color="warn" routerLink="/roles">
+          Cancelar
+        </button>
+      </div>
+
     </form>
   </div>

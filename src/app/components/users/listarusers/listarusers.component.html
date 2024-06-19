@@ -1,5 +1,16 @@
 <div class="container">
     <div class="title-container"><h1 class="title">Lista de Usuarios</h1></div>
+    <div class="button-container">
+      <button mat-fab extended color="white" routerLink="/usuarios/nuevo" class="custom-button">
+        <mat-icon>account_circle</mat-icon> 
+        Nuevo Usuario
+      </button>
+      <button mat-fab extended color="white" routerLink="/roles" class="custom-button">
+        <mat-icon>work</mat-icon> 
+        Roles
+      </button>
+    </div>
+    <br>
       <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
           <ng-container matColumnDef="id">
