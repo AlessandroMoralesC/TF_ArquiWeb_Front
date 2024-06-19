@@ -1,5 +1,16 @@
 <div class="container">
     <div class="title-container"><h1 class="title">Lista de Recetas</h1></div>
+    <div class="button-container">
+      <button mat-fab extended color="white" routerLink="/recetas/nuevo" class="custom-button">
+        <mat-icon>healing</mat-icon> 
+        Nueva Receta
+      </button>
+      <button mat-fab extended color="white" routerLink="/roles" class="custom-button">
+        <mat-icon>folder_shared</mat-icon> 
+        Detalle Clinico
+      </button>
+    </div>
+    <br>
     <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
         <ng-container matColumnDef="codigo">
             <th mat-header-cell *matHeaderCellDef> Id </th>

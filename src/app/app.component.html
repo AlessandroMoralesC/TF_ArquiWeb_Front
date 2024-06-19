@@ -6,19 +6,17 @@
   </button>
 
         <!-- Barra de herramientas para PSICOLOGO -->
-
-  <button mat-button [matMenuTriggerFor]="menuTratamientos" *ngIf="isPSICOLOGO()">
-    <mat-icon>healing</mat-icon>Tratamientos
-  </button>
-  <button mat-button [matMenuTriggerFor]="menuRecetas" *ngIf="isPSICOLOGO()">
-    <mat-icon>healing</mat-icon>Recetas
-  </button>
-  <button mat-button [matMenuTriggerFor]="menuExamenes" *ngIf="isPSICOLOGO()">
-    <mat-icon>healing</mat-icon>Examenes
-  </button>
-  <button mat-button [matMenuTriggerFor]="menuMaterial" *ngIf="isPSICOLOGO()"> <mat-icon>dashboard</mat-icon>Material
+        <button mat-button [matMenuTriggerFor]="menuDetalle" *ngIf="isPSICOLOGO()"> <mat-icon>folder_shared</mat-icon>Detalle Clinico
+          <mat-menu #menuDetalle="matMenu">
+            <button mat-menu-item [matMenuTriggerFor]="menuTratamientos"><mat-icon>healing</mat-icon>Tratamientos</button>
+            <button mat-menu-item [matMenuTriggerFor]="menuRecetas"><mat-icon>healing</mat-icon>Recetas</button>
+            <button mat-menu-item [matMenuTriggerFor]="menuExamenes"><mat-icon>healing</mat-icon>Examenes</button>
+      
+          </mat-menu>
+        </button>
+  <button mat-button [matMenuTriggerFor]="menuMaterial" *ngIf="isPSICOLOGO()"> <mat-icon>devices_other</mat-icon>Material
     <mat-menu #menuMaterial="matMenu">
-      <button mat-menu-item [matMenuTriggerFor]="TipoMaterial"><mat-icon>dashboard</mat-icon>Tipo Material</button>
+      <button mat-menu-item [matMenuTriggerFor]="TipoMaterial"><mat-icon>videocam</mat-icon>Tipo Material</button>
     </mat-menu>
   </button>
   <button mat-button [matMenuTriggerFor]="menuUsuarios" *ngIf="isPSICOLOGO()"> <mat-icon>group</mat-icon>Usuarios
@@ -27,22 +25,22 @@
       <button mat-menu-item [matMenuTriggerFor]="Usuarios"><mat-icon>account_circle</mat-icon>Usuarios</button>
     </mat-menu>
   </button>
+
     <!-- Barra de herramientas para PACIENTE -->
 
 
     <!-- Barra de herramientas para ADMINISTRADOR -->
-    <button mat-button [matMenuTriggerFor]="menuTratamientos" *ngIf="isADMINISTRADOR()">
-      <mat-icon>healing</mat-icon>Tratamientos
+    <button mat-button [matMenuTriggerFor]="menuDetalle" *ngIf="isADMINISTRADOR()"> <mat-icon>folder_shared</mat-icon>Detalle Clinico
+      <mat-menu #menuDetalle="matMenu">
+        <button mat-menu-item [matMenuTriggerFor]="menuTratamientos"><mat-icon>healing</mat-icon>Tratamientos</button>
+        <button mat-menu-item [matMenuTriggerFor]="menuRecetas"><mat-icon>healing</mat-icon>Recetas</button>
+        <button mat-menu-item [matMenuTriggerFor]="menuExamenes"><mat-icon>healing</mat-icon>Examenes</button>
+  
+      </mat-menu>
     </button>
-    <button mat-button [matMenuTriggerFor]="menuRecetas" *ngIf="isADMINISTRADOR()">
-      <mat-icon>healing</mat-icon>Recetas
-    </button>
-    <button mat-button [matMenuTriggerFor]="menuExamenes" *ngIf="isADMINISTRADOR()">
-      <mat-icon>healing</mat-icon>Examenes
-    </button>
-    <button mat-button [matMenuTriggerFor]="menuMaterial" *ngIf="isADMINISTRADOR()"> <mat-icon>dashboard</mat-icon>Material
+    <button mat-button [matMenuTriggerFor]="menuMaterial" *ngIf="isADMINISTRADOR()"> <mat-icon>devices_other</mat-icon>Material
       <mat-menu #menuMaterial="matMenu">
-        <button mat-menu-item [matMenuTriggerFor]="TipoMaterial"><mat-icon>dashboard</mat-icon>Tipo Material</button>
+        <button mat-menu-item [matMenuTriggerFor]="TipoMaterial"><mat-icon>videocam</mat-icon>Tipo Material</button>
       </mat-menu>
     </button>
     <button mat-button [matMenuTriggerFor]="menuUsuarios" *ngIf="isADMINISTRADOR()"> <mat-icon>group</mat-icon>Usuarios

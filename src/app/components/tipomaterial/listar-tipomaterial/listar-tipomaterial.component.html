@@ -1,5 +1,16 @@
 <div class="container">
     <div class="title-container"><h1 class="title">Lista de Tipo de Material</h1></div>
+    <div class="button-container">
+      <button mat-fab extended color="white" routerLink="/tipodematerial/nuevo" class="custom-button">
+        <mat-icon>videocam</mat-icon> 
+        Nuevo Tipo de Material
+      </button>
+      <button mat-fab extended color="white" routerLink="/roles" class="custom-button">
+        <mat-icon>devices_other</mat-icon> 
+        Materiales
+      </button>
+    </div>
+    <br>
       <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
           <ng-container matColumnDef="idtipomaterial">
