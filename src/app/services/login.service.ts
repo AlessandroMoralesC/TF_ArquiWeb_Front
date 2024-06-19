@@ -13,18 +13,30 @@ export class LoginService {
   login(request: JwtRequest) {
     return this.http.post('http://localhost:8080/login', request);
   }
+
   verificar() {
     let token = sessionStorage.getItem('token');
     return token != null;
   }
+
   showRole() {
     let token = sessionStorage.getItem('token');
     if (!token) {
-      // Manejar el caso en el que el token es nulo.
-      return null; // O cualquier otro valor predeterminado dependiendo del contexto.
+      return null;
     }
     const helper = new JwtHelperService();
     const decodedToken = helper.decodeToken(token);
     return decodedToken?.role;
   }
+
+  getUserRoles(): string[] {
+    let token = sessionStorage.getItem('token');
+    if (!token) {
+      return [];
+    }
+    const helper = new JwtHelperService();
+    const decodedToken = helper.decodeToken(token);
+    return decodedToken?.roles || [decodedToken?.role]; 
+  }
 }
+
