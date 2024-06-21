@@ -98,7 +98,7 @@ export class RegistrarmetasComponent implements OnInit {
         });
       }
 
-      this.router.navigate(['/metas']);
+      this.router.navigate(['/metas/nuevo']);
     }
   }
 
