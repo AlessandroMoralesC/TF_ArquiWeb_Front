@@ -14,6 +14,8 @@ import { RolesComponent } from './components/roles/roles.component';
 import { UsersComponent } from './components/users/users.component';
 import { RegistrarusersComponent } from './components/users/registrarusers/registrarusers.component';
 import { RegistrarrolesComponent } from './components/roles/registrarroles/registrarroles.component';
+import { MetasComponent } from './components/metas/metas.component';
+import { RegistrarmetasComponent } from './components/metas/registrarmetas/registrarmetas.component';
 
 export const routes: Routes = [
     {
@@ -93,6 +95,18 @@ export const routes: Routes = [
         canActivate: [segGuard], // solo construcciones, se debe agregar a cada uno
 
     },
+    {
+        path:"metas",component: MetasComponent,
+        children: [
+            {
+                path: 'nuevo', component: RegistrarmetasComponent
+            }, {
+                path: 'ediciones/:id', component: RegistrarmetasComponent
+            }
+        ],
+        canActivate: [segGuard], // solo construcciones, se debe agregar a cada uno
+
+      },
     {
         path: 'homes',
         component: HomeComponent,

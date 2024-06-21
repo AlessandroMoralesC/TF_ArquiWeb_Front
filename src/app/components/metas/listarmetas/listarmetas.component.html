@@ -1,0 +1,82 @@
+<div class="container">
+    <div class="title-container"><h1 class="title">Lista de Metas</h1></div>
+    <div class="button-container">
+      <button mat-fab extended color="white" routerLink="/metas/nuevo" class="custom-button">
+        <mat-icon>add_circle</mat-icon> 
+        Nueva Meta
+      </button>
+      <button mat-fab extended color="white" routerLink="/usuarios" class="custom-button">
+        <mat-icon>account_circle</mat-icon> 
+        Usuarios
+      </button>
+    </div>
+    <br>
+
+      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+
+          <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef > Id </th>
+            <td mat-cell *matCellDef="let element"> {{element.idMeta}} </td>
+          </ng-container>
+        
+          <ng-container matColumnDef="nombreme">
+            <th mat-header-cell *matHeaderCellDef> Nombre </th>
+            <td mat-cell *matCellDef="let element"> {{element.nombreMeta}} </td>
+          </ng-container>
+        
+          <ng-container matColumnDef="estado">
+            <th mat-header-cell *matHeaderCellDef> Estado </th>
+            <td mat-cell *matCellDef="let element"> {{element.estadoMeta}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="nombre" >
+            <th mat-header-cell *matHeaderCellDef> Nombre </th>
+            <td mat-cell *matCellDef="let element"> {{element.usuario.nombreUsers}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="apellido" >
+            <th mat-header-cell *matHeaderCellDef> Apellido </th>
+            <td mat-cell *matCellDef="let element"> {{element.usuario.apellidoUsers}} </td>
+          </ng-container>
+          
+          <ng-container matColumnDef="username">
+            <th mat-header-cell *matHeaderCellDef> Username </th>
+            <td mat-cell *matCellDef="let element"> {{element.usuario.username}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="editar">
+            <th mat-header-cell *matHeaderCellDef> Actualizar </th>
+            <td mat-cell *matCellDef="let element" >   <button
+              mat-raised-button
+              color="primary"
+              class="custom-button2"
+
+              [routerLink]="['ediciones', element.idMeta]"
+            >
+            <mat-icon> border_color</mat-icon>        </button></td>
+          </ng-container>
+
+          <ng-container matColumnDef="eliminar">
+            <th mat-header-cell *matHeaderCellDef>Eliminar</th>
+            <td mat-cell *matCellDef="let element">
+              <button
+                mat-raised-button
+                color="warn"
+                (click)="deletes(element.idMeta)"
+              >
+              <mat-icon>delete</mat-icon>
+            </button>
+            </td></ng-container
+          >
+        
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+        <br>
+        <mat-paginator [length]="50"
+        [pageSize]="7"
+        [pageSizeOptions]="[7, 10, 15]"
+        aria-label="Select page" color="primary">
+        </mat-paginator>
+  </div>

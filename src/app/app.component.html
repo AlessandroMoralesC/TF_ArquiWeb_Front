@@ -26,6 +26,10 @@
     </mat-menu>
   </button>
 
+  <button mat-button [matMenuTriggerFor]="Metas" *ngIf="isPSICOLOGO()">
+    <mat-icon> assignment_ind</mat-icon>Metas
+  </button>
+
     <!-- Barra de herramientas para PACIENTE -->
 
 
@@ -80,6 +84,10 @@
   <mat-menu #Roles="matMenu">
     <button mat-menu-item routerLink="/roles"><mat-icon>chrome_reader_mode</mat-icon>Listar Roles</button>
     <button mat-menu-item routerLink="/roles/nuevo"><mat-icon>chrome_reader_mode</mat-icon>Registrar Roles</button>
+  </mat-menu>
+  <mat-menu #Metas="matMenu">
+    <button mat-menu-item routerLink="/metas"><mat-icon>chrome_reader_mode</mat-icon>Listar Metas</button>
+    <button mat-menu-item routerLink="/metas/nuevo"><mat-icon>chrome_reader_mode</mat-icon>Registrar Metas</button>
 
   </mat-menu>
 
