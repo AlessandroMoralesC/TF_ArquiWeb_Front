@@ -68,7 +68,7 @@ export class RegistrarrecetaComponent {
             });
           });
         }
-        this.router.navigate(['/recetas/nuevo']); 
+        this.router.navigate(['/recetas']); 
     }
   }
   init()

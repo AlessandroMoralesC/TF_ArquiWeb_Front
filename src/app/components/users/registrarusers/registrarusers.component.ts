@@ -96,7 +96,7 @@ export class RegistrarusersComponent implements OnInit{
             });
           });
         }
-      this.router.navigate(['usuarios/nuevo']);
+      this.router.navigate(['usuarios']);
     }
   }
   init() {

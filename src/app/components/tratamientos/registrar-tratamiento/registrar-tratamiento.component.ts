@@ -94,7 +94,7 @@ export class RegistrarTratamientoComponent implements OnInit{
             });
           });
         }
-      this.router.navigate(['tratamientos/nuevo']);
+      this.router.navigate(['tratamientos']);
     }
   }
   init() {
