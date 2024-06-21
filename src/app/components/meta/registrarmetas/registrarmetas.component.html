@@ -1,0 +1,50 @@
+<div class="container">
+    <div class="title-container">
+      <h1 class="title">Registrar Meta</h1>
+    </div>
+    <form [formGroup]="form" (ngSubmit)="registrarMeta()">
+  
+      <mat-form-field *ngIf="edicion">
+        <mat-label>Código</mat-label>
+        <input matInput formControlName="idMeta" readonly />
+      </mat-form-field>
+      <br />
+  
+      <mat-form-field>
+        <mat-label>Estado de la Meta</mat-label>
+        <input matInput formControlName="estadoMeta" required />
+        <mat-error *ngIf="form.get('estadoMeta')?.hasError('required')">El estado es obligatorio.</mat-error>
+      </mat-form-field>
+      <br />
+  
+      <mat-form-field>
+        <mat-label>Nombre de la Meta</mat-label>
+        <input matInput formControlName="nombreMeta" required />
+        <mat-error *ngIf="form.get('nombreMeta')?.hasError('required')">El nombre es obligatorio.</mat-error>
+      </mat-form-field>
+      <br />
+  
+      <mat-form-field>
+        <mat-label>Descripción de la Meta</mat-label>
+        <textarea matInput formControlName="descripcionMeta" required></textarea>
+        <mat-error *ngIf="form.get('descripcionMeta')?.hasError('required')">La descripción es obligatoria.</mat-error>
+      </mat-form-field>
+      <br />
+  
+      <mat-form-field>
+        <mat-label>Seleccione un Usuario</mat-label>
+        <mat-select formControlName="usuario" required>
+          <mat-option *ngFor="let user of listaUsuarios" [value]="user.id">
+            {{ user.nombreUsers }} {{ user.apellidoUsers }}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="form.get('usuario')?.hasError('required')">Debe seleccionar un usuario.</mat-error>
+      </mat-form-field>
+      <br />
+  
+      <div class="button-container">
+        <button mat-raised-button color="primary">Registrar</button>
+        <button mat-raised-button color="warn" routerLink="/meta">Cancelar</button>
+      </div>
+    </form>
+  </div>

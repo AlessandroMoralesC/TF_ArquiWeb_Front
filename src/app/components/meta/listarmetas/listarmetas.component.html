@@ -1,0 +1,68 @@
+<div class="container">
+    <div class="title-container">
+      <h1 class="title">Lista de Metas</h1>
+    </div>
+    <div class="button-container">
+      <button mat-fab extended color="white" routerLink="/metas/nuevo" class="custom-button">
+        <mat-icon>add_circle</mat-icon> 
+        Nueva Meta
+      </button>
+    </div>
+    <br>
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+        <!-- ID de la Meta -->
+        <ng-container matColumnDef="idMeta">
+          <th mat-header-cell *matHeaderCellDef> Id </th>
+          <td mat-cell *matCellDef="let element"> {{element.idMeta}} </td>
+        </ng-container>
+  
+        <!-- Estado de la Meta -->
+        <ng-container matColumnDef="estadoMeta">
+          <th mat-header-cell *matHeaderCellDef> Estado </th>
+          <td mat-cell *matCellDef="let element"> {{element.estadoMeta}} </td>
+        </ng-container>
+  
+        <!-- Nombre de la Meta -->
+        <ng-container matColumnDef="nombreMeta">
+          <th mat-header-cell *matHeaderCellDef> Nombre </th>
+          <td mat-cell *matCellDef="let element"> {{element.nombreMeta}} </td>
+        </ng-container>
+  
+        <!-- Descripción de la Meta -->
+        <ng-container matColumnDef="descripcionMeta">
+          <th mat-header-cell *matHeaderCellDef> Descripción </th>
+          <td mat-cell *matCellDef="let element"> {{element.descripcionMeta}} </td>
+        </ng-container>
+  
+        <!-- Usuario -->
+        <ng-container matColumnDef="usuario">
+          <th mat-header-cell *matHeaderCellDef> Usuario </th>
+          <td mat-cell *matCellDef="let element"> {{element.usuario.nombreUsers}} {{element.usuario.apellidoUsers}} </td>
+        </ng-container>
+  
+        <!-- Editar -->
+        <ng-container matColumnDef="editar">
+          <th mat-header-cell *matHeaderCellDef> Actualizar </th>
+          <td mat-cell *matCellDef="let element">
+            <button mat-raised-button color="primary" [routerLink]="['/meta/editar', element.idMeta]">
+              <mat-icon>border_color</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+  
+        <!-- Eliminar -->
+        <ng-container matColumnDef="eliminar">
+          <th mat-header-cell *matHeaderCellDef> Eliminar </th>
+          <td mat-cell *matCellDef="let element">
+            <button mat-raised-button color="warn" (click)="deletes(element.idMeta)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+  
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    <br>
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+  </div>

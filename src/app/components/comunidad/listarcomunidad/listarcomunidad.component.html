@@ -1,0 +1,69 @@
+<div class="container">
+    <div class="title-container">
+      <h1 class="title">Lista de Comunidades</h1>
+    </div>
+    <div class="button-container">
+      <button mat-fab extended color="white" routerLink="/comunidad/nuevo" class="custom-button">
+        <mat-icon>add_circle</mat-icon> Nueva Comunidad
+      </button>
+    </div>
+    <br>
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+      <!-- Columnas de la tabla -->
+  
+      <!-- ID de la Comunidad -->
+      <ng-container matColumnDef="idComunidad">
+        <th mat-header-cell *matHeaderCellDef> Id </th>
+        <td mat-cell *matCellDef="let element"> {{ element.idComunidad }} </td>
+      </ng-container>
+  
+      <!-- Experiencias de la Comunidad -->
+      <ng-container matColumnDef="experienciasComunidad">
+        <th mat-header-cell *matHeaderCellDef> Experiencias </th>
+        <td mat-cell *matCellDef="let element"> {{ element.experienciasComunidad }} </td>
+      </ng-container>
+  
+      <!-- Aprobaciones de la Comunidad -->
+      <ng-container matColumnDef="aprobacionesComunidad">
+        <th mat-header-cell *matHeaderCellDef> Aprobaciones </th>
+        <td mat-cell *matCellDef="let element"> {{ element.aprobacionesComunidad }} </td>
+      </ng-container>
+  
+      <!-- Recomendaciones de la Comunidad -->
+      <ng-container matColumnDef="recomendacionesComunidad">
+        <th mat-header-cell *matHeaderCellDef> Recomendaciones </th>
+        <td mat-cell *matCellDef="let element"> {{ element.recomendacionesComunidad }} </td>
+      </ng-container>
+  
+      <!-- Usuario -->
+      <ng-container matColumnDef="usuario">
+        <th mat-header-cell *matHeaderCellDef> Usuario </th>
+        <td mat-cell *matCellDef="let element"> {{ element.usuario.nombreUsers }} {{ element.usuario.apellidoUsers }} </td>
+      </ng-container>
+  
+      <!-- Editar -->
+      <ng-container matColumnDef="editar">
+        <th mat-header-cell *matHeaderCellDef> Actualizar </th>
+        <td mat-cell *matCellDef="let element">
+          <button mat-raised-button color="primary" [routerLink]="['/comunidad', 'editar', element.idComunidad]">
+            <mat-icon>border_color</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+  
+      <!-- Eliminar -->
+      <ng-container matColumnDef="eliminar">
+        <th mat-header-cell *matHeaderCellDef> Eliminar </th>
+        <td mat-cell *matCellDef="let element">
+          <button mat-raised-button color="warn" (click)="deletes(element.idComunidad)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+  
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    <br>
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons></mat-paginator>
+  </div>

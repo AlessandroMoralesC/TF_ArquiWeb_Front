@@ -1,0 +1,34 @@
+<div class="container">
+    <div class="title-container"><h1 class="title">Registrar Mensaje</h1></div>
+    <form [formGroup]="form" (ngSubmit)="registrarMensaje()">
+  
+      <mat-form-field *ngIf="edicion">
+        <mat-label>Código</mat-label>
+        <input matInput formControlName="idMensaje" readonly />
+      </mat-form-field>
+      <br />
+  
+      <mat-form-field>
+        <mat-label>Mensaje</mat-label>
+        <textarea matInput formControlName="mensaje" required></textarea>
+        <mat-error *ngIf="form.get('mensaje')?.hasError('required')">El mensaje es obligatorio.</mat-error>
+      </mat-form-field>
+      <br />
+  
+      <mat-form-field>
+        <mat-label>Seleccione un Usuario</mat-label>
+        <mat-select formControlName="usuario" required>
+          <mat-option *ngFor="let user of listaUsuarios" [value]="user.id">
+            {{ user.nombreUsers }} {{ user.apellidoUsers }}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="form.get('usuario')?.hasError('required')">Debe seleccionar un usuario.</mat-error>
+      </mat-form-field>
+      <br />
+  
+      <div class="button-container">
+        <button mat-raised-button color="primary">Registrar</button>
+        <button mat-raised-button color="warn" routerLink="/mensajes">Cancelar</button>
+      </div>
+    </form>
+  </div>

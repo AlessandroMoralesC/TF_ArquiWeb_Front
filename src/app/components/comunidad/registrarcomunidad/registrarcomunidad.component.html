@@ -1,0 +1,47 @@
+<div class="container">
+    <div class="title-container">
+      <h1 class="title">Registrar Comunidad</h1>
+    </div>
+    <form [formGroup]="form" (ngSubmit)="registrarComunidad()">
+  
+      <mat-form-field *ngIf="edicion">
+        <mat-label>Código</mat-label>
+        <input matInput formControlName="idComunidad" readonly />
+      </mat-form-field>
+      <br />
+  
+      <mat-form-field>
+        <mat-label>Experiencias de la Comunidad</mat-label>
+        <textarea matInput formControlName="experienciasComunidad"></textarea>
+      </mat-form-field>
+      <br />
+  
+      <mat-form-field>
+        <mat-label>Aprobaciones de la Comunidad</mat-label>
+        <textarea matInput formControlName="aprobacionesComunidad"></textarea>
+      </mat-form-field>
+      <br />
+  
+      <mat-form-field>
+        <mat-label>Recomendaciones de la Comunidad</mat-label>
+        <textarea matInput formControlName="recomendacionesComunidad"></textarea>
+      </mat-form-field>
+      <br />
+  
+      <mat-form-field>
+        <mat-label>Seleccione un Usuario</mat-label>
+        <mat-select formControlName="usuario" required>
+          <mat-option *ngFor="let user of listaUsuarios" [value]="user.id">
+            {{ user.nombreUsers }} {{ user.apellidoUsers }}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="form.get('usuario')?.hasError('required')">Debe seleccionar un usuario.</mat-error>
+      </mat-form-field>
+      <br />
+  
+      <div class="button-container">
+        <button mat-raised-button color="primary">Registrar</button>
+        <button mat-raised-button color="warn" routerLink="/comunidad">Cancelar</button>
+      </div>
+    </form>
+  </div>

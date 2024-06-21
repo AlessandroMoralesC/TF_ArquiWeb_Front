@@ -20,10 +20,11 @@ import { MaterialesService } from '../../../services/materiales.service';
 import { TipomaterialService } from '../../../services/tipomaterial.service';
 import { Users } from '../../../models/users';
 import { TipoMaterial } from '../../../models/tipomaterial';
-
+import { Meta } from '../../../models/meta';
+import { MetaService } from '../../../services/meta.service';
 
 @Component({
-  selector: 'app-registrarmateriales',
+  selector: 'app-registrarmetas',
   standalone: true,
   imports: [
     MatFormFieldModule,
@@ -37,35 +38,34 @@ import { TipoMaterial } from '../../../models/tipomaterial';
     CommonModule,
     RouterLink,
   ],
-  templateUrl: './registrarmateriales.component.html',
-  styleUrl: './registrarmateriales.component.css'
+  templateUrl: './registrarmetas.component.html',
+  styleUrl: './registrarmetas.component.css'
 })
-export class RegistrarmaterialesComponent implements OnInit {
+export class RegistrarmetasComponent implements OnInit {
   form: FormGroup;
-  materiales: Materiales = new Materiales();
+  meta: Meta = new Meta();
   listaUsuarios: Users[] = [];
-  listaTiposMaterial: TipoMaterial[] = [];
   id: number = 0;
   edicion: boolean = false;
 
   constructor(
     private formBuilder: FormBuilder,
-    private materialesService: MaterialesService,
+    private metaService: MetaService,
     private usersService: UsersService,
-    private tipoMaterialService: TipomaterialService,
     private router: Router,
     private route: ActivatedRoute
   ) {
     this.form = this.formBuilder.group({
-      idMateriales: [''],
-      nombreMateriales: ['', Validators.required],
-      usuario: ['', Validators.required],
-      tipomaterial: ['', Validators.required]
+      idMeta: [''],
+      estadoMeta: ['', Validators.required],
+      nombreMeta: ['', Validators.required],
+      descripcionMeta: ['', Validators.required],
+      usuario: ['', Validators.required]
     });
   }
 
   ngOnInit(): void {
-    this.route.params.subscribe((params: Params) => {
+    this.route.params.subscribe((params) => {
       this.id = params['id'];
       this.edicion = this.id != null;
       this.initForm();
@@ -74,45 +74,43 @@ export class RegistrarmaterialesComponent implements OnInit {
     this.usersService.list().subscribe(data => {
       this.listaUsuarios = data;
     });
-
-    this.tipoMaterialService.list().subscribe(data => {
-      this.listaTiposMaterial = data;
-    });
   }
 
-  registrarMaterial(): void {
+  registrarMeta(): void {
     if (this.form.valid) {
-      this.materiales.idMateriales = this.form.value.idMateriales;
-      this.materiales.nombreMateriales = this.form.value.nombreMateriales;
-      this.materiales.usuario = { id: this.form.value.usuario } as Users;
-      this.materiales.tipoMaterial = { idTMaterial: this.form.value.tipomaterial } as TipoMaterial;
+      this.meta.idMeta = this.form.value.idMeta;
+      this.meta.estadoMeta = this.form.value.estadoMeta;
+      this.meta.nombreMeta = this.form.value.nombreMeta;
+      this.meta.descripcionMeta = this.form.value.descripcionMeta;
+      this.meta.usuario = { id: this.form.value.usuario } as Users;
 
       if (this.edicion) {
-        this.materialesService.update(this.materiales).subscribe(() => {
-          this.materialesService.list().subscribe(data => {
-            this.materialesService.setList(data);
+        this.metaService.update(this.meta).subscribe(() => {
+          this.metaService.list().subscribe(data => {
+            this.metaService.setList(data);
           });
         });
       } else {
-        this.materialesService.insert(this.materiales).subscribe(() => {
-          this.materialesService.list().subscribe(data => {
-            this.materialesService.setList(data);
+        this.metaService.insert(this.meta).subscribe(() => {
+          this.metaService.list().subscribe(data => {
+            this.metaService.setList(data);
           });
         });
       }
 
-      this.router.navigate(['/materiales']);
+      this.router.navigate(['/metas']);
     }
   }
 
   private initForm(): void {
     if (this.edicion) {
-      this.materialesService.listId(this.id).subscribe(data => {
+      this.metaService.listId(this.id).subscribe(data => {
         this.form.patchValue({
-          idMateriales: data.idMateriales,
-          nombreMateriales: data.nombreMateriales,
-          usuario: data.usuario.id,
-          tipomaterial: data.tipoMaterial.idTMaterial
+          idMeta: data.idMeta,
+          estadoMeta: data.estadoMeta,
+          nombreMeta: data.nombreMeta,
+          descripcionMeta: data.descripcionMeta,
+          usuario: data.usuario.id
         });
       });
     }

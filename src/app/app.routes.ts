@@ -14,6 +14,18 @@ import { RolesComponent } from './components/roles/roles.component';
 import { UsersComponent } from './components/users/users.component';
 import { RegistrarusersComponent } from './components/users/registrarusers/registrarusers.component';
 import { RegistrarrolesComponent } from './components/roles/registrarroles/registrarroles.component';
+import { MaterialesComponent } from './components/materiales/materiales.component';
+import { RegistrarmaterialesComponent } from './components/materiales/registrarmateriales/registrarmateriales.component';
+import { MensajesComponent } from './components/mensajes/mensajes.component';
+import { RegistrarmensajesComponent } from './components/mensajes/registrarmensajes/registrarmensajes.component';
+import { ComunidadComponent } from './components/comunidad/comunidad.component';
+import { RegistrarcomunidadComponent } from './components/comunidad/registrarcomunidad/registrarcomunidad.component';
+import { RegistrarmetasComponent } from './components/meta/registrarmetas/registrarmetas.component';
+import { MetaComponent } from './components/meta/meta.component';
+import { HistorialclinicoComponent } from './components/historialclinico/historialclinico.component';
+import { RegistrarhistorialclinicoComponent } from './components/historialclinico/registrarhistorialclinico/registrarhistorialclinico.component';
+import { DetallehclinicoComponent } from './components/detallehclinico/detallehclinico.component';
+import { RegistrardetallehclinicoComponent } from './components/detallehclinico/registrardetallehclinico/registrardetallehclinico.component';
 
 export const routes: Routes = [
     {
@@ -49,6 +61,18 @@ export const routes: Routes = [
         canActivate: [segGuard], // solo construcciones, se debe agregar a cada uno
 
       },
+      {
+        path:"historialclinico",component:HistorialclinicoComponent,
+        children: [
+            {
+                path: 'nuevo', component: RegistrarhistorialclinicoComponent
+            }, {
+                path: 'ediciones/:id', component: RegistrarhistorialclinicoComponent
+            }
+        ],
+        canActivate: [segGuard], // solo construcciones, se debe agregar a cada uno
+
+      },
     {
         path: "tratamientos", component: TratamientosComponent,
         children: [
@@ -56,6 +80,54 @@ export const routes: Routes = [
                 path: 'nuevo', component: RegistrarTratamientoComponent
             }, {
                 path: 'ediciones/:id', component: RegistrarTratamientoComponent
+            }
+        ],
+        canActivate: [segGuard], // solo construcciones, se debe agregar a cada uno
+
+    },
+    {
+        path: "detalleclinico", component: DetallehclinicoComponent,
+        children: [
+            {
+                path: 'nuevo', component: RegistrardetallehclinicoComponent
+            }, {
+                path: 'ediciones/:id', component: RegistrardetallehclinicoComponent
+            }
+        ],
+        canActivate: [segGuard], // solo construcciones, se debe agregar a cada uno
+
+    },
+    {
+        path: "comunidad", component: ComunidadComponent,
+        children: [
+            {
+                path: 'nuevo', component: RegistrarcomunidadComponent
+            }, {
+                path: 'ediciones/:id', component: RegistrarcomunidadComponent
+            }
+        ],
+        canActivate: [segGuard], // solo construcciones, se debe agregar a cada uno
+
+    },
+    {
+        path: "metas", component: MetaComponent,
+        children: [
+            {
+                path: 'nuevo', component: RegistrarmetasComponent
+            }, {
+                path: 'ediciones/:id', component: RegistrarmetasComponent
+            }
+        ],
+        canActivate: [segGuard], // solo construcciones, se debe agregar a cada uno
+
+    },
+    {
+        path: "mensajes", component: MensajesComponent,
+        children: [
+            {
+                path: 'nuevo', component: RegistrarmensajesComponent
+            }, {
+                path: 'ediciones/:id', component: RegistrarmensajesComponent
             }
         ],
         canActivate: [segGuard], // solo construcciones, se debe agregar a cada uno
@@ -77,6 +149,17 @@ export const routes: Routes = [
             { path: 'nuevo', component: RegistrarTipomaterialComponent },
             {
                 path: 'ediciones/:id', component: RegistrarTipomaterialComponent
+            }
+        ],
+        canActivate: [segGuard], // solo construcciones, se debe agregar a cada uno
+
+    },
+    {
+        path: 'materiales', component: MaterialesComponent,
+        children: [
+            { path: 'nuevo', component: RegistrarmaterialesComponent },
+            {
+                path: 'ediciones/:id', component: RegistrarmaterialesComponent
             }
         ],
         canActivate: [segGuard], // solo construcciones, se debe agregar a cada uno

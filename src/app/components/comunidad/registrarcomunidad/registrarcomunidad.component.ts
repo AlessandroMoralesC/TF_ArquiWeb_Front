@@ -1,7 +1,7 @@
+import { Component, OnInit } from '@angular/core';
 import { UsersService } from './../../../services/users.service';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { CommonModule, NgIf } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
 import {
   FormBuilder,
   FormControl,
@@ -20,10 +20,11 @@ import { MaterialesService } from '../../../services/materiales.service';
 import { TipomaterialService } from '../../../services/tipomaterial.service';
 import { Users } from '../../../models/users';
 import { TipoMaterial } from '../../../models/tipomaterial';
-
+import { Comunidad } from '../../../models/comunidad';
+import { ComunidadService } from '../../../services/comunidad.service';
 
 @Component({
-  selector: 'app-registrarmateriales',
+  selector: 'app-registrarcomunidad',
   standalone: true,
   imports: [
     MatFormFieldModule,
@@ -37,35 +38,34 @@ import { TipoMaterial } from '../../../models/tipomaterial';
     CommonModule,
     RouterLink,
   ],
-  templateUrl: './registrarmateriales.component.html',
-  styleUrl: './registrarmateriales.component.css'
+  templateUrl: './registrarcomunidad.component.html',
+  styleUrl: './registrarcomunidad.component.css'
 })
-export class RegistrarmaterialesComponent implements OnInit {
+export class RegistrarcomunidadComponent implements OnInit {
   form: FormGroup;
-  materiales: Materiales = new Materiales();
+  comunidad: Comunidad = new Comunidad();
   listaUsuarios: Users[] = [];
-  listaTiposMaterial: TipoMaterial[] = [];
   id: number = 0;
   edicion: boolean = false;
 
   constructor(
     private formBuilder: FormBuilder,
-    private materialesService: MaterialesService,
+    private comunidadService: ComunidadService,
     private usersService: UsersService,
-    private tipoMaterialService: TipomaterialService,
     private router: Router,
     private route: ActivatedRoute
   ) {
     this.form = this.formBuilder.group({
-      idMateriales: [''],
-      nombreMateriales: ['', Validators.required],
-      usuario: ['', Validators.required],
-      tipomaterial: ['', Validators.required]
+      idComunidad: [''],
+      experienciasComunidad: [''],
+      aprobacionesComunidad: [''],
+      recomendacionesComunidad: [''],
+      usuario: ['', Validators.required]
     });
   }
 
   ngOnInit(): void {
-    this.route.params.subscribe((params: Params) => {
+    this.route.params.subscribe(params => {
       this.id = params['id'];
       this.edicion = this.id != null;
       this.initForm();
@@ -74,45 +74,43 @@ export class RegistrarmaterialesComponent implements OnInit {
     this.usersService.list().subscribe(data => {
       this.listaUsuarios = data;
     });
-
-    this.tipoMaterialService.list().subscribe(data => {
-      this.listaTiposMaterial = data;
-    });
   }
 
-  registrarMaterial(): void {
+  registrarComunidad(): void {
     if (this.form.valid) {
-      this.materiales.idMateriales = this.form.value.idMateriales;
-      this.materiales.nombreMateriales = this.form.value.nombreMateriales;
-      this.materiales.usuario = { id: this.form.value.usuario } as Users;
-      this.materiales.tipoMaterial = { idTMaterial: this.form.value.tipomaterial } as TipoMaterial;
+      this.comunidad.IdComunidad = this.form.value.idComunidad;
+      this.comunidad.experienciasComunidad = this.form.value.experienciasComunidad;
+      this.comunidad.aprobacionesComunidad = this.form.value.aprobacionesComunidad;
+      this.comunidad.recomendacionesComunidad = this.form.value.recomendacionesComunidad;
+      this.comunidad.usuario = { id: this.form.value.usuario } as Users;
 
       if (this.edicion) {
-        this.materialesService.update(this.materiales).subscribe(() => {
-          this.materialesService.list().subscribe(data => {
-            this.materialesService.setList(data);
+        this.comunidadService.update(this.comunidad).subscribe(() => {
+          this.comunidadService.list().subscribe(data => {
+            this.comunidadService.setList(data);
           });
         });
       } else {
-        this.materialesService.insert(this.materiales).subscribe(() => {
-          this.materialesService.list().subscribe(data => {
-            this.materialesService.setList(data);
+        this.comunidadService.insert(this.comunidad).subscribe(() => {
+          this.comunidadService.list().subscribe(data => {
+            this.comunidadService.setList(data);
           });
         });
       }
 
-      this.router.navigate(['/materiales']);
+      this.router.navigate(['/comunidad']);
     }
   }
 
   private initForm(): void {
     if (this.edicion) {
-      this.materialesService.listId(this.id).subscribe(data => {
+      this.comunidadService.listId(this.id).subscribe(data => {
         this.form.patchValue({
-          idMateriales: data.idMateriales,
-          nombreMateriales: data.nombreMateriales,
-          usuario: data.usuario.id,
-          tipomaterial: data.tipoMaterial.idTMaterial
+          idComunidad: data.IdComunidad,
+          experienciasComunidad: data.experienciasComunidad,
+          aprobacionesComunidad: data.aprobacionesComunidad,
+          recomendacionesComunidad: data.recomendacionesComunidad,
+          usuario: data.usuario.id
         });
       });
     }

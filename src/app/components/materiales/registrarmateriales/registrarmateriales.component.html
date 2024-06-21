@@ -1,53 +1,45 @@
-<div class="container" style="text-align: center">
-    <h2>Registro de Materiales</h2>
-    <form [formGroup]="form" (submit)="aceptar()" class="example-form">
-      <mat-form-field class="example-full-width" *ngIf="edicion">
-        <mat-label>Codigo</mat-label>
-        <input matInput placeholder="Codigo" formControlName="idMateriales" readonly />
-        <mat-error *ngIf="form.get('idMateriales')?.hasError('required')">
-          El código no se modifica.
-        </mat-error>
-      </mat-form-field>
-  
-      <mat-form-field class="example-full-width">
-        <mat-label>Nombre del Material:</mat-label>
-        <input matInput placeholder="Nombre" formControlName="nombreMateriales" />
-        <mat-error *ngIf="form.get('nombreMateriales')?.hasError('required')">
-          El nombre del material es obligatorio.
-        </mat-error>
-      </mat-form-field>
-      <br/>
-  
-      <mat-form-field class="example-full-width">
-        <mat-label>Usuario</mat-label>
-        <mat-select formControlName="usuario">
-          <mat-option *ngFor="let u of usuarios" [value]="u.idUsuario">
-            {{u.nombre}}
-          </mat-option>
-        </mat-select>
-        <mat-error *ngIf="form.get('usuario')?.hasError('required')">
-          El usuario es obligatorio.
-        </mat-error>
-      </mat-form-field>
-      <br/>
-  
-      <mat-form-field class="example-full-width">
-        <mat-label>Tipo de Material</mat-label>
-        <mat-select formControlName="tipomaterial">
-          <mat-option *ngFor="let tm of tiposMaterial" [value]="tm.idTMaterial">
-            {{tm.tipoTMaterial}}
-          </mat-option>
-        </mat-select>
-        <mat-error *ngIf="form.get('tipomaterial')?.hasError('required')">
-          El tipo de material es obligatorio.
-        </mat-error>
-      </mat-form-field>
-      <br/>
-  
-      <button mat-raised-button color="primary">Aceptar</button>
-      <button mat-raised-button color="warn" routerLink="/materiales">
-        Cancelar
-      </button>
-      <p>{{ mensaje }}</p>
-    </form>
-  </div>
+<div class="container">
+  <div class="title-container"><h1 class="title">Registrar Material</h1></div>
+  <form [formGroup]="form" (ngSubmit)="registrarMaterial()">
+
+    <mat-form-field *ngIf="edicion">
+      <mat-label>Código</mat-label>
+      <input matInput formControlName="idMateriales" readonly />
+    </mat-form-field>
+    <br />
+
+    <mat-form-field>
+      <mat-label>Nombre del Material</mat-label>
+      <input matInput formControlName="nombreMateriales" required />
+      <mat-error *ngIf="form.get('nombreMateriales')?.hasError('required')">El nombre es obligatorio.</mat-error>
+    </mat-form-field>
+    <br />
+
+    <mat-form-field>
+      <mat-label>Seleccione un Usuario</mat-label>
+      <mat-select formControlName="usuario" required>
+        <mat-option *ngFor="let user of listaUsuarios" [value]="user.id">
+          {{ user.nombreUsers }} {{ user.apellidoUsers }}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="form.get('usuario')?.hasError('required')">Debe seleccionar un usuario.</mat-error>
+    </mat-form-field>
+    <br />
+
+    <mat-form-field>
+      <mat-label>Seleccione un Tipo de Material</mat-label>
+      <mat-select formControlName="tipomaterial" required>
+        <mat-option *ngFor="let tipo of listaTiposMaterial" [value]="tipo.idTMaterial">
+          {{ tipo.tipoTMaterial }}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="form.get('tipomaterial')?.hasError('required')">Debe seleccionar un tipo de material.</mat-error>
+    </mat-form-field>
+    <br />
+
+    <div class="title-container">
+      <button mat-raised-button color="primary">Registrar</button>
+      <button mat-raised-button color="warn" routerLink="/materiales">Cancelar</button>
+    </div>
+  </form>
+</div>
