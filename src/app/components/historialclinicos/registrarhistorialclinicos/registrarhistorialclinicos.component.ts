@@ -18,11 +18,12 @@ import { ActivatedRoute,Params,Router,RouterLink } from '@angular/router';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import { UsersService } from '../../../services/users.service';
 import {MatCheckboxModule} from '@angular/material/checkbox';
-import { Meta } from '../../../models/metas';
-import { MetasService } from '../../../services/metas.service';
+import { Historialclinico } from '../../../models/historialclinicos';
+import { HistorialclinicosService } from '../../../services/historialclinicos.service';
+
 
 @Component({
-  selector: 'app-registrarmetas',
+  selector: 'app-registrarhistorialclinicos',
   standalone: true,
   providers: [provideNativeDateAdapter()],
   imports: [MatFormFieldModule,
@@ -32,26 +33,20 @@ import { MetasService } from '../../../services/metas.service';
     MatInputModule,
     MatButtonModule,
     MatDatepickerModule,MatSlideToggleModule,MatCheckboxModule,RouterLink,],
-  templateUrl: './registrarmetas.component.html',
-  styleUrl: './registrarmetas.component.css'
+  templateUrl: './registrarhistorialclinicos.component.html',
+  styleUrl: './registrarhistorialclinicos.component.css'
 })
-export class RegistrarmetasComponent implements OnInit{
+export class RegistrarhistorialclinicosComponent implements OnInit{
   form: FormGroup = new FormGroup({}); 
-  metas: Meta=new Meta();
+  historailcli: Historialclinico=new Historialclinico();
   id:number=0;
   edicion:boolean=false;
 
-
-  listaestados: { value: string; viewValue: string }[] = [
-    { value: 'Iniciando', viewValue: 'Iniciando' },
-    { value: 'En Progreso', viewValue: 'En Progreso' },
-    { value: 'Completado', viewValue: 'Completado' },
-  ];
   listausuario: Users[] = [];
 
   constructor(
     private formBuilber: FormBuilder,
-    private mS: MetasService,
+    private mS: HistorialclinicosService,
     private router: Router,
     private route:ActivatedRoute,
     private cs: UsersService,
@@ -66,9 +61,7 @@ export class RegistrarmetasComponent implements OnInit{
     });
     this.form = this.formBuilber.group({
       codigo: [''],
-      nombre: ['', Validators.required],
-      estado: ['', Validators.required],
-      descripcion: ['', Validators.required],
+      fecha: ['', Validators.required],
       usuario: ['', Validators.required],
 
     });
@@ -78,37 +71,33 @@ export class RegistrarmetasComponent implements OnInit{
   }
   aceptar(): void {
     if (this.form.valid) {
-      this.metas.idMeta = this.form.value.codigo;
-      this.metas.nombreMeta = this.form.value.nombre;
-      this.metas.estadoMeta = this.form.value.estado;
-      this.metas.descripcionMeta = this.form.value.descripcion;
-      this.metas.usuario.id = this.form.value.usuario;
+      this.historailcli.idHClinico = this.form.value.codigo;
+      this.historailcli.fechaperturaHClinico = this.form.value.fecha;
+      this.historailcli.usuario.id = this.form.value.usuario;
 
       if(this.edicion)
         {
-            this.mS.update(this.metas).subscribe((data) => {
+            this.mS.update(this.historailcli).subscribe((data) => {
               this.mS.list().subscribe((data) => {
                 this.mS.setList(data);
               });
             });
         }else{
-          this.mS.insert(this.metas).subscribe((data) => {
+          this.mS.insert(this.historailcli).subscribe((data) => {
             this.mS.list().subscribe((data) => {
               this.mS.setList(data);
             });
           });
         }
-      this.router.navigate(['metas']);
+      this.router.navigate(['historialclinicos']);
     }
   }
   init() {
     if (this.edicion) {
       this.mS.listId(this.id).subscribe((data) => {
         this.form = new FormGroup({
-          codigo: new FormControl(data.idMeta),
-          nombre: new FormControl(data.nombreMeta),
-          estado: new FormControl(data.estadoMeta),
-          descripcion: new FormControl(data.descripcionMeta),
+          codigo: new FormControl(data.idHClinico),
+          fecha: new FormControl(data.fechaperturaHClinico),
           usuario: new FormControl(data.usuario.id),
 
         });

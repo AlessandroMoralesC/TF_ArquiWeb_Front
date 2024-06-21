@@ -72,7 +72,7 @@ export class RegistrarcomunidadesComponent implements OnInit{
   }
   aceptar(): void {
     if (this.form.valid) {
-      this.comunidad.IdComunidad = this.form.value.codigo;
+      this.comunidad.idComunidad = this.form.value.codigo;
       this.comunidad.experienciasComunidad = this.form.value.experiencias;
       this.comunidad.aprobacionesComunidad = this.form.value.aprobaciones;
       this.comunidad.recomendacionesComunidad = this.form.value.Recomendaciones;
@@ -99,7 +99,7 @@ export class RegistrarcomunidadesComponent implements OnInit{
     if (this.edicion) {
       this.mS.listId(this.id).subscribe((data) => {
         this.form = new FormGroup({
-          codigo: new FormControl(data.IdComunidad),
+          codigo: new FormControl(data.idComunidad),
           experiencias: new FormControl(data.experienciasComunidad),
           aprobaciones: new FormControl(data.aprobacionesComunidad),
           Recomendaciones: new FormControl(data.recomendacionesComunidad),

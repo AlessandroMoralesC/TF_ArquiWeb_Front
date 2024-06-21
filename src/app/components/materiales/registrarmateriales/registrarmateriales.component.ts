@@ -1,3 +1,4 @@
+import { Materiales } from './../../../models/materiales';
 import { Users } from './../../../models/users';
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
@@ -18,11 +19,13 @@ import { ActivatedRoute,Params,Router,RouterLink } from '@angular/router';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import { UsersService } from '../../../services/users.service';
 import {MatCheckboxModule} from '@angular/material/checkbox';
-import { Meta } from '../../../models/metas';
-import { MetasService } from '../../../services/metas.service';
+import { TipoMaterial } from '../../../models/tipomaterial';
+import { MaterialesService } from '../../../services/materiales.service';
+import { TipomaterialService } from '../../../services/tipomaterial.service';
+
 
 @Component({
-  selector: 'app-registrarmetas',
+  selector: 'app-registrarmateriales',
   standalone: true,
   providers: [provideNativeDateAdapter()],
   imports: [MatFormFieldModule,
@@ -32,12 +35,12 @@ import { MetasService } from '../../../services/metas.service';
     MatInputModule,
     MatButtonModule,
     MatDatepickerModule,MatSlideToggleModule,MatCheckboxModule,RouterLink,],
-  templateUrl: './registrarmetas.component.html',
-  styleUrl: './registrarmetas.component.css'
+  templateUrl: './registrarmateriales.component.html',
+  styleUrl: './registrarmateriales.component.css'
 })
-export class RegistrarmetasComponent implements OnInit{
+export class RegistrarmaterialesComponent implements OnInit{
   form: FormGroup = new FormGroup({}); 
-  metas: Meta=new Meta();
+  material: Materiales=new Materiales();
   id:number=0;
   edicion:boolean=false;
 
@@ -48,13 +51,15 @@ export class RegistrarmetasComponent implements OnInit{
     { value: 'Completado', viewValue: 'Completado' },
   ];
   listausuario: Users[] = [];
+  listatipo: TipoMaterial[]=[];
 
   constructor(
     private formBuilber: FormBuilder,
-    private mS: MetasService,
+    private mS: MaterialesService,
     private router: Router,
     private route:ActivatedRoute,
     private cs: UsersService,
+    private tp: TipomaterialService
 
   ) {}
 
@@ -67,49 +72,51 @@ export class RegistrarmetasComponent implements OnInit{
     this.form = this.formBuilber.group({
       codigo: [''],
       nombre: ['', Validators.required],
-      estado: ['', Validators.required],
-      descripcion: ['', Validators.required],
       usuario: ['', Validators.required],
+      tipoma: ['', Validators.required],
 
     });
     this.cs.list().subscribe((data) => {
       this.listausuario= data;
     });
+    this.tp.list().subscribe((data) => {
+      this.listatipo= data;
+    });
   }
   aceptar(): void {
     if (this.form.valid) {
-      this.metas.idMeta = this.form.value.codigo;
-      this.metas.nombreMeta = this.form.value.nombre;
-      this.metas.estadoMeta = this.form.value.estado;
-      this.metas.descripcionMeta = this.form.value.descripcion;
-      this.metas.usuario.id = this.form.value.usuario;
+      this.material.idMateriales = this.form.value.codigo;
+      this.material.nombreMateriales = this.form.value.nombre;
+      this.material.usuario.id = this.form.value.usuario;
+      this.material.tipoMaterial.idTMaterial = this.form.value.tipoma;
+
 
       if(this.edicion)
         {
-            this.mS.update(this.metas).subscribe((data) => {
+            this.mS.update(this.material).subscribe((data) => {
               this.mS.list().subscribe((data) => {
                 this.mS.setList(data);
               });
             });
         }else{
-          this.mS.insert(this.metas).subscribe((data) => {
+          this.mS.insert(this.material).subscribe((data) => {
             this.mS.list().subscribe((data) => {
               this.mS.setList(data);
             });
           });
         }
-      this.router.navigate(['metas']);
+      this.router.navigate(['materiales']);
     }
   }
   init() {
     if (this.edicion) {
       this.mS.listId(this.id).subscribe((data) => {
         this.form = new FormGroup({
-          codigo: new FormControl(data.idMeta),
-          nombre: new FormControl(data.nombreMeta),
-          estado: new FormControl(data.estadoMeta),
-          descripcion: new FormControl(data.descripcionMeta),
+          codigo: new FormControl(data.idMateriales),
+          nombre: new FormControl(data.nombreMateriales),
           usuario: new FormControl(data.usuario.id),
+          tipoma: new FormControl(data.tipoMaterial.idTMaterial),
+
 
         });
       });

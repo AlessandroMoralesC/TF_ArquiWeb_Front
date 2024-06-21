@@ -18,6 +18,12 @@ import { MetasComponent } from './components/metas/metas.component';
 import { RegistrarmetasComponent } from './components/metas/registrarmetas/registrarmetas.component';
 import { ComunidadesComponent } from './components/comunidades/comunidades.component';
 import { RegistrarcomunidadesComponent } from './components/comunidades/registrarcomunidades/registrarcomunidades.component';
+import { MaterialesComponent } from './components/materiales/materiales.component';
+import { RegistrarmaterialesComponent } from './components/materiales/registrarmateriales/registrarmateriales.component';
+import { HistorialclinicosComponent } from './components/historialclinicos/historialclinicos.component';
+import { RegistrarhistorialclinicosComponent } from './components/historialclinicos/registrarhistorialclinicos/registrarhistorialclinicos.component';
+import { MensajesComponent } from './components/mensajes/mensajes.component';
+import { RegistrarmensajesComponent } from './components/mensajes/registrarmensajes/registrarmensajes.component';
 
 export const routes: Routes = [
     {
@@ -116,6 +122,42 @@ export const routes: Routes = [
                 path: 'nuevo', component: RegistrarcomunidadesComponent
             }, {
                 path: 'ediciones/:id', component: RegistrarcomunidadesComponent
+            }
+        ],
+        canActivate: [segGuard], // solo construcciones, se debe agregar a cada uno
+
+      },
+      {
+        path:"materiales",component: MaterialesComponent,
+        children: [
+            {
+                path: 'nuevo', component: RegistrarmaterialesComponent
+            }, {
+                path: 'ediciones/:id', component: RegistrarmaterialesComponent
+            }
+        ],
+        canActivate: [segGuard], // solo construcciones, se debe agregar a cada uno
+
+      },
+      {
+        path:"historialclinicos",component: HistorialclinicosComponent,
+        children: [
+            {
+                path: 'nuevo', component: RegistrarhistorialclinicosComponent
+            }, {
+                path: 'ediciones/:id', component: RegistrarhistorialclinicosComponent
+            }
+        ],
+        canActivate: [segGuard], // solo construcciones, se debe agregar a cada uno
+
+      },
+      {
+        path:"mensajes",component: MensajesComponent,
+        children: [
+            {
+                path: 'nuevo', component: RegistrarmensajesComponent
+            }, {
+                path: 'ediciones/:id', component: RegistrarmensajesComponent
             }
         ],
         canActivate: [segGuard], // solo construcciones, se debe agregar a cada uno

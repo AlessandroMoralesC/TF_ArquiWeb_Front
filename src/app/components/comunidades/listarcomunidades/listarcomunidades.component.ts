@@ -21,6 +21,8 @@ export class ListarcomunidadesComponent implements OnInit{
     'Experiencias',
     'Aprobaciones',
     'Recomendaciones',
+    'editar',
+    'eliminar'
 
   ];
   dataSource:MatTableDataSource<Comunidad> = new MatTableDataSource();
@@ -37,5 +39,14 @@ export class ListarcomunidadesComponent implements OnInit{
       this.dataSource = new MatTableDataSource(data);      
     });
   }
-
+  deletes(id:number)
+  {
+    this.ts.delete(id).subscribe((data)=>
+    {
+      this.ts.list().subscribe((data)=>
+      {
+        this.ts.setList(data)
+      })
+    });
+  }
 }

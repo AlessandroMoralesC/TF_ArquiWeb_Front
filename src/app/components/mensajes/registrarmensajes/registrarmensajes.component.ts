@@ -18,11 +18,12 @@ import { ActivatedRoute,Params,Router,RouterLink } from '@angular/router';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import { UsersService } from '../../../services/users.service';
 import {MatCheckboxModule} from '@angular/material/checkbox';
-import { Meta } from '../../../models/metas';
-import { MetasService } from '../../../services/metas.service';
+import { Mensajes } from '../../../models/mensajes';
+import { MensajesService } from '../../../services/mensajes.service';
+
 
 @Component({
-  selector: 'app-registrarmetas',
+  selector: 'app-registrarmensajes',
   standalone: true,
   providers: [provideNativeDateAdapter()],
   imports: [MatFormFieldModule,
@@ -32,26 +33,19 @@ import { MetasService } from '../../../services/metas.service';
     MatInputModule,
     MatButtonModule,
     MatDatepickerModule,MatSlideToggleModule,MatCheckboxModule,RouterLink,],
-  templateUrl: './registrarmetas.component.html',
-  styleUrl: './registrarmetas.component.css'
+  templateUrl: './registrarmensajes.component.html',
+  styleUrl: './registrarmensajes.component.css'
 })
-export class RegistrarmetasComponent implements OnInit{
+export class RegistrarmensajesComponent implements OnInit{
   form: FormGroup = new FormGroup({}); 
-  metas: Meta=new Meta();
+  mensaje: Mensajes=new Mensajes();
   id:number=0;
   edicion:boolean=false;
-
-
-  listaestados: { value: string; viewValue: string }[] = [
-    { value: 'Iniciando', viewValue: 'Iniciando' },
-    { value: 'En Progreso', viewValue: 'En Progreso' },
-    { value: 'Completado', viewValue: 'Completado' },
-  ];
   listausuario: Users[] = [];
 
   constructor(
     private formBuilber: FormBuilder,
-    private mS: MetasService,
+    private mS: MensajesService,
     private router: Router,
     private route:ActivatedRoute,
     private cs: UsersService,
@@ -66,9 +60,7 @@ export class RegistrarmetasComponent implements OnInit{
     });
     this.form = this.formBuilber.group({
       codigo: [''],
-      nombre: ['', Validators.required],
-      estado: ['', Validators.required],
-      descripcion: ['', Validators.required],
+      mensajes: ['', Validators.required],
       usuario: ['', Validators.required],
 
     });
@@ -78,37 +70,33 @@ export class RegistrarmetasComponent implements OnInit{
   }
   aceptar(): void {
     if (this.form.valid) {
-      this.metas.idMeta = this.form.value.codigo;
-      this.metas.nombreMeta = this.form.value.nombre;
-      this.metas.estadoMeta = this.form.value.estado;
-      this.metas.descripcionMeta = this.form.value.descripcion;
-      this.metas.usuario.id = this.form.value.usuario;
+      this.mensaje.idMensaje = this.form.value.codigo;
+      this.mensaje.mensaje = this.form.value.mensajes;
+      this.mensaje.usuario.id = this.form.value.usuario;
 
       if(this.edicion)
         {
-            this.mS.update(this.metas).subscribe((data) => {
+            this.mS.update(this.mensaje).subscribe((data) => {
               this.mS.list().subscribe((data) => {
                 this.mS.setList(data);
               });
             });
         }else{
-          this.mS.insert(this.metas).subscribe((data) => {
+          this.mS.insert(this.mensaje).subscribe((data) => {
             this.mS.list().subscribe((data) => {
               this.mS.setList(data);
             });
           });
         }
-      this.router.navigate(['metas']);
+      this.router.navigate(['mensajes']);
     }
   }
   init() {
     if (this.edicion) {
       this.mS.listId(this.id).subscribe((data) => {
         this.form = new FormGroup({
-          codigo: new FormControl(data.idMeta),
-          nombre: new FormControl(data.nombreMeta),
-          estado: new FormControl(data.estadoMeta),
-          descripcion: new FormControl(data.descripcionMeta),
+          codigo: new FormControl(data.idMensaje),
+          mensajes: new FormControl(data.mensaje),
           usuario: new FormControl(data.usuario.id),
 
         });
