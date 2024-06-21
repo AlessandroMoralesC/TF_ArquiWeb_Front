@@ -29,7 +29,9 @@
   <button mat-button [matMenuTriggerFor]="Metas" *ngIf="isPSICOLOGO()">
     <mat-icon> assignment_ind</mat-icon>Metas
   </button>
-
+  <button mat-button [matMenuTriggerFor]="Comunidades" *ngIf="isPSICOLOGO()">
+    <mat-icon> supervised_user_circle</mat-icon>Comunidades
+  </button>
     <!-- Barra de herramientas para PACIENTE -->
 
 
@@ -88,9 +90,11 @@
   <mat-menu #Metas="matMenu">
     <button mat-menu-item routerLink="/metas"><mat-icon>chrome_reader_mode</mat-icon>Listar Metas</button>
     <button mat-menu-item routerLink="/metas/nuevo"><mat-icon>chrome_reader_mode</mat-icon>Registrar Metas</button>
-
   </mat-menu>
-
+  <mat-menu #Comunidades="matMenu">
+    <button mat-menu-item routerLink="/comunidades"><mat-icon>chrome_reader_mode</mat-icon>Listar Comunidades</button>
+    <button mat-menu-item routerLink="/comunidades/nuevo"><mat-icon>chrome_reader_mode</mat-icon>Registrar Comunidades</button>
+  </mat-menu>
 
 
     <mat-menu #menuSalir="matMenu">
