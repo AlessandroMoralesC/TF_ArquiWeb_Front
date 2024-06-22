@@ -32,12 +32,18 @@ import { CitasComponent } from './components/citas/citas.component';
 import { RegistrarcitasComponent } from './components/citas/registrarcitas/registrarcitas.component';
 import { HorariosComponent } from './components/horarios/horarios.component';
 import { RegistrarhorariosComponent } from './components/horarios/registrarhorarios/registrarhorarios.component';
+import { LandingpageComponent } from './components/landingpage/landingpage.component';
 
 export const routes: Routes = [
-    {
+    { path: '', component: LandingpageComponent }, // Ruta por defecto
+  { path: 'login', component: LoginComponent },
+       /* {
         path: '',
         redirectTo: 'login',
         pathMatch: 'full',
+      },*/
+      {
+        path: 'login', component: LoginComponent
       },
       {
         path: 'login',
