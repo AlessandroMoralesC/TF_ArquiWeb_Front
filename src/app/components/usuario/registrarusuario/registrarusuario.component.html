@@ -1,0 +1,122 @@
+<div class="container">
+  <div class="title-container"><h1 class="title">{{ edicion ? 'Editar Usuario' : 'Registrar Usuario' }}</h1></div>
+  <form [formGroup]="form" (ngSubmit)="aceptar()">
+
+    <!-- ID (solo visible en modo edición) -->
+    <mat-form-field *ngIf="edicion">
+      <mat-label>ID</mat-label>
+      <input matInput formControlName="id" readonly />
+    </mat-form-field>
+    <br />
+
+    <!-- Nombre -->
+    <mat-form-field>
+      <mat-label>Nombre</mat-label>
+      <input matInput formControlName="nombre" />
+      <mat-error *ngIf="form.get('nombre')?.hasError('required')">
+        El nombre es obligatorio.
+      </mat-error>
+    </mat-form-field>
+    <br />
+
+    <!-- Apellido -->
+    <mat-form-field>
+      <mat-label>Apellido</mat-label>
+      <input matInput formControlName="apellido" />
+      <mat-error *ngIf="form.get('apellido')?.hasError('required')">
+        El apellido es obligatorio.
+      </mat-error>
+    </mat-form-field>
+    <br />
+
+    <!-- Fecha de Nacimiento -->
+    <mat-form-field>
+      <mat-label>Fecha de Nacimiento</mat-label>
+      <input matInput [matDatepicker]="picker" formControlName="fechanaciemiento" />
+      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+      <mat-error *ngIf="form.get('fechanaciemiento')?.hasError('required')">
+        La fecha de nacimiento es obligatoria.
+      </mat-error>
+    </mat-form-field>
+    <br />
+
+    <!-- Teléfono -->
+    <mat-form-field>
+      <mat-label>Teléfono</mat-label>
+      <input matInput formControlName="telefono" />
+      <mat-error *ngIf="form.get('telefono')?.hasError('required')">
+        El teléfono es obligatorio.
+      </mat-error>
+    </mat-form-field>
+    <br />
+
+    <!-- Correo -->
+    <mat-form-field>
+      <mat-label>Correo</mat-label>
+      <input matInput formControlName="correo" />
+      <mat-error *ngIf="form.get('correo')?.hasError('required')">
+        El correo es obligatorio.
+      </mat-error>
+    </mat-form-field>
+    <br />
+
+    <!-- Especialidad -->
+    <mat-form-field>
+      <mat-label>Especialidad</mat-label>
+      <input matInput formControlName="especialidad" />
+      <mat-error *ngIf="form.get('especialidad')?.hasError('required')">
+        La especialidad es obligatoria.
+      </mat-error>
+    </mat-form-field>
+    <br />
+
+    <!-- Usuario -->
+    <mat-form-field>
+      <mat-label>Usuario</mat-label>
+      <input matInput formControlName="user" />
+      <mat-error *ngIf="form.get('user')?.hasError('required')">
+        El usuario es obligatorio.
+      </mat-error>
+    </mat-form-field>
+    <br />
+
+    <!-- Contraseña -->
+    <mat-form-field>
+      <mat-label>Contraseña</mat-label>
+      <input matInput formControlName="pass" type="password" />
+      <mat-error *ngIf="form.get('pass')?.hasError('required')">
+        La contraseña es obligatoria.
+      </mat-error>
+    </mat-form-field>
+    <br />
+
+    <!-- Estado Activo -->
+    <mat-form-field>
+      <mat-label>Activo</mat-label>
+      <input matInput formControlName="activo" />
+      <mat-error *ngIf="form.get('activo')?.hasError('required')">
+        El estado activo es obligatorio.
+      </mat-error>
+    </mat-form-field>
+    <br />
+
+    <!-- Selección del Rol -->
+    <mat-form-field>
+      <mat-label>Rol</mat-label>
+      <mat-select formControlName="roles">
+        <mat-option *ngFor="let r of listaRoles" [value]="r.idRol">
+          {{ r.nombreRol }}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="form.get('roles')?.hasError('required')">
+        El rol es obligatorio.
+      </mat-error>
+    </mat-form-field>
+    <br />
+
+    <div class="title-container">
+      <button mat-raised-button color="primary">{{ edicion ? 'Actualizar' : 'Registrar' }}</button>
+    </div>
+  </form>
+</div>
