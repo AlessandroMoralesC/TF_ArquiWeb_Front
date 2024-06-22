@@ -1,74 +1,180 @@
-<div class="toolbar-container">
+
+
+<mat-toolbar color="primary" *ngIf="verificar()">
+  <button mat-button [routerLink]="['/homes']">
+    <mat-icon>home</mat-icon>Home
+  </button>
+
+        <!-- Barra de herramientas para PSICOLOGO -->
+        <button mat-button [matMenuTriggerFor]="menuDetalle" *ngIf="isPSICOLOGO()"> <mat-icon>folder_shared</mat-icon>Detalle Clinico
+          <mat-menu #menuDetalle="matMenu">
+            <button mat-menu-item [matMenuTriggerFor]="DetalleClinico"><mat-icon>folder_shared</mat-icon>Detalle Clinico</button>
+            <button mat-menu-item [matMenuTriggerFor]="Historial"><mat-icon>local_hospital</mat-icon>Historial Clinico</button>
+            <button mat-menu-item [matMenuTriggerFor]="menuTratamientos"><mat-icon>healing</mat-icon>Tratamientos</button>
+            <button mat-menu-item [matMenuTriggerFor]="menuRecetas"><mat-icon>healing</mat-icon>Recetas</button>
+            <button mat-menu-item [matMenuTriggerFor]="menuExamenes"><mat-icon>healing</mat-icon>Examenes</button>
+
+    
+          </mat-menu>
+        </button>
+
+        <button mat-button [matMenuTriggerFor]="menuCitas" *ngIf="isPSICOLOGO()"> <mat-icon>calendar_today </mat-icon>Citas
+          <mat-menu #menuCitas="matMenu">
+            <button mat-menu-item [matMenuTriggerFor]="Cita"><mat-icon>calendar_today</mat-icon>Citas</button>
+            <button mat-menu-item [matMenuTriggerFor]="Horario"><mat-icon>timer</mat-icon>Horario Medico</button>
+
+          </mat-menu>
+        </button>
+
+  <button mat-button [matMenuTriggerFor]="menuMaterial" *ngIf="isPSICOLOGO()"> <mat-icon>devices_other</mat-icon>Material
+    <mat-menu #menuMaterial="matMenu">
+      <button mat-menu-item [matMenuTriggerFor]="Materiales"><mat-icon>devices_other</mat-icon>Materiales</button>
+      <button mat-menu-item [matMenuTriggerFor]="TipoMaterial"><mat-icon>videocam</mat-icon>Tipo Material</button>
+    </mat-menu>
+  </button>
   
-  <!-- Barra de herramientas para Roles -->
-  <mat-toolbar color="primary">
-    <mat-icon>account_circle</mat-icon>
-    <button mat-button [matMenuTriggerFor]="menuRoles">Roles</button>
-  </mat-toolbar>
-  <mat-menu #menuRoles="matMenu">
-    <button mat-menu-item routerLink="/roles">Listar Roles</button>
-    <button mat-menu-item routerLink="/roles/nuevo">Registrar Rol</button>
-  </mat-menu>
+  <button mat-button [matMenuTriggerFor]="menuUsuarios" *ngIf="isPSICOLOGO()"> <mat-icon>group</mat-icon>Usuarios
+    <mat-menu #menuUsuarios="matMenu">
+      <button mat-menu-item [matMenuTriggerFor]="Roles"><mat-icon>work</mat-icon>Roles</button>
+      <button mat-menu-item [matMenuTriggerFor]="Usuarios"><mat-icon>account_circle</mat-icon>Usuarios</button>
+      <button mat-menu-item [matMenuTriggerFor]="Metas"><mat-icon>assignment_ind</mat-icon>Metas</button>
 
-  <!-- Barra de herramientas para Usuarios -->
-  <mat-toolbar color="primary">
-    <mat-icon>account_circle</mat-icon>
-    <button mat-button [matMenuTriggerFor]="menuUsuarios">Usuarios</button>
-  </mat-toolbar>
-  <mat-menu #menuUsuarios="matMenu">
-    <button mat-menu-item routerLink="/usuarios">Listar Usuarios</button>
-    <button mat-menu-item routerLink="/usuarios/nuevo">Registrar Usuario</button>
-  </mat-menu>
+    </mat-menu>
+  </button>
 
-  <!-- Barra de herramientas para Tratamientos -->
-  <mat-toolbar color="primary">
-    <mat-icon>healing</mat-icon>
-    <button mat-button [matMenuTriggerFor]="menuTratamientos">Tratamientos</button>
-  </mat-toolbar>
+  <button mat-button [matMenuTriggerFor]="Comunidades" *ngIf="isPSICOLOGO()">
+    <mat-icon> supervised_user_circle</mat-icon>Comunidades
+  </button>
+
+  <button mat-button [matMenuTriggerFor]="Mensajes" *ngIf="isPSICOLOGO()">
+    <mat-icon> mail</mat-icon>Mensajes
+  </button>
+
+  
+  <button mat-button [matMenuTriggerFor]="Respuestas" *ngIf="isPSICOLOGO()">
+    <mat-icon> contact_support</mat-icon>Respuestas
+  </button>
+    <!-- Barra de herramientas para PACIENTE -->
+
+
+    <!-- Barra de herramientas para ADMINISTRADOR -->
+
+    <button mat-button [matMenuTriggerFor]="menuCitas" *ngIf="isADMINISTRADOR()"> <mat-icon>calendar_today </mat-icon>Citas
+      <mat-menu #menuCitas="matMenu">
+        <button mat-menu-item [matMenuTriggerFor]="Cita"><mat-icon>calendar_today</mat-icon>Citas</button>
+        <button mat-menu-item [matMenuTriggerFor]="Horario"><mat-icon>timer</mat-icon>Horario Medico</button>
+
+      </mat-menu>
+    </button>
+
+<button mat-button [matMenuTriggerFor]="menuMaterial" *ngIf="isADMINISTRADOR()"> <mat-icon>devices_other</mat-icon>Material
+<mat-menu #menuMaterial="matMenu">
+  <button mat-menu-item [matMenuTriggerFor]="Materiales"><mat-icon>devices_other</mat-icon>Materiales</button>
+  <button mat-menu-item [matMenuTriggerFor]="TipoMaterial"><mat-icon>videocam</mat-icon>Tipo Material</button>
+</mat-menu>
+</button>
+
+<button mat-button [matMenuTriggerFor]="menuUsuarios" *ngIf="isADMINISTRADOR()"> <mat-icon>group</mat-icon>Usuarios
+<mat-menu #menuUsuarios="matMenu">
+  <button mat-menu-item [matMenuTriggerFor]="Roles"><mat-icon>work</mat-icon>Roles</button>
+  <button mat-menu-item [matMenuTriggerFor]="Usuarios"><mat-icon>account_circle</mat-icon>Usuarios</button>
+  <button mat-menu-item [matMenuTriggerFor]="Metas"><mat-icon>assignment_ind</mat-icon>Metas</button>
+
+</mat-menu>
+</button>
+
+<button mat-button [matMenuTriggerFor]="Comunidades" *ngIf="isADMINISTRADOR()">
+<mat-icon> supervised_user_circle</mat-icon>Comunidades
+</button>
+
+<button mat-button [matMenuTriggerFor]="Mensajes" *ngIf="isADMINISTRADOR()">
+<mat-icon> mail</mat-icon>Mensajes
+</button>
+
+
+<button mat-button [matMenuTriggerFor]="Respuestas" *ngIf="isPSICOLOGO()">
+<mat-icon> contact_support</mat-icon>Respuestas
+</button>
+
+      <!-- Perfil -->
+
+  <button mat-button [matMenuTriggerFor]="menuSalir"><mat-icon> face</mat-icon>Perfil</button>
+</mat-toolbar>
+
+  <!-- Barra de herramientas -->
   <mat-menu #menuTratamientos="matMenu">
-    <button mat-menu-item routerLink="/tratamientos">Listar Tratamientos</button>
-    <button mat-menu-item routerLink="/tratamientos/nuevo">Registrar Tratamiento</button>
+    <button mat-menu-item routerLink="/tratamientos"><mat-icon>chrome_reader_mode</mat-icon>Listar Tratamientos</button>
+    <button mat-menu-item routerLink="/tratamientos/nuevo"><mat-icon>chrome_reader_mode</mat-icon>Registrar Tratamiento</button>
   </mat-menu>
-
-  <!-- Barra de herramientas para Recetas -->
-  <mat-toolbar color="primary">
-    <mat-icon>receipt</mat-icon>
-    <button mat-button [matMenuTriggerFor]="menuRecetas">Recetas</button>
-  </mat-toolbar>
   <mat-menu #menuRecetas="matMenu">
-    <button mat-menu-item routerLink="/recetas">Listar Recetas</button>
-    <button mat-menu-item routerLink="/recetas/nuevo">Registrar Receta</button>
+    <button mat-menu-item routerLink="/recetas"><mat-icon>chrome_reader_mode</mat-icon>Listar Recetas</button>
+    <button mat-menu-item routerLink="/recetas/nuevo"><mat-icon>chrome_reader_mode</mat-icon>Registrar Recetas</button>
   </mat-menu>
-
-  <!-- Barra de herramientas para Tipo de Material -->
-  <mat-toolbar color="primary">
-    <mat-icon>category</mat-icon>
-    <button mat-button [matMenuTriggerFor]="menuTipoDeMaterial">Tipo de Material</button>
-  </mat-toolbar>
-  <mat-menu #menuTipoDeMaterial="matMenu">
-    <button mat-menu-item routerLink="/tipodematerial">Listar Tipo de Material</button>
-    <button mat-menu-item routerLink="/tipodematerial/nuevo">Registrar Tipo de Material</button>
-  </mat-menu>
-
-  <!-- Barra de herramientas para Examenes -->
-  <mat-toolbar color="primary">
-    <mat-icon>assignment</mat-icon>
-    <button mat-button [matMenuTriggerFor]="menuExamenes">Examenes</button>
-  </mat-toolbar>
   <mat-menu #menuExamenes="matMenu">
-    <button mat-menu-item routerLink="/examenes">Listar Examenes</button>
-    <button mat-menu-item routerLink="/examenes/nuevo">Registrar Examen</button>
+    <button mat-menu-item routerLink="/examenes"><mat-icon>chrome_reader_mode</mat-icon>Listar Examenes</button>
+    <button mat-menu-item routerLink="/examenes/nuevo"><mat-icon>chrome_reader_mode</mat-icon>Registrar Examenes</button>
+  </mat-menu>
+  <mat-menu #TipoMaterial="matMenu">
+    <button mat-menu-item routerLink="/tipodematerial"><mat-icon>chrome_reader_mode</mat-icon>Listar Tipo de Material</button>
+    <button mat-menu-item routerLink="/tipodematerial/nuevo"><mat-icon>chrome_reader_mode</mat-icon>Registrar Tipo de Material</button>
+  </mat-menu>
+  <mat-menu #Usuarios="matMenu">
+    <button mat-menu-item routerLink="/usuarios"><mat-icon>chrome_reader_mode</mat-icon>Listar Usuarios</button>
+    <button mat-menu-item routerLink="/usuarios/nuevo"><mat-icon>chrome_reader_mode</mat-icon>Registrar Usuarios</button>
+  </mat-menu>
+  <mat-menu #Roles="matMenu">
+    <button mat-menu-item routerLink="/roles"><mat-icon>chrome_reader_mode</mat-icon>Listar Roles</button>
+    <button mat-menu-item routerLink="/roles/nuevo"><mat-icon>chrome_reader_mode</mat-icon>Registrar Roles</button>
+  </mat-menu>
+  <mat-menu #Metas="matMenu">
+    <button mat-menu-item routerLink="/metas"><mat-icon>chrome_reader_mode</mat-icon>Listar Metas</button>
+    <button mat-menu-item routerLink="/metas/nuevo"><mat-icon>chrome_reader_mode</mat-icon>Registrar Metas</button>
+  </mat-menu>
+  <mat-menu #Comunidades="matMenu">
+    <button mat-menu-item routerLink="/comunidades"><mat-icon>chrome_reader_mode</mat-icon>Listar Comunidades</button>
+    <button mat-menu-item routerLink="/comunidades/nuevo"><mat-icon>chrome_reader_mode</mat-icon>Registrar Comunidades</button>
+  </mat-menu>
+  <mat-menu #Materiales="matMenu">
+    <button mat-menu-item routerLink="/materiales"><mat-icon>chrome_reader_mode</mat-icon>Listar Materiales</button>
+    <button mat-menu-item routerLink="/materiales/nuevo"><mat-icon>chrome_reader_mode</mat-icon>Registrar Materiales</button>
+  </mat-menu>
+  <mat-menu #Historial="matMenu">
+    <button mat-menu-item routerLink="/historialclinicos"><mat-icon>chrome_reader_mode</mat-icon>Listar Historial Clinico</button>
+    <button mat-menu-item routerLink="/historialclinicos/nuevo"><mat-icon>chrome_reader_mode</mat-icon>Registrar Historial Clinico</button>
+  </mat-menu>
+  <mat-menu #Mensajes="matMenu">
+    <button mat-menu-item routerLink="/mensajes"><mat-icon>chrome_reader_mode</mat-icon>Listar Mensajes</button>
+    <button mat-menu-item routerLink="/mensajes/nuevo"><mat-icon>chrome_reader_mode</mat-icon>Registrar Mensajes</button>
+  </mat-menu>
+  <mat-menu #Respuestas="matMenu">
+    <button mat-menu-item routerLink="/respuestas"><mat-icon>chrome_reader_mode</mat-icon>Listar Respuestas</button>
+    <button mat-menu-item routerLink="/respuestas/nuevo"><mat-icon>chrome_reader_mode</mat-icon>Registrar Respuestas</button>
+  </mat-menu>
+  <mat-menu #DetalleClinico="matMenu">
+    <button mat-menu-item routerLink="/detallesclinicos"><mat-icon>chrome_reader_mode</mat-icon>Listar Detalle Clinico</button>
+    <button mat-menu-item routerLink="/detallesclinicos/nuevo"><mat-icon>chrome_reader_mode</mat-icon>Registrar Detalle Clinico</button>
+  </mat-menu>
+  <mat-menu #Cita="matMenu">
+    <button mat-menu-item routerLink="/citas"><mat-icon>chrome_reader_mode</mat-icon>Listar Citas</button>
+    <button mat-menu-item routerLink="/citas/nuevo"><mat-icon>chrome_reader_mode</mat-icon>Registrar Citas</button>
+  </mat-menu>
+  <mat-menu #Horario="matMenu">
+    <button mat-menu-item routerLink="/horarios"><mat-icon>chrome_reader_mode</mat-icon>Listar Horario</button>
+    <button mat-menu-item routerLink="/horarios/nuevo"><mat-icon>chrome_reader_mode</mat-icon>Registrar Horario</button>
   </mat-menu>
 
-    <!-- Barra de herramientas para Mensajes -->
-  <mat-toolbar color="primary">
-    <mat-icon>message</mat-icon>
-    <button mat-button [matMenuTriggerFor]="menuMensajes">Mensajes</button>
-  </mat-toolbar>
-  <mat-menu #menuMensajes="matMenu">
-    <button mat-menu-item routerLink="/mensajes">Listar Mensajes</button>
-    <button mat-menu-item routerLink="/mensajes/nuevo">Registrar Mensaje</button>
-  </mat-menu>
-</div>
+
+
+
+    <mat-menu #menuSalir="matMenu">
+      <button mat-menu-item routerLink="/login" (click)="cerrar()">
+        <mat-icon>logout</mat-icon>
+        <span>Cerrar sesión</span>
+      </button>
+      <button mat-menu-item><mat-icon>account_circle</mat-icon>
+        Rol:
+        <span>{{ role }}</span>
+      </button>
+    </mat-menu>
 
 <router-outlet></router-outlet>

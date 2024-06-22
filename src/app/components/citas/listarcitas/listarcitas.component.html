@@ -1,0 +1,91 @@
+<div class="container">
+    <div class="title-container"><h1 class="title">Lista de Citas</h1></div>
+    <div class="button-container">
+      <button mat-fab extended color="white" routerLink="/citas/nuevo" class="custom-button">
+        <mat-icon>add_circle</mat-icon> 
+        Nueva Cita
+      </button>
+      <button mat-fab extended color="white" routerLink="/usuarios" class="custom-button">
+        <mat-icon>account_circle</mat-icon> 
+        Usuarios
+      </button>
+      <button mat-fab extended color="white" routerLink="/horarios" class="custom-button">
+        <mat-icon>timer</mat-icon> 
+        Horario
+      </button>
+    </div>
+    <br>
+
+      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+
+          <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef > Id Cita </th>
+            <td mat-cell *matCellDef="let element"> {{element.idCita}} </td>
+          </ng-container>
+        
+          <ng-container matColumnDef="fecha">
+            <th mat-header-cell *matHeaderCellDef> Fecha de cita </th>
+            <td mat-cell *matCellDef="let element"> {{element.fechaCita}} </td>
+          </ng-container>
+        
+          <ng-container matColumnDef="motivo">
+            <th mat-header-cell *matHeaderCellDef> Motivo </th>
+            <td mat-cell *matCellDef="let element"> {{element.motivoCita}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="hora">
+            <th mat-header-cell *matHeaderCellDef> Hora </th>
+            <td mat-cell *matCellDef="let element"> {{element.horaCita}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="nombre" >
+            <th mat-header-cell *matHeaderCellDef> Nombre Usuario </th>
+            <td mat-cell *matCellDef="let element"> {{element.usuario.nombreUsers}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="apellido" >
+            <th mat-header-cell *matHeaderCellDef> Apellido Usuario </th>
+            <td mat-cell *matCellDef="let element"> {{element.usuario.apellidoUsers}} </td>
+          </ng-container>
+          
+          <ng-container matColumnDef="username">
+            <th mat-header-cell *matHeaderCellDef> Username </th>
+            <td mat-cell *matCellDef="let element"> {{element.usuario.username}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="editar">
+            <th mat-header-cell *matHeaderCellDef> Actualizar </th>
+            <td mat-cell *matCellDef="let element" >   <button
+              mat-raised-button
+              color="primary"
+              class="custom-button2"
+
+              [routerLink]="['ediciones', element.idCita]"
+            >
+            <mat-icon> border_color</mat-icon>        </button></td>
+          </ng-container>
+
+          <ng-container matColumnDef="eliminar">
+            <th mat-header-cell *matHeaderCellDef>Eliminar</th>
+            <td mat-cell *matCellDef="let element">
+              <button
+                mat-raised-button
+                color="warn"
+                (click)="deletes(element.idCita)"
+              >
+              <mat-icon>delete</mat-icon>
+            </button>
+            </td></ng-container
+          >
+        
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+        <br>
+        <mat-paginator [length]="50"
+        [pageSize]="7"
+        [pageSizeOptions]="[7, 10, 15]"
+        aria-label="Select page" color="primary">
+        </mat-paginator>
+  </div>

@@ -5,11 +5,13 @@ import { Examenes } from '../../../models/examenes';
 import { ExamenesService } from '../../../services/examenes.service';
 import { RouterLink } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+
 
 @Component({
   selector: 'app-listar-examenes',
   standalone: true,
-  imports: [MatTableModule,MatPaginatorModule,RouterLink,MatButtonModule],
+  imports: [MatTableModule,MatPaginatorModule,RouterLink,MatButtonModule,MatIconModule],
   templateUrl: './listar-examenes.component.html',
   styleUrl: './listar-examenes.component.css'
 })

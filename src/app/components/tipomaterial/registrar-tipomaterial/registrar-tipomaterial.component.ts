@@ -13,7 +13,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
-import { ActivatedRoute,Params,Router } from '@angular/router';
+import { ActivatedRoute,Params,Router,RouterLink } from '@angular/router';
 import { TipoMaterial } from '../../../models/tipomaterial';
 import { TipomaterialService } from '../../../services/tipomaterial.service';
 
@@ -26,7 +26,7 @@ import { TipomaterialService } from '../../../services/tipomaterial.service';
     CommonModule,
     MatInputModule,
     MatButtonModule,
-    MatDatepickerModule],
+    MatDatepickerModule,RouterLink],
   templateUrl: './registrar-tipomaterial.component.html',
   styleUrl: './registrar-tipomaterial.component.css'
 })
@@ -80,7 +80,7 @@ export class RegistrarTipomaterialComponent implements OnInit{
             });
           });
         }
-      this.router.navigate(['tipodematerial/nuevo']);
+      this.router.navigate(['tipodematerial']);
     }
   }
   init() {

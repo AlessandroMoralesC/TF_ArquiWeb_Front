@@ -50,7 +50,7 @@
           <br />
           <mat-form-field>
             <mat-label>Descripcion de tratamiento:</mat-label>
-            <textarea matInput formControlName="descripciontratamiento"></textarea>
+            <textarea matInput formControlName="descripciontratamiento" rows="3"></textarea>
             <mat-error *ngIf="form.get('descripciontratamiento')?.hasError('required')"
               >La descripcion del tratamiento es obligatoria.</mat-error
             >
@@ -68,6 +68,10 @@
             >
           </mat-form-field>
         <br />
-        <div class="title-container"><button mat-raised-button color="primary">Registrar</button></div>
+        <div class="title-container"><button mat-raised-button color="primary">Registrar</button>
+          <button mat-raised-button color="warn" routerLink="/tratamientos">
+            Cancelar
+          </button>
+        </div>
       </form>
 </div>

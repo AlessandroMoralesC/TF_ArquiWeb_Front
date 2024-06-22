@@ -8,7 +8,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { RecetaService } from '../../../services/receta.service';
-import { ActivatedRoute,Params,Router } from '@angular/router';
+import { ActivatedRoute,Params,Router,RouterLink } from '@angular/router';
 import { Receta } from '../../../models/receta';
 
 
@@ -17,7 +17,7 @@ import { Receta } from '../../../models/receta';
   standalone: true,
   imports: [FormsModule,MatFormFieldModule,ReactiveFormsModule,MatSelectModule
     ,CommonModule,MatInputModule,MatButtonModule,MatSelectModule,
-    MatDatepickerModule,MatNativeDateModule],
+    MatDatepickerModule,MatNativeDateModule,RouterLink],
   templateUrl: './registrarreceta.component.html',
   styleUrl: './registrarreceta.component.css'
 })
@@ -68,7 +68,7 @@ export class RegistrarrecetaComponent {
             });
           });
         }
-        this.router.navigate(['/recetas/nuevo']); 
+        this.router.navigate(['/recetas']); 
     }
   }
   init()

@@ -1,0 +1,44 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .title-container {
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  .title {
+    font-size: 2em;
+    color: #000000;
+  }
+  
+  form {
+    width: 80%;
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  mat-form-field {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  
+  button {
+    margin-top: 20px;
+  }
+/* Estilos personalizados para el mat-slide-toggle */
+.custom-slide-toggle {
+    transform: scale(1.3); /* Aumenta el tamaño del mat-slide-toggle */
+  }
+  
+  .custom-label {
+    font-size: 18px; /* Ajusta el tamaño de fuente del mat-label */
+    margin-bottom: 8px; /* Ajusta el margen inferior del mat-label */
+  }

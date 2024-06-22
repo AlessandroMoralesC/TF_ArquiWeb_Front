@@ -1,5 +1,16 @@
 <div class="container">
     <div class="title-container"><h1 class="title">Lista de Recetas</h1></div>
+    <div class="button-container">
+      <button mat-fab extended color="white" routerLink="/recetas/nuevo" class="custom-button">
+        <mat-icon>add_circle</mat-icon> 
+        Nueva Receta
+      </button>
+      <button mat-fab extended color="white" routerLink="/detallesclinicos" class="custom-button">
+        <mat-icon>folder_shared</mat-icon> 
+        Detalle Clinico
+      </button>
+    </div>
+    <br>
     <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
         <ng-container matColumnDef="codigo">
             <th mat-header-cell *matHeaderCellDef> Id </th>
@@ -22,14 +33,27 @@
         </ng-container>
 
         <ng-container matColumnDef="editar">
-            <th mat-header-cell *matHeaderCellDef> Edicion </th>
-            <td mat-cell *matCellDef="let element" ><button mat-raised-button color="primary"[routerLink]="['ediciones',element.idRecetas]">Actualizar</button></td>
-        </ng-container>
+            <th mat-header-cell *matHeaderCellDef> Actualizar </th>
+            <td mat-cell *matCellDef="let element" >   <button
+              mat-raised-button
+              color="primary"
+              [routerLink]="['ediciones', element.idRecetas]"
+            >
+            <mat-icon> border_color</mat-icon>        </button></td>
+          </ng-container>
 
-        <ng-container matColumnDef="eliminar">
-            <th mat-header-cell *matHeaderCellDef> Edicion 2 </th>
-            <td mat-cell *matCellDef="let element" ><button mat-raised-button color="primary" (click)="deletes(element.idRecetas)">Eliminar</button></td>
-        </ng-container>
+          <ng-container matColumnDef="eliminar">
+            <th mat-header-cell *matHeaderCellDef>Eliminar</th>
+            <td mat-cell *matCellDef="let element">
+              <button
+                mat-raised-button
+                color="warn"
+                (click)="deletes(element.idRecetas)"
+              >
+              <mat-icon>delete</mat-icon>
+            </button>
+            </td></ng-container
+          >
         
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>

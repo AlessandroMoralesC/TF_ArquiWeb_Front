@@ -5,11 +5,12 @@ import { Tratamientos } from '../../../models/tratamientos';
 import { TratamientosService } from '../../../services/tratamientos.service';
 import { RouterLink } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-listar-tratamiento',
   standalone: true,
-  imports: [MatTableModule,MatPaginatorModule,RouterLink,MatButtonModule],
+  imports: [MatTableModule,MatPaginatorModule,RouterLink,MatButtonModule,MatIconModule],
   templateUrl: './listar-tratamiento.component.html',
   styleUrl: './listar-tratamiento.component.css'
 })
@@ -24,6 +25,7 @@ export class ListarTratamientoComponent implements OnInit{
     'efectividadtratamientos',
     'editar',
     'eliminar'
+
   ];
   dataSource:MatTableDataSource<Tratamientos> = new MatTableDataSource();
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -39,14 +41,11 @@ export class ListarTratamientoComponent implements OnInit{
       this.dataSource = new MatTableDataSource(data);      
     });
   }
-  deletes(id:number)
-  {
-    this.mS.delete(id).subscribe((data)=>
-    {
-      this.mS.list().subscribe((data)=>
-      {
-        this.mS.setList(data)
-      })
+  eliminar(id: number) {
+    this.mS.eliminar(id).subscribe((data) => {
+      this.mS.list().subscribe((data) => {
+        this.mS.setList(data);
+      });
     });
   }
 }

@@ -4,4 +4,6 @@
   }
   mat-toolbar {
     flex: 1;
+    background-color: rgb(78, 78, 236); /* Cambia el color al pasar el mouse */
+
   }

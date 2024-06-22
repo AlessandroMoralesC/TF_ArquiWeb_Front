@@ -1,0 +1,45 @@
+<div class="container">
+    <div class="title-container"><h1 class="title">Registrar Materiales</h1></div>
+      <form [formGroup]="form" (submit)="aceptar()">
+        <mat-form-field *ngIf="edicion">
+          <mat-label>Codigo</mat-label>
+          <input matInput formControlName="codigo" readonly/>
+        </mat-form-field>
+        <br />
+        <mat-form-field>
+            <mat-label>Nombre</mat-label>
+            <input matInput formControlName="nombre" />
+            <mat-error *ngIf="form.get('nombre')?.hasError('required')">El nombre es obligatorio.</mat-error>
+          </mat-form-field>
+          <br />
+            <mat-form-field >
+                <mat-label>Usuario</mat-label>
+                <mat-select formControlName="usuario">
+                  <mat-option *ngFor="let c of listausuario" [value]="c.id">
+                   "{{ c.username }}" - {{ c.nombreUsers }} {{ c.apellidoUsers }}
+                  </mat-option>
+                </mat-select>
+                <mat-error *ngIf="form.get('usuario')?.hasError('required')"
+                  >El usuario es obligatorio.</mat-error
+                >
+              </mat-form-field>
+          <br />
+          <mat-form-field >
+              <mat-label>Tipo de Material</mat-label>
+              <mat-select formControlName="tipoma">
+                <mat-option *ngFor="let d of listatipo" [value]="d.idTMaterial">
+                "{{ d.tipoTMaterial }}" - {{ d.temaTMaterial }} 
+                </mat-option>
+              </mat-select>
+              <mat-error *ngIf="form.get('tipoma')?.hasError('required')"
+                >El tipo de material es obligatorio.</mat-error
+              >
+            </mat-form-field>
+        <br />
+          <div class="title-container"><button mat-raised-button color="primary">Registrar</button>
+            <button mat-raised-button color="warn" routerLink="/materiales">
+              Cancelar
+            </button>
+          </div>
+        </form>
+  </div>

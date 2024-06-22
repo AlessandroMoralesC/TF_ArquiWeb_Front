@@ -13,7 +13,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
-import { ActivatedRoute,Params,Router } from '@angular/router';
+import { ActivatedRoute,Params,Router,RouterLink } from '@angular/router';
 import { Examenes } from '../../../models/examenes';
 import { ExamenesService } from '../../../services/examenes.service';
 
@@ -27,7 +27,7 @@ import { ExamenesService } from '../../../services/examenes.service';
     CommonModule,
     MatInputModule,
     MatButtonModule,
-    MatDatepickerModule],
+    MatDatepickerModule,RouterLink],
   templateUrl: './registrar-examenes.component.html',
   styleUrl: './registrar-examenes.component.css'
 })
@@ -79,7 +79,7 @@ export class RegistrarExamenesComponent implements OnInit{
             });
           });
         }
-      this.router.navigate(['/examenes/nuevo']);
+      this.router.navigate(['/examenes']);
     }
   }
   init()
@@ -91,7 +91,7 @@ export class RegistrarExamenesComponent implements OnInit{
           this.form = new FormGroup({
             codigo:new FormControl(data.idExamenes),
             nombre:new FormControl(data.nombreExamenes),
-            cantidad:new FormControl(data.fechaExamenes),
+            fechaexamen:new FormControl(data.fechaExamenes),
             resultado:new FormControl(data.resultadosExamenes),
             observaciones:new FormControl(data.observacionesExamenes)
           })
