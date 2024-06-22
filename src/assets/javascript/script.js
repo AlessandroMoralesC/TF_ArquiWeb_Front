@@ -11,9 +11,7 @@ function validarFormulario() {
     var correo = document.getElementById("puts1").value;
     var comentario = document.getElementById("check");
 
-    
-
-    if ((nombre === "" || correo === "")) {
+    if (nombre === "" || correo === "") {
         alert("Por favor rellene los espacios");
         return false;
     }
@@ -24,7 +22,5 @@ function validarFormulario() {
     }
 
     alert("Se ha enviado correctamente tu comentario");
-
     return true;
 }
-
