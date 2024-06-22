@@ -43,6 +43,7 @@ export class RegistrarusersComponent implements OnInit{
     { value: 'Ninguna', viewValue: 'Ninguna' },
     { value: 'Psicologo A', viewValue: 'Psicologo A' },
     { value: 'Psicologo B', viewValue: 'Psicologo B' },
+    { value: 'Admin', viewValue: 'Admin' },
   ];
   constructor(
     private formBuilber: FormBuilder,

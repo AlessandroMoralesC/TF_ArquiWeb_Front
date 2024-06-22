@@ -8,6 +8,7 @@
         <!-- Barra de herramientas para PSICOLOGO -->
         <button mat-button [matMenuTriggerFor]="menuDetalle" *ngIf="isPSICOLOGO()"> <mat-icon>folder_shared</mat-icon>Detalle Clinico
           <mat-menu #menuDetalle="matMenu">
+            <button mat-menu-item [matMenuTriggerFor]="DetalleClinico"><mat-icon>folder_shared</mat-icon>Detalle Clinico</button>
             <button mat-menu-item [matMenuTriggerFor]="Historial"><mat-icon>local_hospital</mat-icon>Historial Clinico</button>
             <button mat-menu-item [matMenuTriggerFor]="menuTratamientos"><mat-icon>healing</mat-icon>Tratamientos</button>
             <button mat-menu-item [matMenuTriggerFor]="menuRecetas"><mat-icon>healing</mat-icon>Recetas</button>
@@ -38,6 +39,11 @@
 
   <button mat-button [matMenuTriggerFor]="Mensajes" *ngIf="isPSICOLOGO()">
     <mat-icon> mail</mat-icon>Mensajes
+  </button>
+
+  
+  <button mat-button [matMenuTriggerFor]="Respuestas" *ngIf="isPSICOLOGO()">
+    <mat-icon> contact_support</mat-icon>Respuestas
   </button>
     <!-- Barra de herramientas para PACIENTE -->
 
@@ -114,6 +120,17 @@
     <button mat-menu-item routerLink="/mensajes"><mat-icon>chrome_reader_mode</mat-icon>Listar Mensajes</button>
     <button mat-menu-item routerLink="/mensajes/nuevo"><mat-icon>chrome_reader_mode</mat-icon>Registrar Mensajes</button>
   </mat-menu>
+  <mat-menu #Respuestas="matMenu">
+    <button mat-menu-item routerLink="/respuestas"><mat-icon>chrome_reader_mode</mat-icon>Listar Respuestas</button>
+    <button mat-menu-item routerLink="/respuestas/nuevo"><mat-icon>chrome_reader_mode</mat-icon>Registrar Respuestas</button>
+  </mat-menu>
+  <mat-menu #DetalleClinico="matMenu">
+    <button mat-menu-item routerLink="/detallesclinicos"><mat-icon>chrome_reader_mode</mat-icon>Listar Detalle Clinico</button>
+    <button mat-menu-item routerLink="/detallesclinicos/nuevo"><mat-icon>chrome_reader_mode</mat-icon>Registrar Detalle Clinico</button>
+  </mat-menu>
+
+
+
 
     <mat-menu #menuSalir="matMenu">
       <button mat-menu-item routerLink="/login" (click)="cerrar()">

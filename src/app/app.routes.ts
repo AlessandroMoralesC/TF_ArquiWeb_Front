@@ -24,6 +24,10 @@ import { HistorialclinicosComponent } from './components/historialclinicos/histo
 import { RegistrarhistorialclinicosComponent } from './components/historialclinicos/registrarhistorialclinicos/registrarhistorialclinicos.component';
 import { MensajesComponent } from './components/mensajes/mensajes.component';
 import { RegistrarmensajesComponent } from './components/mensajes/registrarmensajes/registrarmensajes.component';
+import { RespuestasComponent } from './components/respuestas/respuestas.component';
+import { RegistrarrespuestasComponent } from './components/respuestas/registrarrespuestas/registrarrespuestas.component';
+import { DetallesclinicosComponent } from './components/detallesclinicos/detallesclinicos.component';
+import { RegistrardetallesclinicosComponent } from './components/detallesclinicos/registrardetallesclinicos/registrardetallesclinicos.component';
 
 export const routes: Routes = [
     {
@@ -158,6 +162,30 @@ export const routes: Routes = [
                 path: 'nuevo', component: RegistrarmensajesComponent
             }, {
                 path: 'ediciones/:id', component: RegistrarmensajesComponent
+            }
+        ],
+        canActivate: [segGuard], // solo construcciones, se debe agregar a cada uno
+
+      },
+      {
+        path:"respuestas",component: RespuestasComponent,
+        children: [
+            {
+                path: 'nuevo', component: RegistrarrespuestasComponent
+            }, {
+                path: 'ediciones/:id', component: RegistrarrespuestasComponent
+            }
+        ],
+        canActivate: [segGuard], // solo construcciones, se debe agregar a cada uno
+
+      },
+      {
+        path:"detallesclinicos",component: DetallesclinicosComponent,
+        children: [
+            {
+                path: 'nuevo', component: RegistrardetallesclinicosComponent
+            }, {
+                path: 'ediciones/:id', component: RegistrardetallesclinicosComponent
             }
         ],
         canActivate: [segGuard], // solo construcciones, se debe agregar a cada uno
