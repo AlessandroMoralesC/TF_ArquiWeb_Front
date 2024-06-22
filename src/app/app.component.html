@@ -17,6 +17,15 @@
     
           </mat-menu>
         </button>
+
+        <button mat-button [matMenuTriggerFor]="menuCitas" *ngIf="isPSICOLOGO()"> <mat-icon>calendar_today </mat-icon>Citas
+          <mat-menu #menuCitas="matMenu">
+            <button mat-menu-item [matMenuTriggerFor]="Cita"><mat-icon>calendar_today</mat-icon>Citas</button>
+            <button mat-menu-item [matMenuTriggerFor]="Horario"><mat-icon>timer</mat-icon>Horario Medico</button>
+
+          </mat-menu>
+        </button>
+
   <button mat-button [matMenuTriggerFor]="menuMaterial" *ngIf="isPSICOLOGO()"> <mat-icon>devices_other</mat-icon>Material
     <mat-menu #menuMaterial="matMenu">
       <button mat-menu-item [matMenuTriggerFor]="Materiales"><mat-icon>devices_other</mat-icon>Materiales</button>
@@ -49,26 +58,43 @@
 
 
     <!-- Barra de herramientas para ADMINISTRADOR -->
-    <button mat-button [matMenuTriggerFor]="menuDetalle" *ngIf="isADMINISTRADOR()"> <mat-icon>folder_shared</mat-icon>Detalle Clinico
-      <mat-menu #menuDetalle="matMenu">
-        <button mat-menu-item [matMenuTriggerFor]="menuTratamientos"><mat-icon>healing</mat-icon>Tratamientos</button>
-        <button mat-menu-item [matMenuTriggerFor]="menuRecetas"><mat-icon>healing</mat-icon>Recetas</button>
-        <button mat-menu-item [matMenuTriggerFor]="menuExamenes"><mat-icon>healing</mat-icon>Examenes</button>
-  
-      </mat-menu>
-    </button>
-    <button mat-button [matMenuTriggerFor]="menuMaterial" *ngIf="isADMINISTRADOR()"> <mat-icon>devices_other</mat-icon>Material
-      <mat-menu #menuMaterial="matMenu">
-        <button mat-menu-item [matMenuTriggerFor]="TipoMaterial"><mat-icon>videocam</mat-icon>Tipo Material</button>
-      </mat-menu>
-    </button>
-    <button mat-button [matMenuTriggerFor]="menuUsuarios" *ngIf="isADMINISTRADOR()"> <mat-icon>group</mat-icon>Usuarios
-      <mat-menu #menuUsuarios="matMenu">
-        <button mat-menu-item [matMenuTriggerFor]="Roles"><mat-icon>work</mat-icon>Roles</button>
-        <button mat-menu-item [matMenuTriggerFor]="Usuarios"><mat-icon>account_circle</mat-icon>Usuarios</button>
+
+    <button mat-button [matMenuTriggerFor]="menuCitas" *ngIf="isADMINISTRADOR()"> <mat-icon>calendar_today </mat-icon>Citas
+      <mat-menu #menuCitas="matMenu">
+        <button mat-menu-item [matMenuTriggerFor]="Cita"><mat-icon>calendar_today</mat-icon>Citas</button>
+        <button mat-menu-item [matMenuTriggerFor]="Horario"><mat-icon>timer</mat-icon>Horario Medico</button>
+
       </mat-menu>
     </button>
 
+<button mat-button [matMenuTriggerFor]="menuMaterial" *ngIf="isADMINISTRADOR()"> <mat-icon>devices_other</mat-icon>Material
+<mat-menu #menuMaterial="matMenu">
+  <button mat-menu-item [matMenuTriggerFor]="Materiales"><mat-icon>devices_other</mat-icon>Materiales</button>
+  <button mat-menu-item [matMenuTriggerFor]="TipoMaterial"><mat-icon>videocam</mat-icon>Tipo Material</button>
+</mat-menu>
+</button>
+
+<button mat-button [matMenuTriggerFor]="menuUsuarios" *ngIf="isADMINISTRADOR()"> <mat-icon>group</mat-icon>Usuarios
+<mat-menu #menuUsuarios="matMenu">
+  <button mat-menu-item [matMenuTriggerFor]="Roles"><mat-icon>work</mat-icon>Roles</button>
+  <button mat-menu-item [matMenuTriggerFor]="Usuarios"><mat-icon>account_circle</mat-icon>Usuarios</button>
+  <button mat-menu-item [matMenuTriggerFor]="Metas"><mat-icon>assignment_ind</mat-icon>Metas</button>
+
+</mat-menu>
+</button>
+
+<button mat-button [matMenuTriggerFor]="Comunidades" *ngIf="isADMINISTRADOR()">
+<mat-icon> supervised_user_circle</mat-icon>Comunidades
+</button>
+
+<button mat-button [matMenuTriggerFor]="Mensajes" *ngIf="isADMINISTRADOR()">
+<mat-icon> mail</mat-icon>Mensajes
+</button>
+
+
+<button mat-button [matMenuTriggerFor]="Respuestas" *ngIf="isPSICOLOGO()">
+<mat-icon> contact_support</mat-icon>Respuestas
+</button>
 
       <!-- Perfil -->
 
@@ -127,6 +153,14 @@
   <mat-menu #DetalleClinico="matMenu">
     <button mat-menu-item routerLink="/detallesclinicos"><mat-icon>chrome_reader_mode</mat-icon>Listar Detalle Clinico</button>
     <button mat-menu-item routerLink="/detallesclinicos/nuevo"><mat-icon>chrome_reader_mode</mat-icon>Registrar Detalle Clinico</button>
+  </mat-menu>
+  <mat-menu #Cita="matMenu">
+    <button mat-menu-item routerLink="/citas"><mat-icon>chrome_reader_mode</mat-icon>Listar Citas</button>
+    <button mat-menu-item routerLink="/citas/nuevo"><mat-icon>chrome_reader_mode</mat-icon>Registrar Citas</button>
+  </mat-menu>
+  <mat-menu #Horario="matMenu">
+    <button mat-menu-item routerLink="/horarios"><mat-icon>chrome_reader_mode</mat-icon>Listar Horario</button>
+    <button mat-menu-item routerLink="/horarios/nuevo"><mat-icon>chrome_reader_mode</mat-icon>Registrar Horario</button>
   </mat-menu>
 
 

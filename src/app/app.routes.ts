@@ -28,6 +28,10 @@ import { RespuestasComponent } from './components/respuestas/respuestas.componen
 import { RegistrarrespuestasComponent } from './components/respuestas/registrarrespuestas/registrarrespuestas.component';
 import { DetallesclinicosComponent } from './components/detallesclinicos/detallesclinicos.component';
 import { RegistrardetallesclinicosComponent } from './components/detallesclinicos/registrardetallesclinicos/registrardetallesclinicos.component';
+import { CitasComponent } from './components/citas/citas.component';
+import { RegistrarcitasComponent } from './components/citas/registrarcitas/registrarcitas.component';
+import { HorariosComponent } from './components/horarios/horarios.component';
+import { RegistrarhorariosComponent } from './components/horarios/registrarhorarios/registrarhorarios.component';
 
 export const routes: Routes = [
     {
@@ -186,6 +190,30 @@ export const routes: Routes = [
                 path: 'nuevo', component: RegistrardetallesclinicosComponent
             }, {
                 path: 'ediciones/:id', component: RegistrardetallesclinicosComponent
+            }
+        ],
+        canActivate: [segGuard], // solo construcciones, se debe agregar a cada uno
+
+      },
+      {
+        path:"citas",component: CitasComponent,
+        children: [
+            {
+                path: 'nuevo', component: RegistrarcitasComponent
+            }, {
+                path: 'ediciones/:id', component: RegistrarcitasComponent
+            }
+        ],
+        canActivate: [segGuard], // solo construcciones, se debe agregar a cada uno
+
+      },
+      {
+        path:"horarios",component: HorariosComponent,
+        children: [
+            {
+                path: 'nuevo', component: RegistrarhorariosComponent
+            }, {
+                path: 'ediciones/:id', component: RegistrarhorariosComponent
             }
         ],
         canActivate: [segGuard], // solo construcciones, se debe agregar a cada uno
