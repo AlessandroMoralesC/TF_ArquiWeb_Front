@@ -26,6 +26,11 @@
           </mat-menu>
         </button>
 
+          <!-- Reporte de Citas -->
+        <button mat-button [matMenuTriggerFor]="menureportCitas">
+          <mat-icon> timer </mat-icon>Reporte Citas
+        </button>
+  
   <button mat-button [matMenuTriggerFor]="menuMaterial" *ngIf="isPSICOLOGO()"> <mat-icon>devices_other</mat-icon>Material
     <mat-menu #menuMaterial="matMenu">
       <button mat-menu-item [matMenuTriggerFor]="Materiales"><mat-icon>devices_other</mat-icon>Materiales</button>
@@ -189,6 +194,9 @@
   </mat-menu>
   <mat-menu #Comunidades2="matMenu">
     <button mat-menu-item routerLink="/comunidades"><mat-icon>chrome_reader_mode</mat-icon>Listar Comunidades</button>
+  </mat-menu>
+  <mat-menu #menureportCitas="matMenu">
+    <button mat-menu-item routerLink="/reportes"><mat-icon>chrome_reader_mode</mat-icon> Buscar Cita por fecha </button>
   </mat-menu>
 
     <mat-menu #menuSalir="matMenu">
