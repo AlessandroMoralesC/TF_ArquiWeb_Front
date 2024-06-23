@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ChartDataset, ChartOptions, ChartType } from 'chart.js';
 import { TratamientosService } from '../../../services/tratamientos.service';
 import { BaseChartDirective } from 'ng2-charts';
-import { BrowserModule } from '@angular/platform-browser';
 
 
 @Component({

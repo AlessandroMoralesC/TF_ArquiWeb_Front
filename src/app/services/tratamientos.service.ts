@@ -4,6 +4,7 @@ import { Observable, Subject } from 'rxjs';
 import { Tratamientos} from '../models/tratamientos';
 import { HttpClient} from '@angular/common/http';
 import { ListaDeTratamientoEnProcesoDTO } from '../models/listaDeTratamientosEnProcesoDTO';
+import { CantidadDeTratamientoPorEfectividadDTO } from '../models/cantidadDeTratamientoPorEfectividadDTO';
 const base_url=environment.base
 @Injectable({
   providedIn: 'root'
@@ -37,4 +38,9 @@ export class TratamientosService {
   {
     return this.httpClient.get<ListaDeTratamientoEnProcesoDTO[]>(`${this.url}/listatratamientoproceso`);
   }
+  getCantidadDeTratamientoPorEfectividad():Observable<CantidadDeTratamientoPorEfectividadDTO[]>
+  {
+    return this.httpClient.get<CantidadDeTratamientoPorEfectividadDTO[]>(`${this.url}/cantidadtratamientoefectividad`);
+  }
+
 }
