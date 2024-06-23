@@ -6,6 +6,7 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { JwtModule } from '@auth0/angular-jwt';
 import { provideCharts, withDefaultRegisterables } from 'ng2-charts';
+// instalar: npm install ng2-charts --save   y   npm install chart.js --save
 
 export function tokenGetter() {
   return sessionStorage.getItem('token');
