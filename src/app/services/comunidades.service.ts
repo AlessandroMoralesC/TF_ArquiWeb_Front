@@ -19,7 +19,7 @@ export class ComunidadesService {
   list(){
     return this.http.get<Comunidad[]>(this.url);
   }
-  insert(m: Role) {
+  insert(m: Comunidad) {
     return this.http.post(this.url, m);
   }
   setList(listaNueva: Comunidad[]) {
@@ -29,7 +29,7 @@ export class ComunidadesService {
     return this.listaCambio.asObservable();
   }
   listId(id:number){
-    return this.http.get<Role>(`${this.url}/${id}`)
+    return this.http.get<Comunidad>(`${this.url}/${id}`)
   }
   update(t:Comunidad){
     return this.http.put(this.url,t)
