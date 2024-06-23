@@ -79,6 +79,18 @@
 
     <!-- Barra de herramientas para ADMINISTRADOR -->
 
+    <button mat-button [matMenuTriggerFor]="menuDetalle" *ngIf="isADMINISTRADOR()"> <mat-icon>folder_shared</mat-icon>Detalle Clinico
+      <mat-menu #menuDetalle="matMenu">
+        <button mat-menu-item [matMenuTriggerFor]="DetalleClinico"><mat-icon>folder_shared</mat-icon>Detalle Clinico</button>
+        <button mat-menu-item [matMenuTriggerFor]="Historial"><mat-icon>local_hospital</mat-icon>Historial Clinico</button>
+        <button mat-menu-item [matMenuTriggerFor]="menuTratamientos"><mat-icon>healing</mat-icon>Tratamientos</button>
+        <button mat-menu-item [matMenuTriggerFor]="menuRecetas"><mat-icon>healing</mat-icon>Recetas</button>
+        <button mat-menu-item [matMenuTriggerFor]="menuExamenes"><mat-icon>healing</mat-icon>Examenes</button>
+
+
+      </mat-menu>
+    </button>
+
     <button mat-button [matMenuTriggerFor]="menuCitas" *ngIf="isADMINISTRADOR()"> <mat-icon>calendar_today </mat-icon>Citas
       <mat-menu #menuCitas="matMenu">
         <button mat-menu-item [matMenuTriggerFor]="Cita"><mat-icon>calendar_today</mat-icon>Citas</button>
