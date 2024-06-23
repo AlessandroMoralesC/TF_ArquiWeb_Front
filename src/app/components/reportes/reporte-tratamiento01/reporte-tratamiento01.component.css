@@ -1,0 +1,13 @@
+.chart-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Hace que el contenedor ocupe toda la altura de la ventana */
+  }
+  
+  canvas {
+    max-width: 600px; /* Ajusta esto según el tamaño deseado */
+    max-height: 600px; /* Ajusta esto según el tamaño deseado */
+    width: 100%;
+    height: auto;
+  }

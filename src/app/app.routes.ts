@@ -33,9 +33,12 @@ import { RegistrarcitasComponent } from './components/citas/registrarcitas/regis
 import { HorariosComponent } from './components/horarios/horarios.component';
 import { RegistrarhorariosComponent } from './components/horarios/registrarhorarios/registrarhorarios.component';
 import { LandingpageComponent } from './components/landingpage/landingpage.component';
+import { ReportesComponent } from './components/reportes/reportes.component';
+import { ReporteTratamiento02Component } from './components/reportes/reporte-tratamiento02/reporte-tratamiento02.component';
 
 export const routes: Routes = [
-    { path: '', component: LandingpageComponent }, // Ruta por defecto
+    { path: '', component: LandingpageComponent }, 
+    { path: 'landing', component: LandingpageComponent },// Ruta por defecto
   { path: 'login', component: LoginComponent },
        /* {
         path: '',
@@ -224,6 +227,12 @@ export const routes: Routes = [
         ],
         canActivate: [segGuard], // solo construcciones, se debe agregar a cada uno
 
+      },
+      {
+        path:'reporte',component:ReportesComponent,
+        children:[{
+            path:'reporte02', component:ReporteTratamiento02Component
+        }]
       },
     {
         path: 'homes',

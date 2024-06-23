@@ -1,6 +1,5 @@
-
-
-<mat-toolbar color="primary" *ngIf="verificar()">
+  <mat-toolbar color="primary" *ngIf="verificar()">
+     <img src="assets/imagenes/nav.png" alt="Logo de la empresa" class="logo-img">
   <button mat-button [routerLink]="['/homes']">
     <mat-icon>home</mat-icon>Home
   </button>
@@ -53,6 +52,7 @@
   <button mat-button [matMenuTriggerFor]="Respuestas2" *ngIf="isPSICOLOGO()">
     <mat-icon> contact_support</mat-icon>Respuestas
   </button>
+
     <!-- Barra de herramientas para PACIENTE -->
 
 
@@ -75,6 +75,7 @@
 <button mat-button [matMenuTriggerFor]="Respuestas2" *ngIf="isPACIENTE()">
 <mat-icon> contact_support</mat-icon>Respuestas
 </button>
+
 
     <!-- Barra de herramientas para ADMINISTRADOR -->
 
@@ -113,6 +114,9 @@
 
 <button mat-button [matMenuTriggerFor]="Respuestas" *ngIf="isADMINISTRADOR()">
 <mat-icon> contact_support</mat-icon>Respuestas
+</button>
+<button mat-button [matMenuTriggerFor]="Reportes">
+  <mat-icon> file_copy</mat-icon>Reportes
 </button>
 
       <!-- Perfil -->
@@ -190,9 +194,13 @@
   <mat-menu #Comunidades2="matMenu">
     <button mat-menu-item routerLink="/comunidades"><mat-icon>chrome_reader_mode</mat-icon>Listar Comunidades</button>
   </mat-menu>
+  <mat-menu #Reportes="matMenu">
+    <button mat-menu-item routerLink="/reporte"><mat-icon>chrome_reader_mode</mat-icon>Reporte 01</button>
+    <button mat-menu-item routerLink="/reporte/reporte02"><mat-icon>chrome_reader_mode</mat-icon>Reporte 02</button>
+  </mat-menu>
 
     <mat-menu #menuSalir="matMenu">
-      <button mat-menu-item routerLink="/login" (click)="cerrar()">
+      <button mat-menu-item routerLink="/landing" (click)="cerrar()">
         <mat-icon>logout</mat-icon>
         <span>Cerrar sesión</span>
       </button>

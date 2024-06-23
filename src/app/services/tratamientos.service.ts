@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
-import { Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { Tratamientos} from '../models/tratamientos';
 import { HttpClient} from '@angular/common/http';
+import { ListaDeTratamientoEnProcesoDTO } from '../models/listaDeTratamientosEnProcesoDTO';
 const base_url=environment.base
 @Injectable({
   providedIn: 'root'
@@ -31,5 +32,9 @@ export class TratamientosService {
   }
   eliminar(id: number) {
     return this.httpClient.delete(`${this.url}/${id}`);
+  }
+  getListTratamientosinProcess():Observable<ListaDeTratamientoEnProcesoDTO[]>
+  {
+    return this.httpClient.get<ListaDeTratamientoEnProcesoDTO[]>(`${this.url}/listatratamientoproceso`);
   }
 }
