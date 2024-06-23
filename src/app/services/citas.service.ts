@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
-import { Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { HttpClient} from '@angular/common/http';
 import { Cita } from '../models/citas';
+import { CitaDTO } from '../models/citaDTO';
 
 const base_url=environment.base
 @Injectable({
