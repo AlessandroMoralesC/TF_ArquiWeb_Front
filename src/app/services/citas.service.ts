@@ -36,4 +36,8 @@ export class CitasService {
   {
     return this.http.delete(`${this.url}/${id}`)
   }
+  getdate(): Observable<CitaDTO[]> 
+  {
+    return this.http.get<CitaDTO[]>(`${this.url}/buscarcitaporFecha`)
+  }
 }
