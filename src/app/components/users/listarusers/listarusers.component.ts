@@ -23,7 +23,6 @@ export class ListarusersComponent implements OnInit{
     'correo',
     'especialidad',
     'enabled',
-    'mensajes',
     'editar',
     'eliminar'
   ];

@@ -95,7 +95,7 @@ export class RegistrarrolesComponent implements OnInit{
             });
           });
         }
-      this.router.navigate(['roles/nuevo']);
+      this.router.navigate(['roles']);
     }
   }
   init() {

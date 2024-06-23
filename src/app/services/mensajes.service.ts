@@ -1,15 +1,18 @@
 import { Injectable } from '@angular/core';
-import { Mensajes } from '../models/mensajes';
-import { Subject } from 'rxjs';
 import { environment } from '../../environments/environment';
-import { HttpClient } from '@angular/common/http';
+import { Subject } from 'rxjs';
+import { HttpClient} from '@angular/common/http';
+import { Mensajes } from '../models/mensajes';
+
 const base_url=environment.base
 @Injectable({
   providedIn: 'root'
 })
 export class MensajesService {
+
   private url=`${base_url}/mensajes`
   private listaCambio = new Subject<Mensajes[]>();
+
   constructor(private http:HttpClient) { }
   list(){
     return this.http.get<Mensajes[]>(this.url);
@@ -26,8 +29,8 @@ export class MensajesService {
   listId(id:number){
     return this.http.get<Mensajes>(`${this.url}/${id}`)
   }
-  update(e:Mensajes){
-    return this.http.put(this.url,e)
+  update(t:Mensajes){
+    return this.http.put(this.url,t)
   }
   delete(id:number)
   {

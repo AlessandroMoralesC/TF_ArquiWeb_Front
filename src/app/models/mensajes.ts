@@ -1,8 +1,8 @@
-import { Usuario } from "./usuario"
+import { Users } from "./users"
 
-export class Mensajes
-{
+export class Mensajes{
     idMensaje:number=0
     mensaje:string=""
-    usuario:Usuario= new Usuario()
+    usuario:Users=new Users();
+    
 }

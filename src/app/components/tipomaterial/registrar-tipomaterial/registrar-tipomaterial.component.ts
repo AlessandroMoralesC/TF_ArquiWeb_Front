@@ -80,7 +80,7 @@ export class RegistrarTipomaterialComponent implements OnInit{
             });
           });
         }
-      this.router.navigate(['tipodematerial/nuevo']);
+      this.router.navigate(['tipodematerial']);
     }
   }
   init() {

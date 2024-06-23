@@ -1,63 +1,53 @@
 <div class="container">
     <div class="title-container"><h1 class="title">Registrar Metas</h1></div>
-    <form [formGroup]="form" (ngSubmit)="aceptar()">
-        
-      <!-- ID del Mensaje -->
-      <mat-form-field *ngIf="edicion">
-        <mat-label>ID Meta</mat-label>
-        <input matInput formControlName="idMeta" />
-        <mat-error *ngIf="form.get('idMeta')?.hasError('required')">
-            El ID de la meta es obligatorio.
-        </mat-error>
-      </mat-form-field>
-      <br />
-
-      <mat-form-field>
-        <mat-label>Estado de la Meta</mat-label>
-        <mat-select formControlName="estadoMeta">
-          <mat-option *ngFor="let g of listametas" [value]="g.value">
-            {{ g.viewValue }}
-          </mat-option>
-        </mat-select>
-        <mat-error *ngIf="form.get('estadoMeta')?.hasError('required')"
-          >El estado de la meta es obligatorio.</mat-error
-        >
-      </mat-form-field>
-      <br />
-
-      <mat-form-field>
-        <mat-label>Nombre</mat-label>
-        <input matInput formControlName="nombreMeta" />
-        <mat-error *ngIf="form.get('nombreMeta')?.hasError('required')"
-        >El nombre es obligatorio.</mat-error
-      >
-      </mat-form-field>
-      <br />
-
-      <mat-form-field>
-        <mat-label>Mensaje</mat-label>
-        <textarea matInput formControlName="descripcionMeta" rows="4"></textarea>
-        <mat-error *ngIf="form.get('descripcionMeta')?.hasError('required')">
-          El mensaje es obligatorio.
-        </mat-error>
-      </mat-form-field>
-      <br />
-  
-      <!-- Usuario -->
-      <mat-form-field>
-        <mat-label>Usuarios</mat-label>
-        <mat-select formControlName="usuarios">
-          <mat-option *ngFor="let u of listaUsuarios" [value]="u.id">
-            {{ u.nombreUsers }}
-          </mat-option>
-        </mat-select>
-        <mat-error *ngIf="form.get('usuarios')?.hasError('required')">
-          El usuario es obligatorio.
-        </mat-error>
-      </mat-form-field>
-      <br />
-  
-      <!-- Botón para Registrar -->
-      <div class="title-container"><button mat-raised-button color="primary">Registrar Meta</button></div>
-    </form>
+      <form [formGroup]="form" (submit)="aceptar()">
+        <mat-form-field *ngIf="edicion">
+          <mat-label>Codigo</mat-label>
+          <input matInput formControlName="codigo" readonly/>
+        </mat-form-field>
+        <br />
+        <mat-form-field>
+            <mat-label>Nombre</mat-label>
+            <input matInput formControlName="nombre" />
+            <mat-error *ngIf="form.get('nombre')?.hasError('required')">El nombre es obligatorio.</mat-error>
+          </mat-form-field>
+          <br />
+          <mat-form-field>
+              <mat-label>Estado</mat-label>
+              <mat-select formControlName="estado">
+                <mat-option *ngFor="let g of listaestados" [value]="g.value">
+                  {{ g.viewValue }}
+                </mat-option>
+              </mat-select>
+              <mat-error *ngIf="form.get('estado')?.hasError('required')"
+                >El estado es obligatorio.</mat-error
+              >
+            </mat-form-field>
+            <br />
+            <mat-form-field>
+                <mat-label>Descripcion de Meta:</mat-label>
+                <textarea matInput formControlName="descripcion" rows="3"></textarea>
+                <mat-error *ngIf="form.get('descripcion')?.hasError('required')"
+                  >La descripcion de la meta es obligatoria.</mat-error
+                >
+              </mat-form-field>
+              <br />
+            <mat-form-field >
+                <mat-label>Usuario</mat-label>
+                <mat-select formControlName="usuario">
+                  <mat-option *ngFor="let c of listausuario" [value]="c.id">
+                   "{{ c.username }}" - {{ c.nombreUsers }} {{ c.apellidoUsers }}
+                  </mat-option>
+                </mat-select>
+                <mat-error *ngIf="form.get('usuario')?.hasError('required')"
+                  >El usuario es obligatorio.</mat-error
+                >
+              </mat-form-field>
+          <br />
+          <div class="title-container"><button mat-raised-button color="primary">Registrar</button>
+            <button mat-raised-button color="warn" routerLink="/metas">
+              Cancelar
+            </button>
+          </div>
+        </form>
   </div>

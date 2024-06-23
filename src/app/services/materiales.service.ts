@@ -1,21 +1,25 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
+import { Observable, Subject } from 'rxjs';
+import { HttpClient} from '@angular/common/http';
 import { Materiales } from '../models/materiales';
-import { Subject } from 'rxjs';
-const base_url = environment.base;
+import { CantidadDeMaterialporNombreDTO } from '../models/cantidadDeMaterialporNombreDTO';
+
+const base_url=environment.base
 @Injectable({
   providedIn: 'root'
 })
 export class MaterialesService {
-  private url = `${base_url}/materiales`;
+
+  private url=`${base_url}/materiales`
   private listaCambio = new Subject<Materiales[]>();
-  constructor(private httpClient: HttpClient) { }
-  list() {
-    return this.httpClient.get<Materiales[]>(this.url);
+
+  constructor(private http:HttpClient) { }
+  list(){
+    return this.http.get<Materiales[]>(this.url);
   }
-  insert(p: Materiales) {
-    return this.httpClient.post(this.url, p);
+  insert(m: Materiales) {
+    return this.http.post(this.url, m);
   }
   setList(listaNueva: Materiales[]) {
     this.listaCambio.next(listaNueva);
@@ -23,13 +27,15 @@ export class MaterialesService {
   getList() {
     return this.listaCambio.asObservable();
   }
-  listId(id: number) {
-    return this.httpClient.get<Materiales>(`${this.url}/${id}`);
+  listId(id:number){
+    return this.http.get<Materiales>(`${this.url}/${id}`)
   }
-  update(c: Materiales) {
-    return this.httpClient.put(this.url, c);
+  update(t:Materiales){
+    return this.http.put(this.url,t)
   }
-  eliminar(id: number) {
-    return this.httpClient.delete(`${this.url}/${id}`);
+  delete(id:number)
+  {
+    return this.http.delete(`${this.url}/${id}`)
   }
+  
 }

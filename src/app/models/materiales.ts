@@ -1,10 +1,10 @@
-import { TipoMaterial } from "./tipomaterial"
-import { Usuario } from "./usuario"
+import { TipoMaterial } from "./tipomaterial";
+import { Users } from "./users"
 
-export class Materiales
-{
+export class Materiales{
     idMateriales:number=0
     nombreMateriales:string=""
-    usuario:Usuario=new Usuario()
-    tipomaterial:TipoMaterial = new TipoMaterial()
+    usuario:Users=new Users();
+    tipoMaterial:TipoMaterial=new TipoMaterial();
+    
 }

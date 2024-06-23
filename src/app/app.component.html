@@ -1,6 +1,5 @@
-
-
-<mat-toolbar color="primary" *ngIf="verificar()">
+  <mat-toolbar color="primary" *ngIf="verificar()">
+     <img src="assets/imagenes/nav.png" alt="Logo de la empresa" class="logo-img">
   <button mat-button [routerLink]="['/homes']">
     <mat-icon>home</mat-icon>Home
   </button>
@@ -8,48 +7,129 @@
         <!-- Barra de herramientas para PSICOLOGO -->
         <button mat-button [matMenuTriggerFor]="menuDetalle" *ngIf="isPSICOLOGO()"> <mat-icon>folder_shared</mat-icon>Detalle Clinico
           <mat-menu #menuDetalle="matMenu">
+            <button mat-menu-item [matMenuTriggerFor]="DetalleClinico"><mat-icon>folder_shared</mat-icon>Detalle Clinico</button>
+            <button mat-menu-item [matMenuTriggerFor]="Historial"><mat-icon>local_hospital</mat-icon>Historial Clinico</button>
             <button mat-menu-item [matMenuTriggerFor]="menuTratamientos"><mat-icon>healing</mat-icon>Tratamientos</button>
             <button mat-menu-item [matMenuTriggerFor]="menuRecetas"><mat-icon>healing</mat-icon>Recetas</button>
             <button mat-menu-item [matMenuTriggerFor]="menuExamenes"><mat-icon>healing</mat-icon>Examenes</button>
-      
+
+    
           </mat-menu>
         </button>
+
+        <button mat-button [matMenuTriggerFor]="menuCitas" *ngIf="isPSICOLOGO()"> <mat-icon>calendar_today </mat-icon>Citas
+          <mat-menu #menuCitas="matMenu">
+            <button mat-menu-item [matMenuTriggerFor]="Cita"><mat-icon>calendar_today</mat-icon>Citas</button>
+            <button mat-menu-item [matMenuTriggerFor]="Horario"><mat-icon>timer</mat-icon>Horario Medico</button>
+
+          </mat-menu>
+        </button>
+
   <button mat-button [matMenuTriggerFor]="menuMaterial" *ngIf="isPSICOLOGO()"> <mat-icon>devices_other</mat-icon>Material
     <mat-menu #menuMaterial="matMenu">
+      <button mat-menu-item [matMenuTriggerFor]="Materiales"><mat-icon>devices_other</mat-icon>Materiales</button>
       <button mat-menu-item [matMenuTriggerFor]="TipoMaterial"><mat-icon>videocam</mat-icon>Tipo Material</button>
     </mat-menu>
   </button>
+  
   <button mat-button [matMenuTriggerFor]="menuUsuarios" *ngIf="isPSICOLOGO()"> <mat-icon>group</mat-icon>Usuarios
     <mat-menu #menuUsuarios="matMenu">
-      <button mat-menu-item [matMenuTriggerFor]="Roles"><mat-icon>work</mat-icon>Roles</button>
       <button mat-menu-item [matMenuTriggerFor]="Usuarios"><mat-icon>account_circle</mat-icon>Usuarios</button>
+      <button mat-menu-item [matMenuTriggerFor]="Metas"><mat-icon>assignment_ind</mat-icon>Metas</button>
+
     </mat-menu>
+  </button>
+
+  <button mat-button [matMenuTriggerFor]="Comunidades" *ngIf="isPSICOLOGO()">
+    <mat-icon> supervised_user_circle</mat-icon>Comunidades
+  </button>
+
+  <button mat-button [matMenuTriggerFor]="Mensajes" *ngIf="isPSICOLOGO()">
+    <mat-icon> mail</mat-icon>Mensajes
+  </button>
+
+  
+  <button mat-button [matMenuTriggerFor]="Respuestas2" *ngIf="isPSICOLOGO()">
+    <mat-icon> contact_support</mat-icon>Respuestas
   </button>
 
     <!-- Barra de herramientas para PACIENTE -->
 
 
+<button mat-button [matMenuTriggerFor]="menuUsuarios" *ngIf="isPACIENTE()"> <mat-icon>group</mat-icon>Usuarios
+<mat-menu #menuUsuarios="matMenu">
+  <button mat-menu-item [matMenuTriggerFor]="Usuarios"><mat-icon>account_circle</mat-icon>Usuarios</button>
+
+</mat-menu>
+</button>
+
+<button mat-button [matMenuTriggerFor]="Comunidades2" *ngIf="isPACIENTE()">
+<mat-icon> supervised_user_circle</mat-icon>Comunidades
+</button>
+
+<button mat-button [matMenuTriggerFor]="Mensajes2" *ngIf="isPACIENTE()">
+<mat-icon> mail</mat-icon>Mensajes
+</button>
+
+
+<button mat-button [matMenuTriggerFor]="Respuestas2" *ngIf="isPACIENTE()">
+<mat-icon> contact_support</mat-icon>Respuestas
+</button>
+
+
     <!-- Barra de herramientas para ADMINISTRADOR -->
+
     <button mat-button [matMenuTriggerFor]="menuDetalle" *ngIf="isADMINISTRADOR()"> <mat-icon>folder_shared</mat-icon>Detalle Clinico
       <mat-menu #menuDetalle="matMenu">
+        <button mat-menu-item [matMenuTriggerFor]="DetalleClinico"><mat-icon>folder_shared</mat-icon>Detalle Clinico</button>
+        <button mat-menu-item [matMenuTriggerFor]="Historial"><mat-icon>local_hospital</mat-icon>Historial Clinico</button>
         <button mat-menu-item [matMenuTriggerFor]="menuTratamientos"><mat-icon>healing</mat-icon>Tratamientos</button>
         <button mat-menu-item [matMenuTriggerFor]="menuRecetas"><mat-icon>healing</mat-icon>Recetas</button>
         <button mat-menu-item [matMenuTriggerFor]="menuExamenes"><mat-icon>healing</mat-icon>Examenes</button>
-  
-      </mat-menu>
-    </button>
-    <button mat-button [matMenuTriggerFor]="menuMaterial" *ngIf="isADMINISTRADOR()"> <mat-icon>devices_other</mat-icon>Material
-      <mat-menu #menuMaterial="matMenu">
-        <button mat-menu-item [matMenuTriggerFor]="TipoMaterial"><mat-icon>videocam</mat-icon>Tipo Material</button>
-      </mat-menu>
-    </button>
-    <button mat-button [matMenuTriggerFor]="menuUsuarios" *ngIf="isADMINISTRADOR()"> <mat-icon>group</mat-icon>Usuarios
-      <mat-menu #menuUsuarios="matMenu">
-        <button mat-menu-item [matMenuTriggerFor]="Roles"><mat-icon>work</mat-icon>Roles</button>
-        <button mat-menu-item [matMenuTriggerFor]="Usuarios"><mat-icon>account_circle</mat-icon>Usuarios</button>
+
+
       </mat-menu>
     </button>
 
+    <button mat-button [matMenuTriggerFor]="menuCitas" *ngIf="isADMINISTRADOR()"> <mat-icon>calendar_today </mat-icon>Citas
+      <mat-menu #menuCitas="matMenu">
+        <button mat-menu-item [matMenuTriggerFor]="Cita"><mat-icon>calendar_today</mat-icon>Citas</button>
+        <button mat-menu-item [matMenuTriggerFor]="Horario"><mat-icon>timer</mat-icon>Horario Medico</button>
+
+      </mat-menu>
+    </button>
+
+<button mat-button [matMenuTriggerFor]="menuMaterial" *ngIf="isADMINISTRADOR()"> <mat-icon>devices_other</mat-icon>Material
+<mat-menu #menuMaterial="matMenu">
+  <button mat-menu-item [matMenuTriggerFor]="Materiales"><mat-icon>devices_other</mat-icon>Materiales</button>
+  <button mat-menu-item [matMenuTriggerFor]="TipoMaterial"><mat-icon>videocam</mat-icon>Tipo Material</button>
+</mat-menu>
+</button>
+
+<button mat-button [matMenuTriggerFor]="menuUsuarios" *ngIf="isADMINISTRADOR()"> <mat-icon>group</mat-icon>Usuarios
+<mat-menu #menuUsuarios="matMenu">
+  <button mat-menu-item [matMenuTriggerFor]="Roles"><mat-icon>work</mat-icon>Roles</button>
+  <button mat-menu-item [matMenuTriggerFor]="Usuarios"><mat-icon>account_circle</mat-icon>Usuarios</button>
+  <button mat-menu-item [matMenuTriggerFor]="Metas"><mat-icon>assignment_ind</mat-icon>Metas</button>
+
+</mat-menu>
+</button>
+
+<button mat-button [matMenuTriggerFor]="Comunidades" *ngIf="isADMINISTRADOR()">
+<mat-icon> supervised_user_circle</mat-icon>Comunidades
+</button>
+
+<button mat-button [matMenuTriggerFor]="Mensajes" *ngIf="isADMINISTRADOR()">
+<mat-icon> mail</mat-icon>Mensajes
+</button>
+
+
+<button mat-button [matMenuTriggerFor]="Respuestas" *ngIf="isADMINISTRADOR()">
+<mat-icon> contact_support</mat-icon>Respuestas
+</button>
+<button mat-button [matMenuTriggerFor]="Reportes">
+  <mat-icon> file_copy</mat-icon>Reportes
+</button>
 
       <!-- Perfil -->
 
@@ -80,13 +160,67 @@
   <mat-menu #Roles="matMenu">
     <button mat-menu-item routerLink="/roles"><mat-icon>chrome_reader_mode</mat-icon>Listar Roles</button>
     <button mat-menu-item routerLink="/roles/nuevo"><mat-icon>chrome_reader_mode</mat-icon>Registrar Roles</button>
+  </mat-menu>
+  <mat-menu #Metas="matMenu">
+    <button mat-menu-item routerLink="/metas"><mat-icon>chrome_reader_mode</mat-icon>Listar Metas</button>
+    <button mat-menu-item routerLink="/metas/nuevo"><mat-icon>chrome_reader_mode</mat-icon>Registrar Metas</button>
+  </mat-menu>
+  <mat-menu #Comunidades="matMenu">
+    <button mat-menu-item routerLink="/comunidades"><mat-icon>chrome_reader_mode</mat-icon>Listar Comunidades</button>
+    <button mat-menu-item routerLink="/comunidades/nuevo"><mat-icon>chrome_reader_mode</mat-icon>Registrar Comunidades</button>
+  </mat-menu>
+  <mat-menu #Materiales="matMenu">
+    <button mat-menu-item routerLink="/materiales"><mat-icon>chrome_reader_mode</mat-icon>Listar Materiales</button>
+    <button mat-menu-item routerLink="/materiales/nuevo"><mat-icon>chrome_reader_mode</mat-icon>Registrar Materiales</button>
+  </mat-menu>
+  <mat-menu #Historial="matMenu">
+    <button mat-menu-item routerLink="/historialclinicos"><mat-icon>chrome_reader_mode</mat-icon>Listar Historial Clinico</button>
+    <button mat-menu-item routerLink="/historialclinicos/nuevo"><mat-icon>chrome_reader_mode</mat-icon>Registrar Historial Clinico</button>
+  </mat-menu>
+  <mat-menu #Mensajes="matMenu">
+    <button mat-menu-item routerLink="/mensajes"><mat-icon>chrome_reader_mode</mat-icon>Listar Mensajes</button>
+    <button mat-menu-item routerLink="/mensajes/nuevo"><mat-icon>chrome_reader_mode</mat-icon>Registrar Mensajes</button>
+  </mat-menu>
+  <mat-menu #Respuestas="matMenu">
+    <button mat-menu-item routerLink="/respuestas"><mat-icon>chrome_reader_mode</mat-icon>Listar Respuestas</button>
+    <button mat-menu-item routerLink="/respuestas/nuevo"><mat-icon>chrome_reader_mode</mat-icon>Registrar Respuestas</button>
+  </mat-menu>
+  <mat-menu #DetalleClinico="matMenu">
+    <button mat-menu-item routerLink="/detallesclinicos"><mat-icon>chrome_reader_mode</mat-icon>Listar Detalle Clinico</button>
+    <button mat-menu-item routerLink="/detallesclinicos/nuevo"><mat-icon>chrome_reader_mode</mat-icon>Registrar Detalle Clinico</button>
+  </mat-menu>
+  <mat-menu #Cita="matMenu">
+    <button mat-menu-item routerLink="/citas"><mat-icon>chrome_reader_mode</mat-icon>Listar Citas</button>
+    <button mat-menu-item routerLink="/citas/nuevo"><mat-icon>chrome_reader_mode</mat-icon>Registrar Citas</button>
+  </mat-menu>
+  <mat-menu #Horario="matMenu">
+    <button mat-menu-item routerLink="/horarios"><mat-icon>chrome_reader_mode</mat-icon>Listar Horario</button>
+    <button mat-menu-item routerLink="/horarios/nuevo"><mat-icon>chrome_reader_mode</mat-icon>Registrar Horario</button>
+  </mat-menu>
+  <mat-menu #Respuestas2="matMenu">
+    <button mat-menu-item routerLink="/respuestas"><mat-icon>chrome_reader_mode</mat-icon>Listar Respuestas</button>
+  </mat-menu>
+  <mat-menu #Mensajes2="matMenu">
+    <button mat-menu-item routerLink="/mensajes/nuevo"><mat-icon>chrome_reader_mode</mat-icon>Registrar Mensajes</button>
+  </mat-menu>
+  <mat-menu #Comunidades2="matMenu">
+    <button mat-menu-item routerLink="/comunidades"><mat-icon>chrome_reader_mode</mat-icon>Listar Comunidades</button>
+  </mat-menu>
+  <mat-menu #Reportes="matMenu">
+    <button mat-menu-item routerLink="/reporte"><mat-icon>chrome_reader_mode</mat-icon>Reporte 01</button>
+    <button mat-menu-item routerLink="/reporte/reporte02"><mat-icon>chrome_reader_mode</mat-icon>Reporte 02</button>
+    <button mat-menu-item routerLink="/reporte/reporte03"><mat-icon>chrome_reader_mode</mat-icon>Reporte 03</button>
+    <button mat-menu-item routerLink="/reporte/reporte04"><mat-icon>chrome_reader_mode</mat-icon>Reporte 04</button>
+    <button mat-menu-item routerLink="/reporte/reporte05"><mat-icon>chrome_reader_mode</mat-icon>Reporte 05</button>
+    <button mat-menu-item routerLink="/reporte/reporte06"><mat-icon>chrome_reader_mode</mat-icon>Reporte 06</button>
+    <button mat-menu-item routerLink="/reporte/reporte07"><mat-icon>chrome_reader_mode</mat-icon>Reporte 07</button>
+
+
 
   </mat-menu>
 
-
-
     <mat-menu #menuSalir="matMenu">
-      <button mat-menu-item routerLink="/login" (click)="cerrar()">
+      <button mat-menu-item routerLink="/landing" (click)="cerrar()">
         <mat-icon>logout</mat-icon>
         <span>Cerrar sesión</span>
       </button>

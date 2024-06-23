@@ -1,0 +1,51 @@
+<div class="container">
+    <div class="title-container"><h1 class="title">Registrar Comunidad</h1></div>
+      <form [formGroup]="form" (submit)="aceptar()">
+        <mat-form-field *ngIf="edicion">
+          <mat-label>Codigo</mat-label>
+          <input matInput formControlName="codigo" readonly/>
+        </mat-form-field>
+        <br />
+        <mat-form-field>
+            <mat-label>Experiencias</mat-label>
+            <textarea matInput formControlName="experiencias" rows="3"></textarea>
+            <mat-error *ngIf="form.get('experiencias')?.hasError('required')"
+              >Las experiencias de la comunidad es obligatoria.</mat-error
+            >
+          </mat-form-field>
+          <br />
+          <mat-form-field>
+            <mat-label>Aprobaciones</mat-label>
+            <textarea matInput formControlName="aprobaciones" rows="3"></textarea>
+            <mat-error *ngIf="form.get('aprobaciones')?.hasError('required')"
+              >Las aprobaciones de la comunidad es obligatoria.</mat-error
+            >
+          </mat-form-field>
+          <br />
+          <mat-form-field>
+            <mat-label>Recomendaciones</mat-label>
+            <textarea matInput formControlName="Recomendaciones" rows="3"></textarea>
+            <mat-error *ngIf="form.get('Recomendaciones')?.hasError('required')"
+              >Las recomendaciones de la comunidad es obligatoria.</mat-error
+            >
+          </mat-form-field>
+          <br />
+            <mat-form-field >
+                <mat-label>Usuario</mat-label>
+                <mat-select formControlName="usuario">
+                  <mat-option *ngFor="let c of listausuario" [value]="c.id">
+                   {{ c.username }}
+                  </mat-option>
+                </mat-select>
+                <mat-error *ngIf="form.get('usuario')?.hasError('required')"
+                  >El usuario es obligatorio.</mat-error
+                >
+              </mat-form-field>
+          <br />
+          <div class="title-container"><button mat-raised-button color="primary">Registrar</button>
+            <button mat-raised-button color="warn" routerLink="/comunidades">
+              Cancelar
+            </button>
+          </div>
+        </form>
+  </div>
