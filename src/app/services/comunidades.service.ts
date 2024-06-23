@@ -3,11 +3,13 @@ import { environment } from '../../environments/environment';
 import { Subject } from 'rxjs';
 import { HttpClient} from '@angular/common/http';
 import { Comunidad } from '../models/comunidades';
+import { Role } from '../models/roles';
 
 const base_url=environment.base
 @Injectable({
   providedIn: 'root'
 })
+
 export class ComunidadesService {
 
   private url=`${base_url}/comunidad`
@@ -15,19 +17,16 @@ export class ComunidadesService {
 
   constructor(private http:HttpClient) { }
   list(){
-    return this.http.get<Comunidad[]>(this.url);
+    return this.http.get<Role[]>(this.url);
   }
-  insert(m: Comunidad) {
+  insert(m: Role) {
     return this.http.post(this.url, m);
-  }
-  setList(listaNueva: Comunidad[]) {
-    this.listaCambio.next(listaNueva);
   }
   getList() {
     return this.listaCambio.asObservable();
   }
   listId(id:number){
-    return this.http.get<Comunidad>(`${this.url}/${id}`)
+    return this.http.get<Role>(`${this.url}/${id}`)
   }
   update(t:Comunidad){
     return this.http.put(this.url,t)
