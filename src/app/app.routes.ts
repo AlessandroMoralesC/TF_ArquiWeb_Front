@@ -225,6 +225,10 @@ export const routes: Routes = [
         canActivate: [segGuard], // solo construcciones, se debe agregar a cada uno
 
       },
+      {
+        path:"reportes",
+        component:ReportcitasComponent, 
+      },
     {
         path: 'homes',
         component: HomeComponent,
