@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component,OnInit } from '@angular/core';
 import { ActivatedRoute, RouterOutlet } from '@angular/router';
 import { ListarmensajesComponent } from './listarmensajes/listarmensajes.component';
 
@@ -9,7 +9,7 @@ import { ListarmensajesComponent } from './listarmensajes/listarmensajes.compone
   templateUrl: './mensajes.component.html',
   styleUrl: './mensajes.component.css'
 })
-export class MensajesComponent {
-  constructor(public route:ActivatedRoute) {}
-  ngOnInit(): void {}
+export class MensajesComponent implements OnInit{
+  constructor(public route:ActivatedRoute){}
+  ngOnInit():void{}
 }

@@ -5,11 +5,12 @@
     justify-content: center;
     margin: 0 auto;
     padding: 20px;
+  
   }
   
   .title-container {
     margin-bottom: 20px;
-    text-align: center;
+    color: #010101; 
   } 
   
   .title {
@@ -26,15 +27,21 @@
   }
   .button-container {
     margin-left: auto;
-  
+
   }
   .custom-button {
     margin-right: 10px; /* Ajusta este valor según el espacio que desees entre los botones */
     transition: background-color 0.3s ease; /* Transición suave para el cambio de color */
   }
-  
+
   .custom-button:hover {
     background-color: rgb(55, 55, 255); /* Cambia el color al pasar el mouse */
     color:white;
   }
-  
+
+  .custom-button2 {
+    margin-right: 10px; /* Ajusta este valor según el espacio que desees entre los botones */
+    transition: background-color 0.3s ease; /* Transición suave para el cambio de color */
+    color:white;
+    background-color: rgb(55, 55, 255);
+  }

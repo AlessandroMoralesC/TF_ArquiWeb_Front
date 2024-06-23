@@ -39,7 +39,7 @@ export class RegistrarTratamientoComponent implements OnInit{
 
   listaestados: { value: string; viewValue: string }[] = [
     { value: 'Iniciando', viewValue: 'Iniciando' },
-    { value: 'En progreso', viewValue: 'En progreso' },
+    { value: 'En Progreso', viewValue: 'En Progreso' },
     { value: 'Completado', viewValue: 'Completado' },
   ];
   listaefectividad: { value: string; viewValue: string }[] = [
@@ -94,7 +94,7 @@ export class RegistrarTratamientoComponent implements OnInit{
             });
           });
         }
-      this.router.navigate(['tratamientos/nuevo']);
+      this.router.navigate(['tratamientos']);
     }
   }
   init() {

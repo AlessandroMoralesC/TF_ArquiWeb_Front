@@ -1,0 +1,88 @@
+<div class="container">
+    <div class="title-container"><h1 class="title">Lista de Detalle Clinicos</h1></div>
+    <div class="button-container">
+        <button mat-fab extended color="white" routerLink="/detallesclinicos/nuevo" class="custom-button">
+            <mat-icon>add_circle</mat-icon> 
+            Nuevo Detalle Clinico
+          </button>
+      <button mat-fab extended color="white" routerLink="/tratamientos" class="custom-button">
+        <mat-icon>healing</mat-icon> 
+        Tratamientos
+      </button>
+      <button mat-fab extended color="white" routerLink="/examenes" class="custom-button">
+        <mat-icon>healing</mat-icon> 
+        Examenes
+      </button>
+      <button mat-fab extended color="white" routerLink="/recetas" class="custom-button">
+        <mat-icon>healing</mat-icon> 
+        Recetas
+      </button>
+      <button mat-fab extended color="white" routerLink="/historialclinicos" class="custom-button">
+        <mat-icon>local_hospital</mat-icon> 
+        Historial Clinico
+      </button>
+    </div>
+    <br>
+
+      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+
+          <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef > Id </th>
+            <td mat-cell *matCellDef="let element"> {{element.idDHClinico}} </td>
+          </ng-container>
+        
+          <ng-container matColumnDef="Descripcion">
+            <th mat-header-cell *matHeaderCellDef> Descripcion </th>
+            <td mat-cell *matCellDef="let element"> {{element.descripcionDHClinico}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="recetas" >
+            <th mat-header-cell *matHeaderCellDef> Receta </th>
+            <td mat-cell *matCellDef="let element"> {{element.recetas.nombreRecetas}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="tratamientos" >
+            <th mat-header-cell *matHeaderCellDef> Tratamiento </th>
+            <td mat-cell *matCellDef="let element"> {{element.tratamientos.nombreTratamientos}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="examenes" >
+            <th mat-header-cell *matHeaderCellDef> Examenes </th>
+            <td mat-cell *matCellDef="let element"> {{element.examenes.nombreExamenes}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="nombre" >
+            <th mat-header-cell *matHeaderCellDef> Nombre </th>
+            <td mat-cell *matCellDef="let element"> {{element.historialClinico.usuario.nombreUsers}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="apellido" >
+            <th mat-header-cell *matHeaderCellDef> Apellido </th>
+            <td mat-cell *matCellDef="let element"> {{element.historialClinico.usuario.apellidoUsers}} </td>
+          </ng-container>
+          
+
+          <ng-container matColumnDef="editar">
+            <th mat-header-cell *matHeaderCellDef> Actualizar </th>
+            <td mat-cell *matCellDef="let element" >   <button
+              mat-raised-button
+              color="primary"
+              class="custom-button2"
+
+              [routerLink]="['ediciones', element.idDHClinico]"
+            >
+            <mat-icon> border_color</mat-icon>        </button></td>
+          </ng-container>
+
+        
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+        <br>
+        <mat-paginator [length]="50"
+        [pageSize]="7"
+        [pageSizeOptions]="[7, 10, 15]"
+        aria-label="Select page" color="primary">
+        </mat-paginator>
+  </div>

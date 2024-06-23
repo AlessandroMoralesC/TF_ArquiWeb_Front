@@ -1,102 +1,104 @@
+import { Users } from './../../../models/users';
+import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup,ReactiveFormsModule, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
-import { MensajesService } from '../../../services/mensajes.service';
-import { UsersService } from '../../../services/users.service';
-import { Mensajes } from '../../../models/mensaje';
-import { Users } from '../../../models/users';
-import { CommonModule,NgIf } from '@angular/common';
-import { MatButtonModule } from '@angular/material/button';
+import {
+  FormControl,
+  FormBuilder,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {provideNativeDateAdapter} from '@angular/material/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
-import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatNativeDateModule } from '@angular/material/core';
-import {  RouterLink } from '@angular/router';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { ActivatedRoute,Params,Router,RouterLink } from '@angular/router';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import { UsersService } from '../../../services/users.service';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import { Mensajes } from '../../../models/mensajes';
+import { MensajesService } from '../../../services/mensajes.service';
 
 
 @Component({
   selector: 'app-registrarmensajes',
   standalone: true,
-  imports: [
-    MatFormFieldModule,
-    NgIf,
+  providers: [provideNativeDateAdapter()],
+  imports: [MatFormFieldModule,
     ReactiveFormsModule,
-    MatButtonModule,
-    MatInputModule,
-    MatDatepickerModule,
-    MatNativeDateModule,
     MatSelectModule,
     CommonModule,
-    RouterLink,
-  ],
-  templateUrl:'./registrarmensajes.component.html',
-  styleUrls: ['./registrarmensajes.component.css']
+    MatInputModule,
+    MatButtonModule,
+    MatDatepickerModule,MatSlideToggleModule,MatCheckboxModule,RouterLink,],
+  templateUrl: './registrarmensajes.component.html',
+  styleUrl: './registrarmensajes.component.css'
 })
-export class RegistrarmensajesComponent implements OnInit {
-  form: FormGroup;
-  mensaje: Mensajes = new Mensajes();
-  listaUsuarios: Users[] = [];
-  id: number = 0;
-  edicion: boolean = false;
+export class RegistrarmensajesComponent implements OnInit{
+  form: FormGroup = new FormGroup({}); 
+  mensaje: Mensajes=new Mensajes();
+  id:number=0;
+  edicion:boolean=false;
+  listausuario: Users[] = [];
 
   constructor(
-    private formBuilder: FormBuilder,
-    private mensajesService: MensajesService,
-    private usersService: UsersService,
+    private formBuilber: FormBuilder,
+    private mS: MensajesService,
     private router: Router,
-    private route: ActivatedRoute
-  ) {
-    this.form = this.formBuilder.group({
-      idMensaje: [''],
-      mensaje: ['', Validators.required],
-      usuario: ['', Validators.required]
-    });
-  }
+    private route:ActivatedRoute,
+    private cs: UsersService,
+
+  ) {}
 
   ngOnInit(): void {
-    this.route.params.subscribe(params => {
-      this.id = params['id'];
+    this.route.params.subscribe((data: Params) => {
+      this.id = data['id'];
       this.edicion = this.id != null;
-      this.initForm();
+      this.init();
     });
+    this.form = this.formBuilber.group({
+      codigo: [''],
+      mensajes: ['', Validators.required],
+      usuario: ['', Validators.required],
 
-    this.usersService.list().subscribe(data => {
-      this.listaUsuarios = data;
+    });
+    this.cs.list().subscribe((data) => {
+      this.listausuario= data;
     });
   }
-
-  registrarMensaje(): void {
+  aceptar(): void {
     if (this.form.valid) {
-      this.mensaje.idMensaje = this.form.value.idMensaje;
-      this.mensaje.mensaje = this.form.value.mensaje;
-      this.mensaje.usuario = this.listaUsuarios.find(user => user.id === this.form.value.usuario)!;
+      this.mensaje.idMensaje = this.form.value.codigo;
+      this.mensaje.mensaje = this.form.value.mensajes;
+      this.mensaje.usuario.id = this.form.value.usuario;
 
-      if (this.edicion) {
-        this.mensajesService.update(this.mensaje).subscribe(() => {
-          this.mensajesService.list().subscribe(data => {
-            this.mensajesService.setList(data);
+      if(this.edicion)
+        {
+            this.mS.update(this.mensaje).subscribe((data) => {
+              this.mS.list().subscribe((data) => {
+                this.mS.setList(data);
+              });
+            });
+        }else{
+          this.mS.insert(this.mensaje).subscribe((data) => {
+            this.mS.list().subscribe((data) => {
+              this.mS.setList(data);
+            });
           });
-        });
-      } else {
-        this.mensajesService.insert(this.mensaje).subscribe(() => {
-          this.mensajesService.list().subscribe(data => {
-            this.mensajesService.setList(data);
-          });
-        });
-      }
-
-      this.router.navigate(['/mensajes']);
+        }
+      this.router.navigate(['mensajes']);
     }
   }
-
-  private initForm(): void {
+  init() {
     if (this.edicion) {
-      this.mensajesService.listId(this.id).subscribe(data => {
-        this.form.patchValue({
-          idMensaje: data.idMensaje,
-          mensaje: data.mensaje,
-          usuario: data.usuario.id
+      this.mS.listId(this.id).subscribe((data) => {
+        this.form = new FormGroup({
+          codigo: new FormControl(data.idMensaje),
+          mensajes: new FormControl(data.mensaje),
+          usuario: new FormControl(data.usuario.id),
+
         });
       });
     }

@@ -1,0 +1,53 @@
+<div class="container">
+    <div class="title-container"><h1 class="title">Registrar Metas</h1></div>
+      <form [formGroup]="form" (submit)="aceptar()">
+        <mat-form-field *ngIf="edicion">
+          <mat-label>Codigo</mat-label>
+          <input matInput formControlName="codigo" readonly/>
+        </mat-form-field>
+        <br />
+        <mat-form-field>
+            <mat-label>Nombre</mat-label>
+            <input matInput formControlName="nombre" />
+            <mat-error *ngIf="form.get('nombre')?.hasError('required')">El nombre es obligatorio.</mat-error>
+          </mat-form-field>
+          <br />
+          <mat-form-field>
+              <mat-label>Estado</mat-label>
+              <mat-select formControlName="estado">
+                <mat-option *ngFor="let g of listaestados" [value]="g.value">
+                  {{ g.viewValue }}
+                </mat-option>
+              </mat-select>
+              <mat-error *ngIf="form.get('estado')?.hasError('required')"
+                >El estado es obligatorio.</mat-error
+              >
+            </mat-form-field>
+            <br />
+            <mat-form-field>
+                <mat-label>Descripcion de Meta:</mat-label>
+                <textarea matInput formControlName="descripcion" rows="3"></textarea>
+                <mat-error *ngIf="form.get('descripcion')?.hasError('required')"
+                  >La descripcion de la meta es obligatoria.</mat-error
+                >
+              </mat-form-field>
+              <br />
+            <mat-form-field >
+                <mat-label>Usuario</mat-label>
+                <mat-select formControlName="usuario">
+                  <mat-option *ngFor="let c of listausuario" [value]="c.id">
+                   "{{ c.username }}" - {{ c.nombreUsers }} {{ c.apellidoUsers }}
+                  </mat-option>
+                </mat-select>
+                <mat-error *ngIf="form.get('usuario')?.hasError('required')"
+                  >El usuario es obligatorio.</mat-error
+                >
+              </mat-form-field>
+          <br />
+          <div class="title-container"><button mat-raised-button color="primary">Registrar</button>
+            <button mat-raised-button color="warn" routerLink="/metas">
+              Cancelar
+            </button>
+          </div>
+        </form>
+  </div>

@@ -7,3 +7,8 @@
     background-color: rgb(78, 78, 236); /* Cambia el color al pasar el mouse */
 
   }
+  .logo-img {
+    height: 50px; /* Ajusta la altura de la imagen según sea necesario */
+    margin-right: 20px; /* Espacio entre el logo y el resto de elementos */
+    margin-left: 20px;
+  }

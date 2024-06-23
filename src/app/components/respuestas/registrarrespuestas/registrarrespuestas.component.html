@@ -1,0 +1,43 @@
+<div class="container">
+    <div class="title-container"><h1 class="title">Registrar Respuestas</h1></div>
+      <form [formGroup]="form" (submit)="aceptar()">
+        <mat-form-field *ngIf="edicion">
+          <mat-label>Codigo</mat-label>
+          <input matInput formControlName="codigo" readonly/>
+        </mat-form-field>
+        <br />
+            <mat-form-field>
+                <mat-label>Escribe la pregunta</mat-label>
+                <textarea matInput formControlName="pregunta" rows="3"></textarea>
+                <mat-error *ngIf="form.get('mensajes')?.hasError('required')"
+                  >La pregunta es obligatorio.</mat-error
+                >
+              </mat-form-field>
+              <br />
+              <mat-form-field>
+                <mat-label>Escribe la pregunta</mat-label>
+                <textarea matInput formControlName="resouestasss" rows="3"></textarea>
+                <mat-error *ngIf="form.get('resouestasss')?.hasError('required')"
+                  >La respuesta es obligatorio.</mat-error
+                >
+              </mat-form-field>
+              <br />
+              <mat-form-field >
+                <mat-label>Usuario</mat-label>
+                <mat-select formControlName="usuario">
+                  <mat-option *ngFor="let c of listausuario" [value]="c.id">
+                   "{{ c.username }}" - {{ c.nombreUsers }} {{ c.apellidoUsers }}
+                  </mat-option>
+                </mat-select>
+                <mat-error *ngIf="form.get('usuario')?.hasError('required')"
+                  >El usuario es obligatorio.</mat-error
+                >
+              </mat-form-field>
+          <br />
+          <div class="title-container"><button mat-raised-button color="primary">Registrar</button>
+            <button mat-raised-button color="warn" routerLink="/respuestas">
+              Cancelar
+            </button>
+          </div>
+        </form>
+  </div>

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component,OnInit } from '@angular/core';
 import { ActivatedRoute, RouterOutlet } from '@angular/router';
 import { ListarmaterialesComponent } from './listarmateriales/listarmateriales.component';
 
@@ -9,7 +9,7 @@ import { ListarmaterialesComponent } from './listarmateriales/listarmateriales.c
   templateUrl: './materiales.component.html',
   styleUrl: './materiales.component.css'
 })
-export class MaterialesComponent {
-  constructor(public route:ActivatedRoute) {}
-  ngOnInit(): void {}
+export class MaterialesComponent implements OnInit{
+  constructor(public route:ActivatedRoute){}
+  ngOnInit():void{}
 }

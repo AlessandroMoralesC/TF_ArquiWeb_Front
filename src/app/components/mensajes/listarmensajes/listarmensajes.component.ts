@@ -1,51 +1,52 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource, MatTableModule } from '@angular/material/table';
+import {MatPaginator, MatPaginatorModule} from '@angular/material/paginator';
 import { RouterLink } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { Mensajes } from '../../../models/mensajes';
 import { MensajesService } from '../../../services/mensajes.service';
-import { CommonModule } from '@angular/common';
-import { Mensajes } from '../../../models/mensaje';
-import { MatTableDataSource, MatTableModule } from '@angular/material/table';
+
 
 @Component({
   selector: 'app-listarmensajes',
   standalone: true,
-  imports: [
-    CommonModule,
-    MatPaginator,
-    MatButtonModule,
-    MatIconModule,
-    MatTableModule,
-    RouterLink
-  ],
+  imports: [MatTableModule,MatPaginatorModule,RouterLink,MatButtonModule,MatIconModule],
   templateUrl: './listarmensajes.component.html',
-  styleUrls: ['./listarmensajes.component.css']
+  styleUrl: './listarmensajes.component.css'
 })
-export class ListarmensajesComponent implements OnInit {
-  displayedColumns: string[] = ['idMensaje', 'mensaje', 'usuario', 'editar', 'eliminar'];
-  dataSource: MatTableDataSource<Mensajes> = new MatTableDataSource();
-  
+export class ListarmensajesComponent implements OnInit{
+  displayedColumns: string[] = [
+    'id',
+    'mensaje',
+    'nombre',
+    'apellido',
+    'username',
+    'editar',
+    'eliminar'
+  ];
+  dataSource:MatTableDataSource<Mensajes> = new MatTableDataSource();
   @ViewChild(MatPaginator) paginator!: MatPaginator;
-
-  constructor(private mensajesService: MensajesService) {}
-
+  ngAfterViewInit(){
+    this.dataSource.paginator=this.paginator;
+  }
+  constructor(private ts:MensajesService) {}
   ngOnInit(): void {
-    this.mensajesService.list().subscribe(data => {
-      this.dataSource = new MatTableDataSource(data);
-      this.dataSource.paginator = this.paginator;
-    });
-    this.mensajesService.getList().subscribe((data) => {
-      this.dataSource = new MatTableDataSource(data);
-      this.dataSource.paginator = this.paginator;
+    this.ts.list().subscribe((data)=>{
+      this.dataSource=new MatTableDataSource(data)
+    })
+    this.ts.getList().subscribe((data) => {
+      this.dataSource = new MatTableDataSource(data);      
     });
   }
-
-  deletes(id: number): void {
-    this.mensajesService.eliminar(id).subscribe(() => {
-      this.mensajesService.list().subscribe(data => {
-        this.dataSource.data = data;
-      });
+  deletes(id:number)
+  {
+    this.ts.delete(id).subscribe((data)=>
+    {
+      this.ts.list().subscribe((data)=>
+      {
+        this.ts.setList(data)
+      })
     });
   }
 }

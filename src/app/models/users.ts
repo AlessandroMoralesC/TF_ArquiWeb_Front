@@ -1,3 +1,4 @@
+
 export class Users{
     id:number=0
     nombreUsers:string=""
@@ -9,4 +10,5 @@ export class Users{
     username:string=""
     password:string=""
     enabled:boolean=false
+
 }

@@ -1,0 +1,39 @@
+<div class="container">
+    <div class="title-container"><h1 class="title">Registrar Historial Clinico</h1></div>
+      <form [formGroup]="form" (submit)="aceptar()">
+        <mat-form-field *ngIf="edicion">
+          <mat-label>Codigo</mat-label>
+          <input matInput formControlName="codigo" readonly/>
+        </mat-form-field>
+        <br />
+        <mat-form-field>
+            <mat-label>Selecciona la fecha </mat-label>
+            <input matInput [matDatepicker]="hpicker" formControlName="fecha">
+            <mat-hint>MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle matIconSuffix [for]="hpicker"></mat-datepicker-toggle>
+            <mat-datepicker #hpicker></mat-datepicker>
+            <mat-error *ngIf="form.get('fecha')?.hasError('required')"
+            >La fecha es obligatorio.</mat-error
+          >
+          </mat-form-field>
+          <br />
+              <br />
+            <mat-form-field >
+                <mat-label>Usuario</mat-label>
+                <mat-select formControlName="usuario">
+                  <mat-option *ngFor="let c of listausuario" [value]="c.id">
+                   "{{ c.username }}" - {{ c.nombreUsers }} {{ c.apellidoUsers }}
+                  </mat-option>
+                </mat-select>
+                <mat-error *ngIf="form.get('usuario')?.hasError('required')"
+                  >El usuario es obligatorio.</mat-error
+                >
+              </mat-form-field>
+          <br />
+          <div class="title-container"><button mat-raised-button color="primary">Registrar</button>
+            <button mat-raised-button color="warn" routerLink="/historialclinicos">
+              Cancelar
+            </button>
+          </div>
+        </form>
+  </div>
