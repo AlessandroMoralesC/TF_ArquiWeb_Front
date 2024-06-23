@@ -33,6 +33,7 @@ import { RegistrarcitasComponent } from './components/citas/registrarcitas/regis
 import { HorariosComponent } from './components/horarios/horarios.component';
 import { RegistrarhorariosComponent } from './components/horarios/registrarhorarios/registrarhorarios.component';
 import { LandingpageComponent } from './components/landingpage/landingpage.component';
+import { ReportcitasComponent } from './components/reportcitas/reportcitas.component';
 
 export const routes: Routes = [
     { path: '', component: LandingpageComponent }, // Ruta por defecto
