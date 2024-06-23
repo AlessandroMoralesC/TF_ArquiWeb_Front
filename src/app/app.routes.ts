@@ -35,6 +35,7 @@ import { RegistrarhorariosComponent } from './components/horarios/registrarhorar
 import { LandingpageComponent } from './components/landingpage/landingpage.component';
 import { ReportesComponent } from './components/reportes/reportes.component';
 import { ReporteTratamiento02Component } from './components/reportes/reporte-tratamiento02/reporte-tratamiento02.component';
+import { ReporteTratamiento03Component } from './components/reportes/reporte-tratamiento03/reporte-tratamiento03.component';
 
 export const routes: Routes = [
     { path: '', component: LandingpageComponent }, 
@@ -230,9 +231,16 @@ export const routes: Routes = [
       },
       {
         path:'reporte',component:ReportesComponent,
-        children:[{
-            path:'reporte02', component:ReporteTratamiento02Component
-        }]
+        children: [
+            {
+              path: 'reporte02',
+              component: ReporteTratamiento02Component
+            },
+            {
+              path: 'reporte03',
+              component: ReporteTratamiento03Component
+            }
+          ]
       },
     {
         path: 'homes',

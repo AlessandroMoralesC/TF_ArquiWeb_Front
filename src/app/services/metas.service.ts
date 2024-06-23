@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
-import { Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { HttpClient} from '@angular/common/http';
 import { Meta } from '../models/metas';
+import { CantidadMetasPorUsuario } from '../models/cantidadMetasPorUsuario';
 
 const base_url=environment.base
 @Injectable({
@@ -35,5 +36,9 @@ export class MetasService {
   delete(id:number)
   {
     return this.http.delete(`${this.url}/${id}`)
+  }
+  getCantidadMetasPorUsuario():Observable<CantidadMetasPorUsuario[]>
+  {
+    return this.http.get<CantidadMetasPorUsuario[]>(`${this.url}/cantidademetas`);
   }
 }
