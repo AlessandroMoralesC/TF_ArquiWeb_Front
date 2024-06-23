@@ -17,10 +17,13 @@ export class ComunidadesService {
 
   constructor(private http:HttpClient) { }
   list(){
-    return this.http.get<Role[]>(this.url);
+    return this.http.get<Comunidad[]>(this.url);
   }
   insert(m: Role) {
     return this.http.post(this.url, m);
+  }
+  setList(listaNueva: Comunidad[]) {
+    this.listaCambio.next(listaNueva);
   }
   getList() {
     return this.listaCambio.asObservable();
