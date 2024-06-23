@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
-import { Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { HttpClient} from '@angular/common/http';
 import { Materiales } from '../models/materiales';
+import { CantidadDeMaterialporNombreDTO } from '../models/cantidadDeMaterialporNombreDTO';
 
 const base_url=environment.base
 @Injectable({
@@ -36,4 +37,5 @@ export class MaterialesService {
   {
     return this.http.delete(`${this.url}/${id}`)
   }
+  
 }

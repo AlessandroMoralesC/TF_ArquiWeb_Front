@@ -36,6 +36,7 @@ import { LandingpageComponent } from './components/landingpage/landingpage.compo
 import { ReportesComponent } from './components/reportes/reportes.component';
 import { ReporteTratamiento02Component } from './components/reportes/reporte-tratamiento02/reporte-tratamiento02.component';
 import { ReporteTratamiento03Component } from './components/reportes/reporte-tratamiento03/reporte-tratamiento03.component';
+import { ReporteTratamiento04Component } from './components/reportes/reporte-tratamiento04/reporte-tratamiento04.component';
 
 export const routes: Routes = [
     { path: '', component: LandingpageComponent }, 
@@ -239,6 +240,10 @@ export const routes: Routes = [
             {
               path: 'reporte03',
               component: ReporteTratamiento03Component
+            },
+            {
+                path: 'reporte04',
+                component: ReporteTratamiento04Component
             }
           ]
       },
