@@ -33,7 +33,7 @@ export class ReporteTratamiento03Component implements OnInit {
       this.barChartData = [
         {
           data: data.map((item) => item.CantidadMetas),
-          label: 'Cantidad Metas',
+          label: 'Cantidad Meta',
           backgroundColor: [
             '#0094d3',
             '#4169c7',
