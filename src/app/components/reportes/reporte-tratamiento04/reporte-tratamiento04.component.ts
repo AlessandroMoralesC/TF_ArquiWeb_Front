@@ -15,28 +15,42 @@ import { BrowserModule } from '@angular/platform-browser';
   styleUrl: './reporte-tratamiento04.component.css'
 })
 export class ReporteTratamiento04Component implements OnInit {
-  public barChartOptions: ChartOptions = {
+  barChartOptions: ChartOptions = {
     responsive: true,
   };
-  public barChartLabels: string[] = [];
-  public barChartType: ChartType = 'doughnut';
-  public barChartLegend = true;
-  public barChartData: ChartDataset<'doughnut'>[] = [
-    {
-      data: [], // Se llenará dinámicamente
-      label: 'Cantidad de Material por Nombre',
-      backgroundColor: ['#8064A2', '#48ACC6', '#4F81BC'],
-      hoverBackgroundColor: ['#8064A2', '#48ACC6', '#4F81BC'],
-      borderWidth: 1,
-    }
-  ];
+  barChartLabels: string[] = [];
+  //barChartType: ChartType = 'pie';
+  barChartType: ChartType = 'doughnut';
+  //barChartType: ChartType = 'line';
+  //barChartType: ChartType = 'bar';
+  //barChartType: ChartType = 'polarArea';
 
-  constructor(private tMService: TipomaterialService) {} // Ajusta el servicio según sea necesario
+  barChartLegend = true;
+  barChartData: ChartDataset[] = [];
+
+  constructor(private rS: TipomaterialService) {}
 
   ngOnInit(): void {
-    this.tMService.getCantidadDeMaterialporNombre().subscribe((data: CantidadDeMaterialporNombreDTO[]) => {
-      this.barChartLabels = data.map(item => item.tematmaterial);
-      this.barChartData[0].data = data.map(item => item.CantidadRegistrosTema);
+    this.rS.getCantidadDeMaterialporNombre().subscribe((data) => {
+      this.barChartLabels = data.map((item) => item.tematmaterial);
+      this.barChartData = [
+        {
+          data: data.map((item) => item.cantidad),
+          label: 'Cantidad Tipo Material por Nombre',
+          backgroundColor: [
+            '#0094d3',
+            '#4169c7',
+            '#0000CD',
+            '#9BBB59',
+            '#8064A2',
+            '#4BACC6',
+            '#4F81BC',
+            '#C0504D',
+          ],
+          borderColor: 'rgba(173, 216, 230, 1)',
+          borderWidth: 1,
+        },
+      ];
     });
   }
-  }
+}

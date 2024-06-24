@@ -1,5 +1,5 @@
 export class ListadoVideosTipoDTO
 {
-    tipoTMaterial:string=""
-    linkTMaterial:string=""
+    tipotmaterial:string=""
+    linktmaterial:string=""
 }

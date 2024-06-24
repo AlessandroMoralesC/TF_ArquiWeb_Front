@@ -1,5 +1,5 @@
 export class CantidadDeMaterialPorTipoDTO
 {
     tipotmaterial:string=""
-    CantidadRegistros:number=0
+    cantidad:number=0
 }

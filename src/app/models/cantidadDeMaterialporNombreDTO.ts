@@ -1,5 +1,5 @@
 export class CantidadDeMaterialporNombreDTO
 {
     tematmaterial:string=""
-    CantidadRegistrosTema:number=0
+    cantidad:number=0
 }

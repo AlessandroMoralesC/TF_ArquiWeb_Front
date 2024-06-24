@@ -1,5 +1,5 @@
 export class ListadoFiltrarMaterialesDTO
 {
-    EnlaceMaterial:string=""
-    MaterialFormato:string=""
+    tematmaterial:string=""
+    tipotmaterial:string=""
 }

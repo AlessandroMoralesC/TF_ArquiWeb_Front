@@ -39,7 +39,6 @@ import { ReporteTratamiento03Component } from './components/reportes/reporte-tra
 import { ReporteTratamiento04Component } from './components/reportes/reporte-tratamiento04/reporte-tratamiento04.component';
 import { ReportesTratamiento05Component } from './components/reportes/reportes-tratamiento05/reportes-tratamiento05.component';
 import { ReportesTratamiento06Component } from './components/reportes/reportes-tratamiento06/reportes-tratamiento06.component';
-import { ReportesTratamiento07Component } from './components/reportes/reportes-tratamiento07/reportes-tratamiento07.component';
 
 export const routes: Routes = [
     { path: '', component: LandingpageComponent }, 
@@ -255,10 +254,6 @@ export const routes: Routes = [
             {
                 path: 'reporte06',
                 component: ReportesTratamiento06Component
-            },
-            {
-                path: 'reporte07',
-                component: ReportesTratamiento07Component
             },
           ]
       },

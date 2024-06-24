@@ -11,35 +11,39 @@ import { TipomaterialService } from '../../../services/tipomaterial.service';
   styleUrl: './reportes-tratamiento06.component.css'
 })
 export class ReportesTratamiento06Component implements OnInit {
-  public barChartOptions: ChartOptions = {
+  barChartOptions: ChartOptions = {
     responsive: true,
-    plugins: {
-      legend: {
-        display: true,
-        position: 'right'
-      }
-    }
   };
-  public barChartLabels: string[] = [];
-  public barChartType: ChartType = 'doughnut';
-  public barChartLegend = true;
-  public barChartData: ChartDataset<'doughnut'>[] = [
-    {
-      data: [],
-      label: 'Cantidad de Material',
-      backgroundColor: ['#8064A2', '#48ACC6', '#4F81BC'],
-      borderWidth: 1,
-    }
-  ];
+  barChartLabels: string[] = [];
+  barChartType: ChartType = 'doughnut';
+  barChartLegend = true;
+  barChartData: ChartDataset[] = [];
 
-  constructor(private tS: TipomaterialService) {}
+  constructor(private rS: TipomaterialService) {}
 
   ngOnInit(): void {
-    this.tS.getCantidaddeMaterialporTipo().subscribe(data => {
-      if (Array.isArray(data) && data.length > 0) {
-        this.barChartLabels = data.map(item => `${item.tipotmaterial} - ${item.CantidadRegistros}`);
-        this.barChartData[0].data = data.map(item => item.CantidadRegistros); // Usar los valores de CantidadRegistros
-      }
+    this.rS.getlistamaterial().subscribe((data) => {
+      this.barChartLabels = data.map((item: any) => item.tipotmaterial);
+      this.barChartData = [
+        {
+          data: data.map((item: any) => item.cantidad),
+          label: 'Cantidad Tipo Material',
+          backgroundColor: [
+            '#0094d3',
+            '#4169c7',
+            '#0000CD',
+            '#9BBB59',
+            '#8064A2',
+            '#4BACC6',
+            '#4F81BC',
+            '#C0504D',
+          ],
+          borderColor: 'rgba(173, 216, 230, 1)',
+          borderWidth: 1,
+        },
+      ];
+    }, (error) => {
+      console.error('Error al obtener los datos', error);
     });
   }
 }
