@@ -1,9 +1,20 @@
-<div style="display: block;">
-    <canvas baseChart
+<div class="title-container">
+        <div style="text-align: center" class="title">
+          <h1 >Cantidad de metas por Usuario</h1>
+        </div>
+        <div style="text-align: center" class="chart-container">
+          <!-- Gráfico de barras -->
+          <canvas
+            baseChart
             [datasets]="barChartData"
             [labels]="barChartLabels"
-            [type]="barChartType"
             [options]="barChartOptions"
-            [legend]="barChartLegend">
-    </canvas>
-  </div>
+            [legend]="barChartLegend"
+            [type]="barChartType"
+          >
+            <!-- Cambiado de 'chartType' a 'type' -->
+          </canvas>
+        </div>
+      </div>
+    
+    

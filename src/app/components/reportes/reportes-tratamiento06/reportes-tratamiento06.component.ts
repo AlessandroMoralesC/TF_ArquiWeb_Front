@@ -10,7 +10,7 @@ import { TipomaterialService } from '../../../services/tipomaterial.service';
   templateUrl: './reportes-tratamiento06.component.html',
   styleUrl: './reportes-tratamiento06.component.css'
 })
-export class ReportesTratamiento06Component implements OnInit{
+export class ReportesTratamiento06Component implements OnInit {
   public barChartOptions: ChartOptions = {
     responsive: true,
     plugins: {
@@ -25,10 +25,9 @@ export class ReportesTratamiento06Component implements OnInit{
   public barChartLegend = true;
   public barChartData: ChartDataset<'doughnut'>[] = [
     {
-      data: [], // Esto se llenará dinámicamente
-      label: 'Tratamientos en Progreso',
+      data: [],
+      label: 'Cantidad de Material',
       backgroundColor: ['#8064A2', '#48ACC6', '#4F81BC'],
-      hoverBackgroundColor: ['#8064A2', '#48ACC6', '#4F81BC'],
       borderWidth: 1,
     }
   ];
@@ -36,9 +35,11 @@ export class ReportesTratamiento06Component implements OnInit{
   constructor(private tS: TipomaterialService) {}
 
   ngOnInit(): void {
-    this.tS.getlistadovideos().subscribe(data => {
-      this.barChartLabels = data.map(item => `${item.linkTMaterial} - ${item.tipoTMaterial}`);
-      this.barChartData[0].data = Array(this.barChartLabels.length).fill(1); // Usar 1 como valor para todos los tratamientos
+    this.tS.getCantidaddeMaterialporTipo().subscribe(data => {
+      if (Array.isArray(data) && data.length > 0) {
+        this.barChartLabels = data.map(item => `${item.tipotmaterial} - ${item.CantidadRegistros}`);
+        this.barChartData[0].data = data.map(item => item.CantidadRegistros); // Usar los valores de CantidadRegistros
+      }
     });
   }
 }
