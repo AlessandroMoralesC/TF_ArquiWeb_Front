@@ -11,29 +11,43 @@ import { CantidadMetasPorUsuario } from '../../../models/cantidadMetasPorUsuario
   templateUrl: './reporte-tratamiento03.component.html',
   styleUrl: './reporte-tratamiento03.component.css'
 })
-export class ReporteTratamiento03Component implements OnInit{
-  public barChartOptions: ChartOptions = {
+export class ReporteTratamiento03Component implements OnInit {
+  barChartOptions: ChartOptions = {
     responsive: true,
   };
-  public barChartLabels: string[] = [];
-  public barChartType: ChartType = 'doughnut';
-  public barChartLegend = true;
-  public barChartData: ChartDataset[] = [
-    {
-      data: [], // Esto se llenará dinámicamente
-      label: 'Cantidad de Metas por Usuario',
-      backgroundColor: ['#8064A2', '#48ACC6', '#4F81BC'],
-      hoverBackgroundColor: ['#8064A2', '#48ACC6', '#4F81BC'],
-      borderWidth: 1,
-    }
-  ];
+  barChartLabels: string[] = [];
+  //barChartType: ChartType = 'pie';
+  barChartType: ChartType = 'doughnut';
+  //barChartType: ChartType = 'line';
+  //barChartType: ChartType = 'bar';
+  //barChartType: ChartType = 'polarArea';
 
-  constructor(private mS: MetasService) {}
+  barChartLegend = true;
+  barChartData: ChartDataset[] = [];
+
+  constructor(private rS: MetasService) {}
 
   ngOnInit(): void {
-    this.mS.getCantidadMetasPorUsuario().subscribe((data: CantidadMetasPorUsuario[]) => {
-      this.barChartLabels = data.map(item => item.Usuario);
-      this.barChartData[0].data = data.map(item => item.CantidadMetas); // Asignación correcta de datos
+    this.rS.getCantidadMetasPorUsuario().subscribe((data) => {
+      this.barChartLabels = data.map((item) => item.Usuario);
+      this.barChartData = [
+        {
+          data: data.map((item) => item.CantidadMetas),
+          label: 'Cantidad Metas',
+          backgroundColor: [
+            '#0094d3',
+            '#4169c7',
+            '#0000CD',
+            '#9BBB59',
+            '#8064A2',
+            '#4BACC6',
+            '#4F81BC',
+            '#C0504D',
+          ],
+          borderColor: 'rgba(173, 216, 230, 1)',
+          borderWidth: 1,
+        },
+      ];
     });
   }
 }

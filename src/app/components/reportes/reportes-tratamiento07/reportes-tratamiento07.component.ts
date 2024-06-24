@@ -25,7 +25,7 @@ export class ReportesTratamiento07Component implements OnInit{
   public barChartData: ChartDataset<'doughnut'>[] = [
     {
       data: [], // Esto se llenará dinámicamente
-      label: 'Tratamientos en Progreso',
+      label: 'Listado Material',
       backgroundColor: ['#8064A2', '#48ACC6', '#4F81BC'],
       hoverBackgroundColor: ['#8064A2', '#48ACC6', '#4F81BC'],
       borderWidth: 1,
