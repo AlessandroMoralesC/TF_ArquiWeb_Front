@@ -1,5 +1,5 @@
 export class CantidadMetasPorUsuario
 {
-    Usuario:string=""
-    CantidadMetas:number=0
+    usuario:string=""
+    cantidad:number=0
 }

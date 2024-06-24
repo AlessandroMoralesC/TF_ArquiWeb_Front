@@ -29,10 +29,10 @@ export class ReporteTratamiento03Component implements OnInit {
 
   ngOnInit(): void {
     this.rS.getCantidadMetasPorUsuario().subscribe((data) => {
-      this.barChartLabels = data.map((item) => item.Usuario);
+      this.barChartLabels = data.map((item) => item.usuario);
       this.barChartData = [
         {
-          data: data.map((item) => item.CantidadMetas),
+          data: data.map((item) => item.cantidad),
           label: 'Cantidad Meta',
           backgroundColor: [
             '#0094d3',
