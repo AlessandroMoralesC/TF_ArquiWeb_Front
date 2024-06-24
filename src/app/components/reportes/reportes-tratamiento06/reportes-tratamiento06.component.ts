@@ -27,7 +27,7 @@ export class ReportesTratamiento06Component implements OnInit {
       this.barChartData = [
         {
           data: data.map((item: any) => item.cantidad),
-          label: 'Cantidad Tipo Material',
+          label: 'Lista Tipo Material',
           backgroundColor: [
             '#0094d3',
             '#4169c7',
