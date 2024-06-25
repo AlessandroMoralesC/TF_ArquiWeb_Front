@@ -76,7 +76,9 @@
 <mat-icon> contact_support</mat-icon>Respuestas
 </button>
 
-
+<button mat-button [matMenuTriggerFor]="Reportes">
+  <mat-icon> file_copy</mat-icon>Reportes
+</button>
     <!-- Barra de herramientas para ADMINISTRADOR -->
 
     <button mat-button [matMenuTriggerFor]="menuDetalle" *ngIf="isADMINISTRADOR()"> <mat-icon>folder_shared</mat-icon>Detalle Clinico
