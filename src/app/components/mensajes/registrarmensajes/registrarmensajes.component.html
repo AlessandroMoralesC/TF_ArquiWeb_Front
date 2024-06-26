@@ -18,7 +18,7 @@
               <mat-label>Usuario</mat-label>
               <mat-select formControlName="usuario">
                 <mat-option *ngFor="let c of listausuario" [value]="c.id">
-                 "{{ c.username }}" - {{ c.nombreUsers }} {{ c.apellidoUsers }}
+                 "{{ c.username }}" - {{ c.especialidadUsers }} 
                 </mat-option>
               </mat-select>
               <mat-error *ngIf="form.get('usuario')?.hasError('required')"
